@@ -1,0 +1,59 @@
+﻿@model BatteryShop_Web.Areas.UserPanel.Models.Address.IndexAddress
+@using CoreLayer.Utilities;
+@using CoreLayer.DTOs.User
+@{
+    ViewData["title"] = "مدیریت آدرس ها";
+    ViewData["selected"] = "posts";
+    var counter = 1;
+
+}
+<section class="content-header">
+    <h1>
+        @ViewData["title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li><a asp-area="UserPanel" asp-controller="Address" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">@ViewData["title"]</li>
+    </ol>
+</section>
+<section class="content">
+
+    <a class="btn btn-success" style="margin-bottom: 5px" asp-area="UserPanel" asp-controller="Address" asp-action="Add">افزودن آدرس</a>
+    <div class="box box-primary ">
+        <div class="box-body p-0">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>استان</th>
+                        <th>شهر</th>
+                        <th>آدرس</th>
+                        <th>کد پستی</th>
+                        <th>آدرس فعال</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.UserAddressDtos)
+                    {
+                        <tr>
+                            <td>@counter</td>
+                           
+                            <td>@item.Shire</td>
+                            <td>@item.City</td>
+                            <td>@item.Address</td>
+                            <td>@item.PostalCode</td>
+                            <td>@item.ActiveAddress</td>
+                            
+                           
+                            <td>
+                                <a asp-area="UserPanel" asp-controller="Address" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-sm">ویرایش</a>
+                            </td>
+                        </tr>
+
+                        counter += 1;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

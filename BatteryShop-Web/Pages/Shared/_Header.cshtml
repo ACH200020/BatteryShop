@@ -1,0 +1,307 @@
+﻿@using CoreLayer.Utilities
+@using CoreLayer.Services.Orders
+@using CoreLayer.Services.Categories
+@inject IOrderService _Order
+@inject ICategoryService _Category
+@{
+    int countOrder = 0;
+    var userId = User.GetUserId();
+    countOrder = _Order.GetOrderBy(userId).Count;
+    List<long> parenId = new List<long>();
+}
+
+
+<header>
+
+    <div class="container-fluid px-0 d-none d-lg-block">
+
+        <div class="header__top__shape w-100 position-absolute top-0"></div>
+
+        <div class="container px-0 d-none d-xl-block">
+            <div class="header__top__logo text-center align-items-center d-grid position-absolute top-0">
+                <a class="" href="index.html">
+                    <img src="images/logo-imgs/logo.png" alt="" srcset="">
+                    <p class="header__top__logo__text">مرکز تخصصی لوازم دیجیتال </p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container header">
+
+        <div class="header__before__nav position-relative d-none d-lg-block">
+            <div class="row justify-content-between">
+
+                <div class="col-8 col-xl-7 pt-4 pb-3 pb-lg-0">
+
+                    <div class="header__space__logo">
+
+                        <div class="header__search float-start position-relative">
+
+
+                            <form action="/search" class="d-flex position-relative header__search__form">
+
+                                <input name="title" value="" class=" me-2 ps-2 header__search__input" type="search"
+                                       placeholder="دنبال چیزی میگردی ؟" aria-label="Search">
+
+
+                                <button class="btn position-absolute end-0 h-100 header__search__btn" type="submit">
+                                    <img src="images/icons/Search.svg" alt="" srcset="" class="d-block">
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                        <div class="header__contact-us text-end float-start ms-3 d-none d-lg-block">
+                            <img src="images/icons/Calling.svg" alt="" srcset="">
+                            <a href="tel:09125512941" class="header__contact-us__number ms-2">09125512941</a><br>
+                            <span class="header__contact-us__text">
+                                دریافت مشاوره و راهنمایی
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-4 col-xl-4 pt-4 pb-3 pb-lg-0">
+
+                    <div class="header__ac__links float-end">
+
+
+
+                        <a asp-page="/Auth/Login" class="header__ac__links__btn">
+                            <img src="/images/icons/Profile.svg" alt="" srcset="" class="mx-auto">
+                        </a>
+
+                    </div>
+
+                    <div class="header__cart position-relative align-items-center d-flex float-end">
+
+                        <div class="header__cart__count float-start position-absolute d-none d-lg-block">
+                            <span>@countOrder</span>
+                        </div>
+
+                        <div class="dropdown d-none d-lg-block">
+
+                            <a class="btn btn-sm text-white dropdown-toggle" asp-page="Cart"
+                               aria-expanded="false">
+                                سبد خرید
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="header__nav">
+
+
+            <div class="row">
+
+                <div class="col-lg-9 col-xl-7">
+
+                    <nav class="navbar navbar-expand-lg navbar-light pb-2 pb-lg-0 header__space__logo">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+
+                            <img src="images/icons/Menu.svg" alt="" srcset="">
+
+                        </button>
+
+                        <a class="navbar-brand d-block d-xl-none" asp-page="Index">
+                            <img src="images/logo-imgs/logo-sm.png" alt="" srcset="">
+                        </a>
+                        <a class="navbar-brand position-relative d-block d-lg-none" asp-page="Cart">
+                            <img src="images/icons/Cart.svg" alt="" srcset="">
+                            <span class="position-absolute navbar__count__number">@countOrder</span>
+                        </a>
+
+                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                             aria-labelledby="offcanvasNavbarLabel">
+
+                            <div class="offcanvas-header">
+
+                                <a asp-page="Index" class="offcanvas-title" id="offcanvasNavbarLabel">
+                                    <img src="images/logo-imgs/logo-md.png" alt="" srcset="">
+                                </a>
+
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+
+                            </div>
+
+                            <div class="p-2">
+
+                                <form action="/search" class="d-flex position-relative header__search__form-mobile d-xxl-none d-xl-none d-xxl-block d-lg-none d-xl-block d-lg-block">
+
+
+                                    <input name="title" class="me-2 ps-2 header__search__input-mobile" type="search"
+                                           placeholder="دنبال چیزی میگردی ؟" aria-label="Search">
+
+                                    <button class="btn position-absolute end-0 h-100 header__search__btn-mobile"
+                                            type="submit">
+                                        <img src="images/icons/Search.svg" alt="" srcset="" class="d-block">
+                                    </button>
+
+                                </form>
+                            </div>
+
+
+                            <div class="offcanvas-body position-relative">
+
+
+
+                                <ul class="navbar-nav">
+
+
+                                    <li class="nav-item">
+                                        <a class="nav-link p-3 fw-bold active" aria-current="page" href="index.html">
+                                            صفحه
+                                            اصلی
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item dropdown dropdown-hover">
+
+
+                                        <a class="nav-link p-3 fw-bold dropdown__menu__link dropdown-toggle position-relative"
+                                           href="shop.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                           aria-expanded="false">
+                                            فروشگاه
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown__megamenu dropdown__menu__items py-0"
+                                            aria-labelledby="navbarDropdownMenuLink">
+                                            @***********************************************************@
+                                            <ul class="dropdown-menu dropdown__menu__items show d-block d-lg-none"
+                                                aria-labelledby="navbarDropdownMenuLink" data-bs-popper="none">
+                                                @foreach (var item in _Category.GetParentCategory())
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item" asp-page="Shop" asp-route-categorySlug="@item.Slug">
+                                                            @item.Title
+                                                        </a>
+                                                    </li>
+                                                    <spam style="display: none"></spam>
+                                                }
+                                            </ul>
+
+
+                                            <div style="margin-bottom: 10px" class="d-none - d-lg-block">
+
+                                                
+                                                    <div class="tab">
+                                                        @foreach (var item in _Category.GetParentCategory())
+                                                        {
+                                                            <button class="tablinks align-items-center d-flex"
+                                                                    onmouseover="openCity(event, '@item.Title')">
+                                                                @item.Title
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="ms-auto" width="5.811"
+                                                                     height="10.121" viewBox="0 0 5.811 10.121">
+                                                                    <path d="M12.5,13l-2-2-2-2,4-4" transform="translate(-7.75 -3.939)"
+                                                                          fill="none" stroke="#4f48ed" stroke-linecap="round"
+                                                                          stroke-linejoin="round" stroke-width="1.5"/>
+                                                                </svg>
+
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                    @foreach (var item in _Category.GetParentCategory())
+                                                    {
+                                                        <div id="@item.Title" class="tabcontent">
+
+                                                            <div class="row">
+
+                                                                <div class="col-9">
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-3">
+
+                                                                            <div class="row g-1">
+
+                                                                                <div class="col-12">
+
+
+
+                                                                            <ul class="mega__menu__nav nav ps-3">
+                                                                                @foreach (var child in _Category.GetChildCategories(item.Id))
+                                                                                {
+                                                                                    <li class="w-100 py-1">
+                                                                                            <a asp-page="Shop" asp-route-categorySlug="@child.Slug" class="d-block">
+                                                                                            @child.Title
+                                                                                        </a>
+                                                                                    </li>
+                                                                                }
+                                                                            </ul>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    }
+                                                
+                                            </div>
+
+                                        </ul>
+
+
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a class="nav-link p-3 fw-bold" asp-page="ContactUs">درباره ما</a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a class="nav-link p-3 fw-bold" asp-page="ContactUs">تماس با ما</a>
+                                    </li>
+
+
+                                   
+
+
+                                </ul>
+
+                                <div class="d-block d-lg-none position-absolute bottom-0">
+                                    <p class="nav-item__copy__right mx-auto">
+                                        .کلیه حقوق این سایت متعلق به دینگ می باشد
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </nav>
+
+                </div>
+
+               
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

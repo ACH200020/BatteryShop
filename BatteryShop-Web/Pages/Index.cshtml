@@ -1,0 +1,564 @@
+﻿@page
+@using CoreLayer.Utilities
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<main class="my-5">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12">
+
+                <div class="banner__top__lg">
+
+                    <a href="#">
+                        <img src="images/banners/banner-top-lg.png" class="img-fluid" alt="">
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-10">
+
+                <div class="slogan slogan__bg__glass w-100 d-none d-sm-block">
+
+                    <div class="row">
+
+                        <div class="col-6 col-lg-3 align-items-center d-flex">
+
+
+                            <div class="slogan__item mx-auto text-center py-3">
+                                <img src="images/icons/warranty(1).svg" alt="">
+                                <p class="my-3">
+                                    ضمانت اصالت کالا
+                                </p>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-6 col-lg-3 align-items-center d-flex">
+
+
+                            <div class="slogan__item mx-auto text-center py-3">
+                                <img src="images/icons/exchange.svg" alt="">
+                                <p class="my-3">
+                                    ضمانت برگشت کالا
+                                </p>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-6 col-lg-3 align-items-center d-flex">
+
+
+                            <div class="slogan__item mx-auto text-center py-3">
+                                <img src="images/icons/support1.svg" alt="">
+                                <p class="my-3">
+                                    پشتیبانی 24 ساعته
+                                </p>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-6 col-lg-3 align-items-center d-flex">
+
+
+                            <div class="slogan__item mx-auto text-center py-3">
+                                <img src="images/icons/deliver1.svg" alt="">
+                                <p class="my-3">
+                                    ارسال به سراسر کشور
+                                </p>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    @if (Model.ProductDTOs.Any(f => f.Sales > 0))
+    {
+        <div class="container off__slider__top short__bg short__bg__lg position-relative">
+
+            <div class="off__slider__top__body p-4">
+
+                <div class="row g-5">
+
+                    <div class="col-12">
+
+                        <div class="position-relative">
+
+                            <div class="off__slider__top__title position-relative mx-auto text-center">
+
+                                <h3 class="fw-bold m-0">
+                                    با تخفیف بخر!!
+                                </h3>
+                                <span>
+                                    Buy at a discount
+                                </span>
+
+                                <div class="off__slider__top__title__line mx-auto mt-2"></div>
+
+                            </div>
+
+                            @*<a href="shop.html"
+                               class="off__slider__top__link position-absolute bottom-0 end-0 fw-bold px-1 py-2">
+                                مشاهده همه
+                            </a>*@
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <div class="owl-carousel owl-theme owl-first-carousel">
+
+                            @foreach (var product in Model.ProductDTOs.Where(f=>f.Sales>0))
+                            {
+                                
+                                    <div class="item pb-3">
+
+                                        <div class="card position-relative">
+
+                                            <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                                            <div class="card-body">
+
+                                                <div class="row">
+
+                                                    <div class="col-12">
+
+                                                        
+                                                        <div class="parent__card-img-top p-3 mb-2 position-relative">
+                                                            
+                                                            <a asp-page="Product" asp-route-slug="@product.Slug">
+                                                                <img src="@Directories.GetProductImage(product.ImageName)" class="card-img-top mx-auto"
+                                                                     alt="...">
+                                                            </a>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-12">
+
+                                                        <div class="row g-2">
+
+                                                            <div class="col-12">
+                                                                <a asp-page="product" asp-route-slug="@product.Slug" class="card-title fw-bold">
+                                                                    @product.Title
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="col-7">
+                                                                <div class="d-inline-block align-items-center d-flex">
+
+                                                                    <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                        @product.Price.ToString("0,0")
+                                                                    </p>
+                                                                    <span class="header__cart__price__unit ms-1">
+                                                                        تومان
+                                                                    </span>
+
+                                                                    <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                        @product.Sales
+                                                                    </span>
+
+                                                                </div>
+                                                            </div>
+
+                                                            @*<div class="col-5 text-end">
+                                                            <span class="card-title fw-bold">4.6</span>
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12.632" height="12"
+                                                                 viewBox="0 0 12.632 12">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            fill: #ffbe18;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <path id="Star" class="cls-1"
+                                                                      d="M12.053,9.965a.7.7,0,0,0-.2.613l.561,3.107a.682.682,0,0,1-.284.682.7.7,0,0,1-.739.051l-2.8-1.459a.714.714,0,0,0-.316-.083H8.106a.513.513,0,0,0-.171.057L5.138,14.4a.738.738,0,0,1-.448.069.7.7,0,0,1-.562-.8l.562-3.107a.707.707,0,0,0-.2-.618l-2.28-2.21a.682.682,0,0,1-.17-.714A.709.709,0,0,1,2.6,6.542l3.139-.455A.7.7,0,0,0,6.293,5.7L7.676,2.866A.657.657,0,0,1,7.8,2.7l.057-.044a.424.424,0,0,1,.1-.082l.069-.025L8.137,2.5H8.4a.706.706,0,0,1,.556.379L10.36,5.7a.7.7,0,0,0,.524.385l3.139.455a.716.716,0,0,1,.575.474.686.686,0,0,1-.183.714Z"
+                                                                      transform="translate(-2 -2.5)"/>
+                                                            </svg>
+
+
+                                                        </div>
+                                                        *@
+
+                                                            <div class="col-12">
+
+
+
+                                                                <div class="d-inline-block align-items-center d-flex">
+
+                                                                    <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                        @((product.Price - (product.Price * product.Sales / 100)).Value.ToString("0,0"))
+                                                                    </p>
+                                                                    <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                        تومان
+                                                                    </span>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                           
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+    <!-- end -->
+
+    <div class="container my-5">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <a href="#" class="d-block">
+                    <img src="images/banners/headphone-banner.png" class="img-fluid" alt="">
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-6">
+                <a href="#" class="d-block">
+                    <img src="images/banners/powerbank-banner.png" class="img-fluid" alt="">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <partial name="Shared/Main/_ShortShow" model="Model.ProductDTOs"/>
+
+    @*<div class="container my-5">
+
+    <div class="row justify-content-center">
+
+    <div class="col-lg-4">
+
+    <a href="#" class="d-block">
+    <img src="images/banners/mi-banner.png" class="img-fluid mx-auto d-block" alt="">
+    </a>
+
+    </div>
+
+
+    <div class="col-lg-4">
+    <a href="#" class="d-block">
+    <img src="images/banners/adata-banner.png" class="img-fluid mx-auto d-block" alt="">
+    </a>
+    </div>
+
+    <div class="col-lg-4">
+    <a href="#" class="d-block">
+    <img src="images/banners/apple-banner.png" class="img-fluid mx-auto d-block" alt="">
+    </a>
+    </div>
+
+    </div>
+
+    </div>*@
+
+    @*
+    <div class="container my-4 bg-gray-radius p-4">
+
+    <div class="row g-5">
+
+    <div class="col-12">
+    <div class="row">
+
+    <div class="col-6">
+
+
+    <div class="position-relative introduction">
+
+    <h2 class="introduction__title m-0">
+    انواع
+    <span class="fw-bold">تلفن همراه</span>
+    </h2>
+    <span class="introduction__title__en">
+    Mobile Phone
+    </span>
+
+    </div>
+
+
+    </div>
+
+
+    <div class="col-6 align-items-end d-flex">
+
+    <a href="shop.html" class="see__all fw-bold px-1 py-2 ms-auto">
+    مشاهده همه
+    </a>
+
+    </div>
+
+    </div>
+    </div>
+
+
+    <div class="col-12">
+
+    <div class="owl-carousel owl-theme owl-four-carousel">
+
+
+    <div class="item pb-3 px-3 px-md-2">
+
+    <div class="card position-relative">
+
+    <div class="p-3 mb-2 position-relative">
+
+    <a href="#">
+    <img src="images/off-slider/mobile.svg" class="card-img-top mx-auto" alt="...">
+    </a>
+
+    <nav class="nav flex-column position-absolute top-0 card__options card__options__adds"
+    style="left: -5px;">
+
+
+    <a class="nav-link p-0" href="#">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="23.882"
+    viewBox="0 0 51 23.882">
+    <defs>
+    <style>
+    .purple {
+    fill: #4F48ED;
+    }
+
+    .purple-dark {
+    fill: #2B25AC;
+    }
+
+    .text {
+    fill: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    }
+    </style>
+    </defs>
+    <path class="purple" d="M83,1866h51l-10.006,10.006L134,1886.011H83Z"
+    transform="translate(-83 -1866)" />
+    <path class="purple-dark" d="M79,1886.011l3.871,3.871v-3.871Z"
+    transform="translate(-78.871 -1866)" />
+    <text class="text" transform="translate(31 14)">
+    <tspan x="3" y="-1">جدید</tspan>
+    </text>
+    </svg>
+
+    </a>
+
+
+    <a class="nav-link p-0" href="#">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="23.882"
+    viewBox="0 0 51 23.882">
+    <defs>
+    <style>
+    .yellow {
+    fill: #ffc226;
+    }
+
+    .yellow-dark {
+    fill: #c19525;
+    }
+
+    .text {
+    fill: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    }
+    </style>
+    </defs>
+    <path class="yellow" d="M83,1866h51l-10.006,10.006L134,1886.011H83Z"
+    transform="translate(-83 -1866)" />
+    <path class="yellow-dark" d="M79,1886.011l3.871,3.871v-3.871Z"
+    transform="translate(-78.871 -1866)" />
+    <text class="text" transform="translate(31 14)">
+    <tspan x="0" y="0">10%</tspan>
+    </text>
+    </svg>
+
+    </a>
+
+
+    </nav>
+
+    <nav class="nav flex-column position-absolute start-0 top-0 p-3 card__options card__options__ungaps">
+    <a class="nav-link p-0 mb-1 card__options__colors" style="background-color: #CBCBCB;"></a>
+    <a class="nav-link p-0 mb-1 card__options__colors" style="background-color: #AA9393;"></a>
+    <a class="nav-link p-0 mb-1 card__options__colors" style="background-color: #7A7A7A;"></a>
+    </nav>
+
+    </div>
+
+    <div class="card-body">
+
+    <div class="row">
+
+    <div class="col-12">
+
+    <div class="row g-2 position-relative">
+
+    <div class="col-12 text-center">
+    <div style="height: 40px;">
+    <a href="product.html" class="card-title fw-bold">
+    S20 گوشی موبایل سامسونگ مدل
+    </a>
+    <span class="card-title card-title-en fw-bold d-block">
+    Samsung Galaxy S20 FE
+    </span>
+    </div>
+    </div>
+
+    <div class="col-12 col-sm-5">
+
+
+    <div class="row">
+
+    <div class="col-12">
+
+    <div class="d-inline-block align-items-center d-flex">
+
+    <p class="header__cart__price float-start text-decoration-line-through mb-0">
+    13,750,000
+    </p>
+    <span class="header__cart__price__unit ms-1">
+    تومان
+    </span>
+
+    <span class="header__cart__price__off text-white px-2 ms-1 d-block d-md-none">
+    %10
+    </span>
+
+    </div>
+
+    </div>
+
+
+    <div class="col-12">
+
+    <div class="d-inline-block align-items-center d-flex">
+
+    <p class="header__cart__price cart__off__price float-start mb-0">
+    10,750,000
+    </p>
+    <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+    تومان
+    </span>
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+    </div>
+
+    <div class="col-12 col-sm-7 position-absolute w-100 end-0" style="top: 51px;">
+
+    <nav class="nav row-cols-auto justify-content-end card__options card__options__lateral">
+
+    <a class="col nav-link align-items-center d-flex p-0 ms-1 d-none d-md-flex"
+    data-bs-toggle="modal" href="#quickViewModal" role="button">
+    <img src="images/icons/eye.svg" class="mx-auto" alt="">
+    </a>
+
+
+    <a class="col nav-link align-items-center d-flex p-0 ms-1" href="#">
+    <img src="images/icons/like.svg" class="mx-auto" alt="">
+    </a>
+
+
+    <a class="col nav-link align-items-center d-flex p-0 ms-1">
+    <img src="images/icons/balance.svg" class="mx-auto" alt="">
+    </a>
+
+
+    <a class="col nav-link align-items-center d-flex p-0 ms-1" href="#">
+    <img src="images/icons/Buy.svg" class="mx-auto" alt="">
+    </a>
+
+    </nav>
+
+    </div>
+
+    <div class="col-12">
+    <div class="card-timer__unbg py-1 px-3 mx-auto mt-3"></div>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+    *@
+
+
+
+
+
+</main>

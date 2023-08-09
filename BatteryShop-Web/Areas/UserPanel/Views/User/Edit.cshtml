@@ -1,0 +1,91 @@
+﻿@using BatteryShop_Web.Areas.UserPanel.Models.User;
+@model EditUserViewModel
+@{
+    ViewData["title"] = "ویرایش  کاربر";
+    ViewData["selected"] = "posts";
+}
+<section class="content-header">
+    <h1>
+        @ViewData["title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li><a asp-area="UserPanel" asp-controller="Home" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">@ViewData["title"]</li>
+    </ol>
+</section>
+<section class="content">
+    <form class="box box-danger" method="post" asp-area="UserPanel" asp-controller="User" asp-action="Edit" enctype="multipart/form-data">
+        <div class="box-body row">
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Name)
+            </div>
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Family)
+            </div>
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.NationalCode)
+            </div>
+           @* <div class="col-md-6">
+                @Html.EditorFor(m => m.Price)
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(m => m.Description)
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for="CategoryId" class="form-control">
+                        <option value="null">انتخاب کنید</option>
+
+                        @foreach (var item in categories.Where(c => c.ParentId == null))
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="SubCategoryId"></label>
+                    <select asp-for="SubCategoryId" class="form-control">
+                        <option value="0">انتخاب کنید</option>
+                        @foreach (var item in categories.Where(c => c.ParentId == Model.CategoryId))
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SubCategoryId"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(m => m.ImageFile)
+            </div>*@
+            @*<div class="col-md-6">
+            @Html.EditorFor(m => m.IsSpecial)
+            </div>*@
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-success" type="submit">ثبت اطلاعات</button>
+        </div>
+    </form>
+</section>
+@*
+@section scripts{
+    <script>
+        $("#CategoryId").change(function () {
+            var categoryId = $(this).val();
+            $.ajax({
+                url: "/Admin/Category/GetChildCategories?parentId=" + categoryId,
+                type: "get"
+            }).done(function (data) {
+                $("#SubCategoryId").html(`<option value='0'>انتخاب کنید</option>`);
+
+                for (var i in data) {
+                    var category = data[i];
+                    $("#SubCategoryId").append(`<option value='${category.id}'>${category.title}</option>`);
+                }
+            });
+        })
+    </script>
+}*@

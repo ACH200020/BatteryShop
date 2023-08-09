@@ -1,0 +1,457 @@
+﻿@using CoreLayer.DTOs.Product
+@using CoreLayer.Utilities
+@model List<CoreLayer.DTOs.Product.ProductDto>
+@{
+    long Sales(long price , int sales)
+    {
+        return price * sales / 100;
+    }
+}
+<div class="container short__bg short__bg__sm position-relative my-5 px-5">
+
+    <div class="row">
+
+
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+
+            <div class="row g-2 py-md-5">
+
+
+                <div class="col-12 pt-3">
+                    <h2 class="introduction__title m-0">
+                        انواع
+                        <span class="fw-bold">باطری</span>
+                    </h2>
+                    <span class="introduction__title__en">
+                        Mobile Phone
+                    </span>
+                </div>
+
+
+                <div class="col-12">
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                        @if (Model.Any(f => f.Ampere == 50))
+                        {
+                            <li class="nav-item" role="presentation">
+
+                                <a href="?new" class="nav-link px-0 me-2 active" id="pills-news-tab" data-bs-toggle="pill"
+                                   data-bs-target="#pills-news" type="button" role="tab" aria-controls="pills-news"
+                                   aria-selected="true">
+                                    50 آمپر
+                                </a>
+                            </li>
+                        }
+                        @if (Model.Any(f => f.Ampere == 55))
+                        {
+                            <li class="nav-item" role="presentation">
+
+                                <a href="?costly" class="nav-link px-0 mx-2" id="pills-costly-tab" data-bs-toggle="pill"
+                                   data-bs-target="#pills-costly" type="button" role="tab" aria-controls="pills-costly"
+                                   aria-selected="false">
+
+                                    55 آمپر
+                                </a>
+                            </li>
+                        }
+                        @if (Model.Any(f => f.Ampere == 60))
+                        {
+                            <li class="nav-item" role="presentation">
+
+                                <a href="?cheap" class="nav-link px-0 mx-2" id="pills-cheap-tab" data-bs-toggle="pill"
+                                   data-bs-target="#pills-cheap" type="button" role="tab" aria-controls="pills-cheap"
+                                   aria-selected="false">
+                                    60 آمپر
+                                </a>
+
+                            </li>
+                        }
+                        @if (Model.Any(f => f.Ampere == 66))
+                        {
+                            <li class="nav-item" role="presentation">
+
+                                <a href="?popular" class="nav-link px-0 mx-2" id="pills-popular-tab" data-bs-toggle="pill"
+                                   data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular"
+                                   aria-selected="false">
+                                    66 آمپر
+                                </a>
+
+                            </li>
+                        }
+
+                    </ul>
+
+                    <p class="tab-content__text d-none d-md-block">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                        است.
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                        تکنولوژی
+                        مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-8 col-xl-9">
+
+            <div class="tab-content" id="pills-tabContent">
+
+                <div class="tab-pane fade show active" id="pills-news" role="tabpanel"
+                     aria-labelledby="pills-news-tab">
+
+                    <div class="owl-carousel owl-theme owl-second-carousel">
+                        @foreach (var item in Model.Where(f => f.Ampere == 50))
+                        {
+                            <div class="item py-3">
+
+                                <div class="card position-relative">
+
+                                    <div class="p-3 mb-2 position-relative">
+
+                                        <a asp-page="Product" asp-route-slug="@item.Slug">
+                                            <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="row g-2">
+
+                                                    <div class="col-12 text-center">
+                                                        <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                            @item.Title
+                                                        </a>
+                                                    </div>
+                                                    @{
+                                                        bool exists = false;
+                                                    }
+                                                    @if (item.Sales > 0)
+                                                    {
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="d-inline-block align-items-center d-flex">
+
+                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                    @item.Price.ToString("0,0")
+                                                                </p>
+                                                                <span class="header__cart__price__unit ms-1">
+                                                                    تومان
+                                                                </span>
+
+                                                                <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                    @item.Sales%
+                                                                </span>
+                                                                <div style="display: none">@(exists = true)</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    <div style="margin-top: 40px" class="col-12 col-sm-6">
+
+                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                @((item.Price - (exists ? Sales(item.Price, (int)item.Sales) : 0)).ToString("0,0"))
+                                                            </p>
+                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                تومان
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                        
+                    </div>
+
+                </div>
+                @***********************************************************************************************************@
+                <div class="tab-pane fade show" id="pills-costly" role="tabpanel" aria-labelledby="pills-costly-tab">
+
+                    <div class="owl-carousel owl-theme owl-second-carousel">
+                        @foreach (var item in Model.Where(f => f.Ampere == 55))
+                        {
+                            <div class="item py-3">
+
+                                <div class="card position-relative">
+
+                                    <div class="p-3 mb-2 position-relative">
+
+                                        <a asp-page="Product" asp-route-slug="@item.Slug">
+                                            <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="row g-2">
+
+                                                    <div class="col-12 text-center">
+                                                        <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                            @item.Title
+                                                        </a>
+                                                    </div>
+                                                    @{
+                                                        bool exists = false;
+                                                    }
+                                                    @if (item.Sales > 0)
+                                                    {
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="d-inline-block align-items-center d-flex">
+
+                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                    @item.Price.ToString("0,0")
+                                                                </p>
+                                                                <span class="header__cart__price__unit ms-1">
+                                                                    تومان
+                                                                </span>
+
+                                                                <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                    @item.Sales%
+                                                                </span>
+                                                                <div style="display: none">@(exists = true)</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    
+                                                    <div style="margin-top: 40px" class="col-12 col-sm-6">
+
+                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                @((item.Price - (exists ? Sales(item.Price,(int)item.Sales):0)).ToString("0,0"))
+                                                            </p>
+                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                تومان
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="tab-pane fade show" id="pills-cheap" role="tabpanel" aria-labelledby="pills-cheap-tab">
+
+                    <div class="owl-carousel owl-theme owl-second-carousel">
+                        @foreach (var item in Model.Where(f => f.Ampere == 60))
+                        {
+                            <div class="item py-3">
+
+                                <div class="card position-relative">
+
+                                    <div class="p-3 mb-2 position-relative">
+
+                                        <a asp-page="Product" asp-route-slug="@item.Slug">
+                                            <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="row g-2">
+
+                                                    <div class="col-12 text-center">
+                                                        <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                            @item.Title
+                                                        </a>
+                                                    </div>
+                                                    @{
+                                                        bool exists = false;
+                                                    }
+                                                    @if (item.Sales > 0)
+                                                    {
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="d-inline-block align-items-center d-flex">
+
+                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                    @item.Price.ToString("0,0")
+                                                                </p>
+                                                                <span class="header__cart__price__unit ms-1">
+                                                                    تومان
+                                                                </span>
+
+                                                                <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                    @item.Sales%
+                                                                </span>
+                                                                <div style="display: none">@(exists = true)</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    <div style="margin-top: 40px" class="col-12 col-sm-6">
+
+                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                @((item.Price - (exists ? Sales(item.Price, (int)item.Sales) : 0)).ToString("0,0"))
+                                                            </p>
+                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                تومان
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                       
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade show" id="pills-popular" role="tabpanel"
+                     aria-labelledby="pills-popular-tab">
+
+                    <div class="owl-carousel owl-theme owl-second-carousel">
+
+                        @foreach (var item in Model.Where(f => f.Ampere == 66))
+                        {
+                            <div class="item py-3">
+
+                                <div class="card position-relative">
+
+                                    <div class="p-3 mb-2 position-relative">
+
+                                        <a asp-page="Product" asp-route-slug="@item.Slug">
+                                            <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="row g-2">
+
+                                                    <div class="col-12 text-center">
+                                                        <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                            @item.Title
+                                                        </a>
+                                                    </div>
+                                                    @{
+                                                        bool exists = false;
+                                                    }
+                                                    @if (item.Sales > 0)
+                                                    {
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="d-inline-block align-items-center d-flex">
+
+                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                    @item.Price.ToString("0,0")
+                                                                </p>
+                                                                <span class="header__cart__price__unit ms-1">
+                                                                    تومان
+                                                                </span>
+
+                                                                <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                    @item.Sales%
+                                                                </span>
+                                                                <div style="display: none">@(exists = true)</div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    <br />
+                                                    <div style="margin-top: 40px" class="col-12 col-sm-6">
+
+                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                @((item.Price - (exists ? Sales(item.Price, (int)item.Sales) : 0)).ToString("0,0"))
+                                                            </p>
+                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                تومان
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                       
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

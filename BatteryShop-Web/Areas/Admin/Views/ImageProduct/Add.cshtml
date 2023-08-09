@@ -1,0 +1,48 @@
+﻿@using BatteryShop_Web.Areas.Admin.Models.Products;
+@using CoreLayer.Services.Categories;
+@using CoreLayer.Services.Products
+@model BatteryShop_Web.Areas.Admin.Models.ProductImage.AddProductImageViewModel
+
+@inject IProductService _ProductService;
+@{
+    ViewData["title"] = "افزودن دسته بندی";
+    ViewData["selected"] = "category";
+    var product = _ProductService.GetAllProduct();
+}
+<section class="content-header">
+    <h1>
+        @ViewData["title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">مقالات</a></li>
+        <li class="active">@ViewData["title"]</li>
+    </ol>
+</section>
+<section class="content">
+    <form class="box box-danger" method="post" asp-area="Admin" asp-controller="ImageProduct" asp-action="Add" enctype="multipart/form-data">
+
+        <div class="box-body row">
+            <div class="form-group">
+                <label asp-for="ProductId"></label>
+                <select asp-for="ProductId" class="form-control">
+                    <option value="null">انتخاب کنید</option>
+
+                    @foreach (var item in product)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="ProductId"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            @Html.EditorFor(m => m.ImageFile)
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-success" type="submit">ثبت اطلاعات</button>
+        </div>
+    </form>
+</section>

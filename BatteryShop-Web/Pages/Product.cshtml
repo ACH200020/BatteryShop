@@ -1,0 +1,1405 @@
+﻿@page "{slug}"
+@using CoreLayer.Utilities
+@model ProductModel
+@{
+    ViewData["Title"] = Model.ProductDto.Title;
+    long Sales(long price, int? sales)
+    {
+        if (sales != null)
+            return price * (int)sales / 100;
+        else
+            return price;
+    }
+
+    int description = Model.ProductDto.Description.Length / 2;
+}
+<main>
+    @*Check*@
+    <div class="container my-4 my-lg-5 py-3 header__breadcrumb">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item px-2">
+                    <a asp-page="Index" class="align-items-center d-flex">
+                        <img src="images/icons/Home.svg" class="me-2" alt="" srcset="">
+                        خانه
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item px-2">
+                    <a asp-page="Shop" asp-route-categorySlug="@Model.ProductDto.Category.Slug">
+                        @Model.ProductDto.Category.Title
+                    </a>
+                </li>
+                @if (Model.ProductDto.SubCategory != null)
+                {
+                    <li class="breadcrumb-item px-2">
+                        <a asp-page="Shop" asp-route-categorySlug="@Model.ProductDto.SubCategory.Slug">
+                            @Model.ProductDto.SubCategory.Title
+                        </a>
+                    </li>
+                }
+                <li class="breadcrumb-item px-2 active" aria-current="page">
+                    @Model.ProductDto.Title
+                </li>
+            </ol>
+        </nav>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+
+            <div class="col-12 col-lg-12 px-0">
+
+
+                <section class="section__main__content p-4 mb-5 position-relative">
+
+                    <div class="row g-3">
+
+                        <div class="col-lg-8 col-xxl-9">
+
+                            <div class="row g-3">
+
+                                <div class="col-md-5 col-xxl-4">
+
+                                    <div class="row">
+
+                                        <div class="col-12">
+
+                                            <div class="position-relative">
+
+                                                @if (Model.ProductImageDto.Count != 0)
+                                                {
+                                                    <div id="sync1" class="owl-carousel owl-theme">
+                                                        @foreach (var item in Model.ProductImageDto)
+                                                        {
+                                                            <div class="item position-relative px-0">
+
+                                                                <img src="@Directories.GetProductContentImage(item.ImageName)" class="w-auto mx-auto" alt="">
+
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div id="sync1" class="owl-carousel owl-theme">
+                                                        <div class="item position-relative px-0">
+
+                                                            <img src="@Directories.GetProductImage(Model.ProductDto.ImageName)" class="w-auto mx-auto" alt="">
+
+                                                        </div>
+                                                    </div>
+
+                                                }
+                                            </div>
+                                            @if (Model.ProductImageDto.Count != 0)
+                                            {
+                                                <div id="sync2" class="owl-carousel owl-theme">
+                                                    @foreach (var item in Model.ProductImageDto)
+                                                    {
+                                                        <div class="item px-0">
+                                                            <img src="@Directories.GetProductContentImage(item.ImageName)" class="w-auto mx-auto" alt="">
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-7 col-xxl-8">
+
+                                    <div class="row g-2">
+
+                                        <div class="col-12">
+                                            <h1 class="product__title fw-bold">
+                                                @Model.ProductDto.Title
+                                            </h1>
+
+                                            <span class="product__title__en">
+                                                @Model.ProductDto.Brand.ToString()
+                                            </span>
+
+                                        </div>
+
+                                        <div class="col-12">
+
+                                            <nav class="nav flex-column special__offer__splide__contect__options">
+                                                <a class="nav-link position-relative disabled">
+                                                    آمپر: @Model.ProductDto.Ampere
+                                                </a>
+                                                
+                                            </nav>
+
+                                        </div>
+                                        <form method="post">
+                                            <div class="col-12 align-items-center d-flex mt-4">
+
+                                                <div class="float-start me-4">
+
+                                                    <span class="input-number-decrement">–</span>
+                                                    <input asp-for="Count" class="input-number" type="text" value="1" min="1" max="10">
+                                                    <span class="input-number-increment">+</span>
+                                                </div>
+
+                                                <button type="submit"
+                                                        class="special__offer__splide__contect__buy__link text-white fw-bold py-2 px-3">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20.016"
+                                                         height="19.599" viewBox="0 0 20.016 19.599">
+                                                        <defs>
+                                                            <style>
+                                                                .a,
+                                                                .b {
+                                                                    fill: #fff;
+                                                                    fill-rule: evenodd;
+                                                                }
+
+                                                                .a {
+                                                                    opacity: 0.4;
+                                                                }
+                                                            </style>
+                                                        </defs>
+                                                        <path class="a"
+                                                              d="M5.911,20.588a1.515,1.515,0,1,1,1.52,1.51A1.519,1.519,0,0,1,5.911,20.588Zm11.25,0a1.515,1.515,0,1,1,1.52,1.51A1.519,1.519,0,0,1,17.161,20.588Z"
+                                                              transform="translate(-2 -2.5)" />
+                                                        <path class="b"
+                                                              d="M20.191,6.349a1.7,1.7,0,0,1,1.41.67,2.127,2.127,0,0,1,.38,1.719l-.95,6.56a2.552,2.552,0,0,1-2.53,2.19H7.591a2.549,2.549,0,0,1-2.54-2.339l-.92-10.9-1.51-.26a.753.753,0,0,1-.61-.86.765.765,0,0,1,.87-.62l2.385.36a.755.755,0,0,1,.62.68l.19,2.24a.61.61,0,0,0,.61.561Zm-6.06,5.2H16.9a.75.75,0,0,0,0-1.5h-2.77a.75.75,0,0,0,0,1.5Z"
+                                                              transform="translate(-2 -2.5)" />
+                                                    </svg>
+
+                                                    افزودن به سبد خرید
+
+                                                </button>
+
+                                            </div>
+
+                                        </form>
+                                        <span asp-validation-for="Count" style="color: red"></span>
+
+                                        @if (Model.ProductDto.Count <= 2)
+                                        {
+                                            <div class="col-12">
+
+                                                <div class="align-items-center d-flex product__warring__bg p-2 mt-2">
+
+                                                    <img src="images/icons/Info-red-Circle.svg" class="float-start me-2" alt="">
+
+                                                    <div class="product__warring">
+                                                        فقط <span>@Model.ProductDto.Count</span> عدد در انبار موجود است
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-xxl-3">
+
+                            <div class="row g-3">
+
+                                <div class="col-12">
+
+                                    <div class="product__info p-3">
+
+                                        @*<ul class="nav flex-column mb-3">
+
+                                        <li class="nav-item product__info__item">
+
+                                        <div class="row align-items-center d-flex">
+
+                                        <div class="col-6">
+                                        <a class="nav-link product__info__brand float-start px-0 py-1 disabled" href="#">
+                                        برند محصول:
+                                        </a>
+                                        </div>
+
+                                        <div class="col-6">
+                                        <a class="nav-link float-end px-0 py-1" href="#">
+                                        <img src="images/icons/Samsung_Logo.svg" class="ms-auto" alt="">
+                                        </a>
+                                        </div>
+
+                                        </div>
+
+                                        </li>
+
+                                        <li class="nav-item product__info__item align-items-center d-grid">
+
+                                        <div class="row align-items-center d-flex">
+
+                                        <div class="col-6">
+
+                                        <div class="align-items-center d-flex">
+
+                                        <img src="images/icons/product-ico/Profile.svg" class="float-start me-2" alt="">
+
+                                        <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                        فروشنده :
+                                        </a>
+
+                                        </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                        <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                        ایران موبایل
+                                        </a>
+                                        </div>
+
+                                        </div>
+
+                                        </li>
+
+                                        <li class="nav-item product__info__item align-items-center d-grid">
+
+                                        <div class="row align-items-center d-flex">
+
+                                        <div class="col-6">
+
+                                        <div class="align-items-center d-flex">
+
+                                        <img src="images/icons/product-ico/packege.svg" class="float-start me-2" alt="">
+
+                                        <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                        شرایط ارسال :
+                                        </a>
+
+                                        </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                        <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                        ارسال توسط فروشنده
+                                        </a>
+                                        </div>
+
+                                        </div>
+
+                                        </li>
+
+                                        <li class="nav-item product__info__item align-items-center d-grid">
+
+                                        <div class="row align-items-center d-flex">
+
+                                        <div class="col-6">
+
+                                        <div class="align-items-center d-flex">
+
+                                        <img src="images/icons/product-ico/Location.svg" class="float-start me-2" alt="">
+
+                                        <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                        موقعیت ارسال :
+                                        </a>
+
+                                        </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                        <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                        ارسال به سراسر کشور
+                                        </a>
+                                        </div>
+
+                                        </div>
+
+                                        </li>
+
+                                        <li class="nav-item product__info__item align-items-center d-grid">
+
+                                        <div class="row align-items-center d-flex">
+
+                                        <div class="col-6">
+
+                                        <div class="align-items-center d-flex">
+
+                                        <img src="images/icons/product-ico/Shield-Done.svg" class="float-start me-2" alt="">
+
+                                        <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                        ضمانت :
+                                        </a>
+
+                                        </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                        <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                        تضمین اصالت کالا
+                                        </a>
+                                        </div>
+
+                                        </div>
+
+                                        </li>
+
+                                        </ul>
+                                        *@
+                                        @if (Model.ProductDto.Sales > 0)
+                                        {
+                                            <div class="row g-2">
+
+                                                <div class="col-6">
+
+                                                    <div class="product__main__price disabled">
+                                                        قیمت بدون تخفیف :
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-6">
+
+                                                    <div class="product__off__price text-decoration-line-through disabled float-end">
+                                                        @Model.ProductDto.Price.ToString("0,0") <span>تومان</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-6">
+
+                                                    <div class="product__main__off__price disabled fw-bold">
+
+                                                        قیمت با
+                                                        <span class="header__cart__price__off text-white p-1">
+                                                            @Model.ProductDto.Sales% تخفیف
+                                                        </span> :
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-6">
+
+                                                    <div class="product__off__price__main disabled float-end">
+                                                        @((Model.ProductDto.Price - (Sales(Model.ProductDto.Price, (int)Model.ProductDto.Sales))).ToString("0,0"))
+                                                        <span>تومان</span>
+                                                    </div>
+
+                                                </div>
+
+                                                @*<div class="col-12">
+
+                                            <div class="product__last__update align-items-center d-flex">
+
+                                            <img src="images/icons/product-ico/Calendar.svg" class="me-1" alt="">
+
+                                            اخرین بروزرسانی قیمت <span class="ms-1 fw-bold">1401/01/4</span>
+
+                                            </div>
+
+                                            </div>*@
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="row g-2">
+
+                                                <div class="col-6">
+
+                                                    <div class="product__main__off__price disabled fw-bold">
+                                                        قیمت کالا :
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-6">
+
+                                                    <div class="product__off__price__main disabled float-end">
+                                                        @Model.ProductDto.Price.ToString("0,0")
+                                                        <span>تومان</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="section__main__content p-4 mb-5 position-relative text-dark">
+
+                    <div class="row">
+
+                        <div class="mCustomScrollbar">
+                            <!-- Nav tabs -->
+
+                            <ul class="nav nav-pills product__nav" id="myTab" role="tablist">
+
+                                <li class="nav-item product__nav__item" role="presentation">
+
+                                    <button class="nav-link product__nav__link py-3 active" id="one-tab" data-bs-toggle="tab"
+                                            data-bs-target="#one" type="button" role="tab" aria-controls="one"
+                                            aria-selected="true">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24.5" height="26.908"
+                                             class="me-2 svg-stroke" viewBox="0 0 24.5 26.908">
+                                            <g id="Document" transform="translate(0.75 0.75)">
+                                                <path id="Path_105" data-name="Path 105" d="M18.461,16.223H8.5"
+                                                      transform="translate(-1.947 2.372)" fill="none" stroke="#BFBFBF"
+                                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                                <path id="Path_106" data-name="Path 106" d="M18.461,12.037H8.5"
+                                                      transform="translate(-1.947 0.781)" fill="none" stroke="#BFBFBF"
+                                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                                <path id="Path_107" data-name="Path 107" d="M12.3,7.86H8.5"
+                                                      transform="translate(-1.947 -0.807)" fill="none" stroke="#BFBFBF"
+                                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                                <path id="Path_108" data-name="Path 108"
+                                                      d="M20.53,2.75,9.918,2.755c-3.809.023-6.168,2.53-6.168,6.353V21.8c0,3.842,2.377,6.358,6.219,6.358l10.612,0c3.809-.023,6.169-2.531,6.169-6.354V9.108C26.751,5.266,24.373,2.75,20.53,2.75Z"
+                                                      transform="translate(-3.751 -2.75)" fill="none" stroke="#BFBFBF"
+                                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                      fill-rule="evenodd" />
+                                            </g>
+                                        </svg>
+
+                                        توضیحات
+
+                                    </button>
+
+                                </li>
+
+                                <li class="nav-item product__nav__item" role="presentation">
+
+                                    <button class="nav-link product__nav__link py-3" id="two-tab" data-bs-toggle="tab"
+                                            data-bs-target="#two" type="button" role="tab" aria-controls="two"
+                                            aria-selected="false">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2 svg-fill" width="26" height="26"
+                                             viewBox="0 0 26 26">
+                                            <path id="More_Square" data-name="More Square"
+                                                  d="M20.635,2H9.365C4.948,2,2,5.163,2,9.691V20.309C2,24.843,4.94,28,9.365,28H20.634C25.06,28,28,24.842,28,20.309V9.691C28,5.159,25.06,2,20.635,2ZM9.365,3.95h11.27c3.316,0,5.416,2.255,5.416,5.741V20.309c0,3.485-2.1,5.741-5.417,5.741H9.365c-3.316,0-5.415-2.255-5.415-5.741V9.691C3.951,6.21,6.057,3.95,9.365,3.95ZM7.619,15a1.557,1.557,0,1,0,1.557-1.557A1.558,1.558,0,0,0,7.619,15ZM15,16.557A1.557,1.557,0,1,1,16.557,15,1.558,1.558,0,0,1,15,16.557ZM19.265,15a1.557,1.557,0,1,0,1.557-1.557A1.558,1.558,0,0,0,19.265,15Z"
+                                                  transform="translate(-2.001 -2)" fill="#bfbfbf" fill-rule="evenodd" />
+                                        </svg>
+
+                                        مشخصات
+
+                                    </button>
+
+                                </li>
+
+                                <li class="nav-item product__nav__item" role="presentation">
+
+                                    <button class="nav-link product__nav__link py-3" id="three-tab" data-bs-toggle="tab"
+                                            data-bs-target="#three" type="button" role="tab" aria-controls="three"
+                                            aria-selected="false">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="svg-stroke me-2" width="26.938"
+                                             height="26.938" viewBox="0 0 26.938 26.938">
+                                            <g id="Chat" transform="translate(0.75 0.75)">
+                                                <path id="Path_109" data-name="Path 109"
+                                                      d="M8.013,14.026A1.485,1.485,0,1,1,9.5,12.539,1.487,1.487,0,0,1,8.013,14.026Zm5.778,0a1.485,1.485,0,1,1,1.486-1.486A1.487,1.487,0,0,1,13.791,14.026Zm4.292-1.486a1.486,1.486,0,1,0,1.486-1.484A1.487,1.487,0,0,0,18.083,12.539Z"
+                                                      transform="translate(-0.769 0.462)" fill="#bfbfbf" fill-rule="evenodd" />
+                                                <path id="Path_110" data-name="Path 110"
+                                                      d="M14.744,2A12.727,12.727,0,0,0,2,14.738a13.462,13.462,0,0,0,1.717,6.355,1.336,1.336,0,0,1,.089,1.148l-.852,2.853A.794.794,0,0,0,4,26.086l2.569-.763a2.158,2.158,0,0,1,1.9.459A12.715,12.715,0,1,0,14.744,2Z"
+                                                      transform="translate(-2 -2)" fill="none" stroke="#bfbfbf"
+                                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                      fill-rule="evenodd" />
+                                            </g>
+                                        </svg>
+
+                                        نظرات کاربران
+
+                                    </button>
+
+                                </li>
+
+
+
+                            </ul>
+
+                        </div>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content mt-4">
+
+
+                            <div class="tab-pane active" id="one" role="tabpanel" aria-labelledby="one-tab">
+
+                                <div class="product__nav__des">
+
+                                    <p>
+                                        @Html.Raw(Model.ProductDto.Description.Substring(0,description))
+                                    </p>
+
+                                    <div class="product__nav__more">
+                                        <p>
+                                            @Html.Raw(Model.ProductDto.Description.Substring(description))
+                                        </p>
+                                    </div>
+
+                                    <div class="product__nav__more__btn position-relative py-4 text-center">
+                                        <a href="" id="product__nav__more__btn">
+                                            <img src="images/icons/product-ico/Arrow-Down.svg" class="" alt="">
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="tab-pane" id="two" role="tabpanel" aria-labelledby="two-tab">
+
+                                <div class="row">
+
+                                    <div class="col-12">
+
+                                        <div class="accordion product__accordion" id="accordionPanelsStayOpenExample">
+
+                                            <div class="accordion-item mb-2">
+
+                                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+
+                                                    <button class="accordion-button py-2" type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                            aria-controls="panelsStayOpen-collapseOne">
+
+                                                        <img src="images/icons/product-ico/plus.svg" class="me-2" alt="">
+
+                                                        اطلاعات کلی
+                                                    </button>
+
+                                                </h2>
+
+                                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                                     aria-labelledby="panelsStayOpen-headingOne">
+                                                    <div class="accordion-body py-2">
+
+                                                        <table class="table table-light table-bordered product__table m-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td scope="row">
+                                                                        نام برند
+                                                                    </td>
+                                                                    <td colspan="3">
+                                                                        @Model.ProductDto.Brand
+                                                                    </td>
+                                                                </tr>
+                                                                @*<tr>
+                                                                    <td scope="row">
+                                                                        کشور مبدا
+                                                                    </td>
+                                                                    <td>
+                                                                        کره جنوبی
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">
+                                                                        ابعاد
+                                                                    </td>
+                                                                    <td>
+                                                                        ‏1×4×15
+                                                                        سانتی متر
+                                                                    </td>
+                                                                </tr>*@
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="accordion-item mb-2">
+                                                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                                    <button class="accordion-button py-2" type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                                            aria-controls="panelsStayOpen-collapseTwo">
+
+                                                        <img src="images/icons/product-ico/plus.svg" class="me-2" alt="">
+
+                                                        اطلاعات دوربین
+                                                    </button>
+                                                </h2>
+                                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                                                     aria-labelledby="panelsStayOpen-headingTwo">
+                                                    <div class="accordion-body py-2">
+
+                                                        <table class="table table-light table-bordered product__table m-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td scope="row">
+                                                                        تعداد دوربین
+                                                                    </td>
+                                                                    <td colspan="3">
+                                                                        3 عدید
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">
+                                                                        کیفیت دوربین
+                                                                    </td>
+                                                                    <td>
+                                                                        20 مگاپیکسل
+                                                                    </td>
+                                                                    <td>
+                                                                        20 مگاپیکسل
+                                                                    </td>
+                                                                    <td>
+                                                                        20 مگاپیکسل
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="tab-pane" id="three" role="tabpanel" aria-labelledby="three-tab">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                   
+                                    <a asp-page="/Comment" asp-route-slug="@Model.ProductDto.Slug"
+                                       class="special__offer__splide__contect__buy__link text-white fw-bold py-2 px-3">
+                                        ثبت دیدگاه
+                                    </a>
+
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        برای ثبت نظر باید ثبت نام کنید
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <div class="product__comment__box product__user__comments mt-4">
+                                            @if (Model != null)
+                                            {
+                                                @foreach (var item in Model.Comments)
+                                                {
+                                                    <div class="row g-4">
+
+                                                        @*<div class="col-12 col-md-4 col-lg-3">
+
+                                                <div class="row g-2">
+
+                                                <div class="col-12">
+
+                                                <div class="row">
+                                                <div class="col-6">
+                                                <p class="product__comment__des m-0">
+                                                امتیاز کاربر :
+                                                </p>
+                                                </div>
+
+
+                                                <div class="col-6 align-items-center d-flex">
+                                                <img src="images/icons/product-ico/four-start.svg" class="ms-auto"
+                                                alt="">
+                                                </div>
+                                                </div>
+
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                <div class="row g-1">
+
+                                                <div class="col-12">
+                                                <span style="font-size: 10px; color: #9f9f9f; ">
+                                                رضایت از قیمت کالا
+                                                </span>
+                                                </div>
+
+                                                <div class="col-12 align-items-center d-flex">
+
+                                                <div class="product__comment__box__range rounded-3">
+
+                                                <div class="product__comment__box__range__line position-relative rounded-3"
+                                                style="width: 60%;"></div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                <div class="row g-1">
+
+                                                <div class="col-12">
+                                                <span style="font-size: 10px; color: #9f9f9f; ">
+                                                رضایت از قیمت کالا
+                                                </span>
+                                                </div>
+
+                                                <div class="col-12 align-items-center d-flex">
+
+                                                <div class="product__comment__box__range rounded-3">
+
+                                                <div class="product__comment__box__range__line position-relative rounded-3"
+                                                style="width: 60%;"></div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                <div class="row g-1">
+
+                                                <div class="col-12">
+                                                <span style="font-size: 10px; color: #9f9f9f; ">
+                                                رضایت از قیمت کالا
+                                                </span>
+                                                </div>
+
+                                                <div class="col-12 align-items-center d-flex">
+
+                                                <div class="product__comment__box__range rounded-3">
+
+                                                <div class="product__comment__box__range__line position-relative rounded-3"
+                                                style="width: 60%;"></div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                <div class="row g-1">
+
+                                                <div class="col-12">
+                                                <span style="font-size: 10px; color: #9f9f9f; ">
+                                                رضایت از قیمت کالا
+                                                </span>
+                                                </div>
+
+                                                <div class="col-12 align-items-center d-flex">
+
+                                                <div class="product__comment__box__range rounded-3">
+
+                                                <div class="product__comment__box__range__line position-relative rounded-3"
+                                                style="width: 60%;"></div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                </div>*@
+
+
+                                                        <div class="col-12 col-md-8 col-lg-9 border-start border-box">
+
+                                                            <div class="row border-bottom pb-2 g-2">
+
+                                                                <div class="col-lg-8 align-items-center d-flex">
+
+                                                                    <p class="product__comment__des m-0 float-start me-2"
+                                                                       style="font-size: 13px;">
+                                                                        نظر <span class="fw-bold">@item.UserFullName</span> درباره محصول:
+                                                                    </p>
+
+                                                                    @*<div class="points__input__values strength__points__values px-2 py-1 float-start">
+                                                            از خریدم راضی هستم
+                                                            </div>*@
+
+                                                                </div>
+
+                                                                <div class="col-lg-4 align-items-center d-flex">
+                                                                    <div class="product__comment__box__txt ms-auto">
+                                                                        در تاریخ: @item.DateTime
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+
+                                                                    <p class="product__comment__des mb-0 pt-2">
+                                                                        @item.Text
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+
+                                                            @*<div class="row row-cols-auto mt-3 g-2">
+
+                                                    <div class="col me-2">
+
+                                                    <div style="color: #41A219; font-size: 12px;" class="me-2">
+                                                    نقاط قوت
+                                                    </div>
+
+                                                    <div class="flex-column nav">
+
+                                                    <div class="product__comment__points strength__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت بالا
+                                                    </div>
+
+                                                    <div class="product__comment__points strength__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت بالا
+                                                    </div>
+
+                                                    <div class="product__comment__points strength__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت بالا
+                                                    </div>
+
+                                                    </div>
+
+                                                    </div>
+
+
+                                                    <div class="col me-2">
+
+                                                    <div style="color: #E23B3B; font-size: 12px;" class="me-2">
+                                                    نقاط ضعف
+                                                    </div>
+
+                                                    <div class="flex-column nav">
+
+                                                    <div class="product__comment__points weak__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت پایین
+                                                    </div>
+
+                                                    <div class="product__comment__points weak__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت پایین
+                                                    </div>
+
+                                                    <div class="product__comment__points weak__points"
+                                                    style="display: block ruby;">
+                                                    کیفیت ساخت پایین
+                                                    </div>
+
+                                                    </div>
+
+                                                    </div>
+
+                                                    </div>
+                                                    *@
+
+
+
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="tab-pane" id="four" role="tabpanel" aria-labelledby="four-tab">
+
+                                <div class="row">
+
+                                    <div class="col-12">
+
+                                        <div class="product__comment__box mb-3">
+
+                                            <div class="product__send__comment__box">
+
+                                                <div class="border-bottom pb-2">
+                                                    <div class="row">
+
+                                                        <div class="col-6">
+                                                            <p class="product__comment__des m-0 fw-bold" style="font-size: 13px;">
+                                                                عارف عمادی
+                                                            </p>
+                                                        </div>
+
+
+                                                        <div class="col-6 align-items-center d-flex">
+                                                            <div class="product__comment__box__txt ms-auto fw-light"
+                                                                 style="font-size: 10px;">
+                                                                در تاریخ: 1400/11/5
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="my-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+
+                                                            <p class="product__comment__of__user">
+                                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                                                                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+                                                                ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
+                                                                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.لورم ایپسوم متن
+                                                                ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان
+                                                                گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                                                لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با
+                                                                هدف بهبود ابزارهای کاربردی می باشد.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product__comment__reply py-2 px-4">
+
+                                                    <div class="row">
+
+                                                        <div class="col-6">
+                                                            <p class="product__comment__des m-0 fw-bold" style="font-size: 13px;">
+                                                                پاسخ :
+                                                            </p>
+                                                        </div>
+
+
+                                                        <div class="col-6 align-items-center d-flex">
+                                                            <div class="product__comment__box__txt ms-auto fw-light"
+                                                                 style="font-size: 10px;">
+                                                                در تاریخ: 1400/11/5
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <p class="product__comment__of__user border-top pt-2 mt-2">
+                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                                                        استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+                                                        ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
+                                                        کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.لورم ایپسوم متن
+                                                        ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان
+                                                        گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                                        لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با
+                                                        هدف بهبود ابزارهای کاربردی می باشد.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="product__comment__box mb-3">
+
+                                            <div class="product__send__comment__box">
+
+                                                <div class="border-bottom pb-2">
+                                                    <div class="row">
+
+                                                        <div class="col-6">
+                                                            <p class="product__comment__des m-0 fw-bold" style="font-size: 13px;">
+                                                                عارف عمادی
+                                                            </p>
+                                                        </div>
+
+
+                                                        <div class="col-6 align-items-center d-flex">
+                                                            <div class="product__comment__box__txt ms-auto fw-light"
+                                                                 style="font-size: 10px;">
+                                                                در تاریخ: 1400/11/5
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="my-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+
+                                                            <p class="product__comment__of__user">
+                                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                                                                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+                                                                ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
+                                                                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.لورم ایپسوم متن
+                                                                ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان
+                                                                گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                                                لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با
+                                                                هدف بهبود ابزارهای کاربردی می باشد.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product__comment__reply py-2 px-4">
+
+                                                    <div class="row">
+
+                                                        <div class="col-6">
+                                                            <p class="product__comment__des m-0 fw-bold" style="font-size: 13px;">
+                                                                پاسخ :
+                                                            </p>
+                                                        </div>
+
+
+                                                        <div class="col-6 align-items-center d-flex">
+                                                            <div class="product__comment__box__txt ms-auto fw-light"
+                                                                 style="font-size: 10px;">
+                                                                در تاریخ: 1400/11/5
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <p class="product__comment__of__user border-top pt-2 mt-2">
+                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                                                        استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+                                                        ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
+                                                        کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.لورم ایپسوم متن
+                                                        ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان
+                                                        گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                                        لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با
+                                                        هدف بهبود ابزارهای کاربردی می باشد.
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12">
+
+
+                                        <div class="product__comment__box">
+
+                                            <div class="row g-3">
+
+                                                <div class="col-12">
+                                                    <div class="align-items-center d-flex">
+
+                                                        <img src="images/icons/product-ico/Question.svg" alt=""
+                                                             class="float-start me-2">
+
+                                                        <p class="product__comment__des m-0 fw-bold" style="font-size: 13px;">
+                                                            پرسش خود را در رابطه با محصول بیان کنید
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <textarea class="form-control product__comment__textarea"
+                                                              id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                                                </div>
+                                                <div class="col-12">
+
+                                                    <a href="#"
+                                                       class="special__offer__splide__contect__buy__link text-white fw-bold py-2 px-3">
+                                                        ثبت پرسش
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="tab-pane" id="five" role="tabpanel" aria-labelledby="five-tab">
+
+                                <div class="row g-2">
+
+                                    <div class="col-sm-4 col-md-3 col-lg-2 text-center px-3">
+
+                                        <div class="row g-3">
+
+                                            <div class="col-12">
+
+                                                <div class="seller__logo py-3">
+                                                    <img src="images/icons/product-ico/shop-brand.svg" class="mx-auto" alt="">
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-12">
+
+                                                <div class="d-inline-flex">
+
+                                                    <p class="product__comment__des m-0">
+                                                        امتیاز 4
+                                                    </p>
+
+                                                    <img src="images/icons/product-ico/four-start.svg" class="ms-1" alt="">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-sm-8 col-md-9 col-lg-10 px-3">
+
+                                        <div class="row g-2">
+
+                                            <div class="col-12">
+
+                                                <div class="seller__name fw-bold">
+
+                                                    فروشگاه 9 موبایل
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-12">
+
+                                                <p class="seller__des fw-light">
+
+                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                                                    طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                                    لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
+                                                    ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده،
+                                                    شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را
+                                                    برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی
+                                                    ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                                                    راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
+                                                    دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
+                                                    استفاده قرار گیرد.
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+                
+
+            </div>
+
+
+        </div>
+    </div>
+    <section class="my-5 py-4 px-4 px-sm-3">
+
+        <div class="row g-5">
+
+            <div class="col-12 pt-3">
+
+                <div class="row">
+
+                    <div class="col-6">
+
+
+                        <div class="position-relative introduction">
+
+                            <h2 class="introduction__title m-0">
+                                محصولات
+                                <span class="fw-bold">مشابه</span>
+                            </h2>
+                            <span class="introduction__title__en">
+                                similar products
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-6 align-items-end d-flex">
+
+                        <a asp-page="Shop" asp-route-categorySlug="@Model.ProductDto.SubCategory.Slug" class="weblog__all__link fw-bold p-2 ms-auto">
+
+                            مشاهده همه
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 position-relative">
+
+                <div class="owl__carousel__bg w-100"></div>
+
+                <div class="owl-carousel owl-theme similar__product__slider">
+                    @foreach (var item in Model.RelatedProduct)
+                    {
+                        <div class="item pb-3 px-3 px-sm-0">
+
+                            <div class="card position-relative">
+
+                                <div class="p-3 mb-2 position-relative">
+
+                                    <a asp-page="Product" asp-route-slug="@item.Slug">
+                                        <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                    </a>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="row">
+
+                                        <div class="col-12">
+
+                                            <div class="row g-2">
+
+                                                <div class="col-12 text-center">
+
+                                                    <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                        @item.Title
+                                                    </a>
+                                                </div>
+
+                                                @{
+                                                    bool exists = false;
+                                                }
+                                                @if (item.Sales > 0)
+                                                {
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="d-inline-block align-items-center d-flex">
+
+                                                            <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                @item.Price.ToString("0,0")
+                                                            </p>
+                                                            <span class="header__cart__price__unit ms-1">
+                                                                تومان
+                                                            </span>
+
+                                                            <span class="header__cart__price__off text-white px-3 ms-1">
+                                                                @item.Sales%
+                                                            </span>
+                                                            <spam style="display: none">@(exists = true)</spam>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                <br />
+                                                <div class="col-12 col-sm-6">
+
+                                                    <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                        <p class="header__cart__price cart__off__price float-start mb-0">
+                                                            @((item.Price - (exists ? Sales(item.Price, (int)item.Sales) : 0)).ToString("0,0"))
+                                                        </p>
+                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+                                                    <div class="card-timer py-1 px-3 mx-auto mt-3">
+                                                        2:11:8:41
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </section>
+
+
+</main>

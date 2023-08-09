@@ -1,0 +1,47 @@
+﻿@page "{slug}"
+@model BatteryShop_Web.Pages.CommentModel
+@{
+}
+<div class="tab-pane" id="three" role="tabpanel" aria-labelledby="three-tab">
+    @if (User.Identity.IsAuthenticated)
+    {
+        
+            <div class="row border-bottom pb-4 g-3">
+
+                <div class="col-lg-6">
+
+                    <div class="product__comment__box">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <form method="post">
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1"
+                                           class="form-label product__comment__points">
+                                        توضیحات
+                                    </label>
+                                    <textarea asp-for="Text" class="form-control product__comment__textarea"
+                                              id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                                    
+                                </div>
+
+                                <input type="submit"
+                                    class="special__offer__splide__contect__buy__link text-white fw-bold py-2 px-3" value="ارسال دیدگاه"/>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        
+    }
+</div>

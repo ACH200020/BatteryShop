@@ -1,0 +1,789 @@
+﻿@page
+@using CoreLayer.Utilities
+@model BatteryShop_Web.Pages.ShopModel
+@{
+   
+}
+<main>
+@*Check*@
+    <div class="container my-4 my-lg-5 py-3 header__breadcrumb">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item px-2">
+                    <a href="#" class="align-items-center d-flex">
+                        <img src="images/icons/Home.svg" class="me-2" alt="" srcset="">
+                        خانه
+                    </a>
+                </li>
+                <li class="breadcrumb-item px-2">
+                    <a href="#">
+                        فروشگاه
+                    </a>
+                </li>
+                <li class="breadcrumb-item px-2 active" aria-current="page">
+                    گوشی موبایل
+                </li>
+            </ol>
+        </nav>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12 col-lg-3 ps-0 pe-0 pe-lg-3 bg-light text-dark d-none d-lg-block">
+
+
+                <aside class="px-3 px-sm-0">
+
+                    <div class="aside position-relative pb-3 mb-5">
+                        <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <h4 class="aside__title fw-bold px-2 pb-3 pt-4">
+                                    برند ها :
+                                </h4>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <div class="product__checkbox pb-2 mCustomScrollbar _mCS_1 mCS-dir-rtl" data-mcs-theme="dark">
+                                    <div id="mCSB_1" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: 161px;" tabindex="0">
+                                        <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="rtl">
+                                            <div class="col-12 px-2">
+                                                <div class="row g-2">
+
+                                                    <div class="col-8">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                سامسونگ
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4 align-items-center d-flex">
+                                                        <p class="form-check-label-en ms-auto mb-0">
+                                                            samsung
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12 px-2">
+                                                <div class="row g-2">
+
+                                                    <div class="col-8">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                سامسونگ
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4 align-items-center d-flex">
+                                                        <p class="form-check-label-en ms-auto mb-0">
+                                                            samsung
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            
+                                        </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 118px; max-height: 143px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div><div class="mCSB_draggerRail"></div></div></div></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="aside position-relative pb-3 mb-5">
+
+                        <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <h4 class="aside__title fw-bold px-2 pb-3 pt-4">
+                                    محدوده قیمت :
+                                </h4>
+
+                            </div>
+
+                            <div class="col-12">
+
+
+                                <div class="px-3">
+
+                                    <div class="price-range-slider">
+
+                                        <p class="range-value d-none">
+                                            <input type="text" id="amount" readonly="">
+                                        </p>
+
+                                        <div id="slider-range" class="range-bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false">
+
+                                            <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 32.4324%;"></div>
+                                            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                                            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 32.4324%;"></a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-5">
+                                <div class="px-3">
+
+                                    <p class="header__cart__price cart__off__price float-start mb-0">
+                                        10,750,000
+                                    </p>
+                                    <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1 float-start">
+                                        تومان
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div class="col-2 align-items-center d-flex">
+                                <span style="color: #7f7f7f;font-size: 14px;">
+                                    تا
+                                </span>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="px-3">
+
+                                    <p class="header__cart__price cart__off__price float-end mb-0">
+                                        10,750,000
+                                    </p>
+                                    <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1 float-end">
+                                        تومان
+                                    </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    @*<div class="aside position-relative pb-3 mb-5">
+
+                        <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <h4 class="aside__title fw-bold px-2 pb-3 pt-4">
+                                    آخرین محصولات مشاهده شده :
+                                </h4>
+
+                            </div>
+
+                            <div class="col-12 px-4">
+                                <div class="py-2 header__cart__list">
+                                    <div class="row">
+
+
+                                        <div class="col-4 col-xl-3 align-items-center d-flex">
+                                            <a href="#" class="header__cart__img d-block py-2 px-3">
+                                                <img src="images/icons/mobile-sm.svg" alt="" srcset="">
+                                            </a>
+                                        </div>
+
+
+                                        <div class="col-8 col-xl-9 align-items-center d-flex px-0 py-1">
+                                            <div class="row">
+
+
+                                                <div class="col-12 pe-4">
+                                                    <a href="#" class="header__cart__title fw-bold">
+                                                        گوشی موبایل سامسونگ مدل s20
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                            13,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                        <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
+                                                            %10
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price cart__off__price float-start mb-0">
+                                                            10,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 px-4">
+                                <div class="py-2 header__cart__list">
+                                    <div class="row">
+
+
+                                        <div class="col-4 col-xl-3 align-items-center d-flex">
+                                            <a href="#" class="header__cart__img d-block py-2 px-3">
+                                                <img src="images/icons/mobile-sm.svg" alt="" srcset="">
+                                            </a>
+                                        </div>
+
+
+                                        <div class="col-8 col-xl-9 align-items-center d-flex px-0 py-1">
+                                            <div class="row">
+
+
+                                                <div class="col-12 pe-4">
+                                                    <a href="#" class="header__cart__title fw-bold">
+                                                        گوشی موبایل سامسونگ مدل s20
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                            13,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                        <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
+                                                            %10
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price cart__off__price float-start mb-0">
+                                                            10,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 px-4">
+                                <div class="py-2 header__cart__list">
+                                    <div class="row">
+
+
+                                        <div class="col-4 col-xl-3 align-items-center d-flex">
+                                            <a href="#" class="header__cart__img d-block py-2 px-3">
+                                                <img src="images/icons/mobile-sm.svg" alt="" srcset="">
+                                            </a>
+                                        </div>
+
+
+                                        <div class="col-8 col-xl-9 align-items-center d-flex px-0 py-1">
+                                            <div class="row">
+
+
+                                                <div class="col-12 pe-4">
+                                                    <a href="#" class="header__cart__title fw-bold">
+                                                        گوشی موبایل سامسونگ مدل s20
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                            13,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                        <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
+                                                            %10
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+
+                                                    <div class="d-inline-block align-items-center d-flex">
+
+                                                        <p class="header__cart__price cart__off__price float-start mb-0">
+                                                            10,750,000
+                                                        </p>
+                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                            تومان
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    *@
+
+                    <div class="aside position-relative mb-5">
+
+                        <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+
+                                <div class="px-3 py-4">
+
+                                    <div class="form-check form-switch">
+
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+
+                                        <label class="form-check-label ms-2" for="flexSwitchCheckDefault">
+                                            فقط کالا های موجود
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+
+            </div>
+
+            @*Mobile version*@
+            <div class="col-12 col-lg-9 ps-lg-3">
+
+                <div class="row">
+
+                    <div class="col-lg-8 align-items-center d-flex filter">
+
+                        <div class="sort__product__text float-start d-none d-lg-block">
+                            <img src="images/icons/Sort.svg" alt="" class="me-2">
+                            مرتب سازی بر اساس :
+                        </div>
+
+                        <div class="d-block d-lg-none">
+
+                            <button class="btn p-0 filter-shop-m" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+
+                                <img src="images/icons/filter.svg" alt="">
+
+                            </button>
+
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+
+                                <div class="offcanvas-header">
+
+                                    <h5 id="offcanvasRightLabel">
+                                        فیلتر ها
+                                    </h5>
+
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+
+                                <div class="offcanvas-body">
+
+                                    <div class="accordion filter-mobile" id="accordionPanelsStayOpenExample">
+
+                                        <div class="accordion-item">
+
+                                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                                    برند ها
+                                                </button>
+                                            </h2>
+
+                                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                                <div class="accordion-body">
+
+                                                    <div class="product__checkbox pb-2 border-0 mCustomScrollbar _mCS_4 mCS-dir-rtl mCS_no_scrollbar" data-mcs-theme="dark">
+                                                        <div id="mCSB_4" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
+                                                            <div id="mCSB_4_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="rtl">
+                                                                <div class="col-12 px-2">
+                                                                    <div class="row g-2">
+
+                                                                        <div class="col-8">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                <label class="form-check-label" for="flexCheckDefault">
+                                                                                    سامسونگ
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-4 align-items-center d-flex">
+                                                                            <p class="form-check-label-en ms-auto mb-0">
+                                                                                samsung
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 px-2">
+                                                                    <div class="row g-2">
+
+                                                                        <div class="col-8">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                <label class="form-check-label" for="flexCheckDefault">
+                                                                                    سامسونگ
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-4 align-items-center d-flex">
+                                                                            <p class="form-check-label-en ms-auto mb-0">
+                                                                                samsung
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div><div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div><div class="mCSB_draggerRail"></div></div></div></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="accordion-item">
+
+                                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+
+                                                    محدوده قیمت
+
+                                                </button>
+                                            </h2>
+
+                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+                                                <div class="accordion-body">
+
+                                                    <div class="row">
+
+                                                        <div class="col-12">
+
+
+                                                            <div class="px-3">
+
+                                                                <div class="price-range-slider">
+
+                                                                    <p class="range-value d-none">
+                                                                        <input type="text" id="amount-mobile" readonly="">
+                                                                    </p>
+
+                                                                    <div id="slider-range-mobile" class="range-bar ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 32.4324%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 32.4324%;"></a></div>
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="col-5">
+                                                            <div class="px-3">
+
+                                                                <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                    10,750,000
+                                                                </p>
+                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1 float-start">
+                                                                    تومان
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-2 align-items-center d-flex">
+                                                            <span style="color: #7f7f7f;font-size: 14px;">
+                                                                تا
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="col-5">
+                                                            <div class="px-3">
+
+                                                                <p class="header__cart__price cart__off__price float-end mb-0">
+                                                                    10,750,000
+                                                                </p>
+                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1 float-end">
+                                                                    تومان
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-check form-switch my-3">
+
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+
+                                            <label class="form-check-label ms-2" for="flexSwitchCheckDefault">
+                                                فقط کالا های موجود
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="offcanvas-header offcanvas-footer">
+
+                                    <a href="#" class="btn apply-filter-mobile text-white" id="offcanvasRightLabel">
+                                        اعمال فیلتر
+                                    </a>
+
+                                    <a href="#" class="btn cancel-filter-mobile" id="offcanvasRightLabel">
+                                        حذف فیلتر ها
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="dropdown ms-auto ms-lg-2">
+
+                            <button class="btn dropdown-toggle sort__product__btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                پر فروش ترین
+                            </button>
+
+
+                            <ul class="dropdown-menu sort__product__menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <a class="dropdown-item sort__product__item" href="#">
+                                        جدیدترین
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item sort__product__item" href="#">
+                                        گرانترین
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item sort__product__item" href="#">
+                                        ارزانترین
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 d-none d-lg-block">
+
+                        <div class="float-end product__number">
+                            محصول @Model.Products.Products.Count
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row my-4 px-2">
+                    @foreach (var item in Model.Products.Products)
+                    {
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-0">
+
+                            <div class="card position-relative product__card rounded-0">
+
+                                <div class="p-3 mb-2 position-relative">
+
+                                    <a asp-page="Product" asp-route-slug="@item.Slug" class="d-block text-center">
+                                        <img src="@Directories.GetProductImage(item.ImageName)" class="card-img-top mx-auto" alt="...">
+                                    </a>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="row">
+
+                                        <div class="col-12">
+
+                                            <div class="row g-2">
+
+                                                <div class="col-12 text-center">
+                                                    <a asp-page="Product" asp-route-slug="@item.Slug" class="card-title fw-bold">
+                                                        @item.Title
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    @if (item.Sales > 0)
+                                                    {
+
+                                                        <div class="row">
+
+                                                            <div class="col-12">
+
+                                                                <div class="d-inline-block align-items-center d-flex">
+
+                                                                    <p class="header__cart__price float-start text-decoration-line-through mb-0">
+                                                                        @item.Price.ToString("0,0")
+                                                                    </p>
+                                                                    <span class="header__cart__price__unit ms-1">
+                                                                        تومان
+                                                                    </span>
+
+                                                                    <span class="header__cart__price__off text-white px-2 ms-1">
+                                                                        %@item.Sales
+                                                                    </span>
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="col-12">
+
+                                                                <div class="d-inline-block align-items-center d-flex">
+
+                                                                    <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                        @(((item.Price *(100-item.Sales))/100).ToString())
+                                                                    </p>
+                                                                    <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                        تومان
+                                                                    </span>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-12">
+
+                                                            <div class="d-inline-block align-items-center d-flex">
+
+                                                                <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                    @item.Price.ToString("0,0")
+                                                                </p>
+                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                    تومان
+                                                                </span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                                
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+                <partial name="Shared/_Pagination" model="Model.Products"/>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

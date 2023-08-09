@@ -1,0 +1,135 @@
+﻿@page "{handler?}"
+@using CoreLayer.Services.Categories
+@using CoreLayer.DTOs.Category
+@model BatteryShop_Web.Pages.SearchModel
+@inject ICategoryService _Category;
+@{
+    CategoryDto category = null;
+    var search = "";
+    if (!string.IsNullOrWhiteSpace(Model.Filter.FilterParams.CategorySlug))
+    {
+        category = _Category.GetCategoryBy(Model.Filter.FilterParams.CategorySlug);
+        if (category != null)
+            search = category.Title;
+    }
+    else
+    {
+        search = Model.Filter.FilterParams.Title ?? "مقالات سایت";
+    }
+    ViewData["Title"] = search;
+}
+
+@section MetaTags
+{
+    @if (category != null)
+    {
+        <meta name="description" content="@category.MetaDescription">
+        <meta name="og:description" content="@category.MetaDescription">
+        <meta name="twitter:description" content="@category.MetaDescription">
+        <meta name="keywords" content="@category.MetaTag">
+    }
+}
+
+<main class="my-5">
+
+    <div class="container my-4 my-lg-5 py-3 header__breadcrumb">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item px-2">
+                    <a href="#" class="align-items-center d-flex">
+                        <img src="images/icons/Home.svg" class="me-2" alt="" srcset="">
+                        خانه
+                    </a>
+                </li>
+                <li class="breadcrumb-item px-2">
+                    <a href="#">
+                        وبلاگ
+                    </a>
+                </li>
+                <li class="breadcrumb-item px-2">
+                    <a href="#">
+                        دسته ها
+                    </a>
+                </li>
+            </ol>
+        </nav>
+
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center w-100">
+            @if (search != null)
+            {
+                <h3>نتایج جستجو برای : @search</h3>
+            }
+        </div>
+
+        <div class="text-center row row-cols-1 row-cols-sm-2">
+            
+            <partial name="Shared/_SearchView" model="Model.Filter"/>
+            @*<div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="" width="" height="" src="images/articles/article-md.svg">
+                    <div class="card-body">
+                        <h5 class="card-title">دسته دوم</h5>
+                        <p class="card-text">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                            طراحان گرافیک است،
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="" width="" height="" src="images/articles/article-md.svg">
+                    <div class="card-body">
+                        <h5 class="card-title">دسته سوم</h5>
+                        <p class="card-text">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                            طراحان گرافیک است،
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="" width="" height="" src="images/articles/article-md.svg">
+                    <div class="card-body">
+                        <h5 class="card-title">دسته چهارم</h5>
+                        <p class="card-text">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                            طراحان گرافیک است،
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="" width="" height="" src="images/articles/article-md.svg">
+                    <div class="card-body">
+                        <h5 class="card-title">دسته پنجم</h5>
+                        <p class="card-text">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                            طراحان گرافیک است،
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="" width="" height="" src="images/articles/article-md.svg">
+                    <div class="card-body">
+                        <h5 class="card-title">دسته ششم</h5>
+                        <p class="card-text">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
+                            طراحان گرافیک است،
+                        </p>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+
+    </div>
+</main>

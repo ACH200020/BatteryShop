@@ -1,0 +1,77 @@
+﻿@model CoreLayer.DTOs.User.UserFilterDto
+@{
+    ViewData["title"] = "مدیریت کاربران";
+    ViewData["selected"] = "users";
+    var counter = 1;
+}
+<section class="content-header">
+    <h1>
+        @ViewData["title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <i class="fa fa-dashboard"></i> خانه
+            </a>
+        </li>
+        <li class="active">@ViewData["title"]</li>
+    </ol>
+</section>
+<section class="content">
+    
+    
+    <div class="box box-danger">
+        <div class="box-body">
+            <form>
+                <div class="box-header">
+                    <button type="submit" class="btn btn-info pull-left">فیلتر </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <input class="form-control" type="text" value="@Model.UserFilterParams.PhoneNumber" placeholder="شماره تلفن" name="phoneNumber" />
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="box box-primary ">
+        <div class="box-body p-0">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>نام کاربری</th>
+                    <th>نام و نام خانوادگی</th>
+                    <th>نقش</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Users)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>
+                            @{
+                                string fullname = item.Name + " " + item.Family;
+                            }
+                            @fullname</td>
+                        <td>@item.UserRole.ToString()</td>
+
+                        <td>
+                            <open-modal title="ویرایش کاربر"
+                                        url="@Url.Action("ShowEditModal", "User", new { userId = item.Id })">
+                                ویرایش
+                            </open-modal>
+                        </td>
+                    </tr>
+                    counter += 1;
+                }
+                </tbody>
+            </table>
+        </div>
+        <partial name="_Pagination" model="Model"/>
+    </div>
+</section>

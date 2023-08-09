@@ -1,0 +1,1435 @@
+﻿
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   @await RenderSectionAsync("MetaTags", false)
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="/css/bootstrap.rtl.min.css">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="/css/responsive.css">
+
+   <!-- Carousel CSS -->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/splide.min.css">
+   @await RenderSectionAsync("MetaLink", false)
+
+   @*<link rel="shortcut icon" href="images/logo-imgs/logo.png" type="image/x-icon" />*@
+
+   <!-- WebSite Title -->
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+
+   <div class="mobile__nav__bottom position-fixed bottom-0 d-sm-none bg-white w-100 pt-2">
+      <div class="container">
+         <div class="row row-cols-5">
+
+            <div class="col px-3">
+               <a href="index.html" class="mobile__nav__link text-center d-block py-2">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-1" width="20.5" height="21.618"
+                     viewBox="0 0 20.5 21.618">
+                     <path
+                        d="M9.157,20.771V17.7a1.426,1.426,0,0,1,1.424-1.419h2.886A1.426,1.426,0,0,1,14.9,17.7h0v3.076A1.225,1.225,0,0,0,16.1,22h1.924A3.456,3.456,0,0,0,21.5,18.562h0V9.838a2.439,2.439,0,0,0-.962-1.9l-6.58-5.248a3.18,3.18,0,0,0-3.944,0L3.462,7.943a2.42,2.42,0,0,0-.962,1.9v8.714A3.456,3.456,0,0,0,5.973,22H7.9a1.235,1.235,0,0,0,1.241-1.229h0"
+                        transform="translate(-1.75 -1.132)" fill="none" stroke="#9f9f9f" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5" />
+                  </svg>
+
+                  <span class="d-block">
+                     خانه
+                  </span>
+
+               </a>
+            </div>
+
+
+            <div class="col px-3">
+               <a href="category.html" class="mobile__nav__link text-center d-block py-2">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-1" width="21.5" height="21.5"
+                     viewBox="0 0 21.5 21.5">
+                     <g transform="translate(-1.25 -1.25)">
+                        <path
+                           d="M16.285,2h3.267A2.459,2.459,0,0,1,22,4.47V7.764a2.46,2.46,0,0,1-2.448,2.47H16.285a2.46,2.46,0,0,1-2.449-2.47V4.47A2.46,2.46,0,0,1,16.285,2Z"
+                           fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="1.5" fill-rule="evenodd" />
+                        <path
+                           d="M4.449,2H7.714a2.46,2.46,0,0,1,2.449,2.47V7.764a2.46,2.46,0,0,1-2.449,2.47H4.449A2.46,2.46,0,0,1,2,7.764V4.47A2.46,2.46,0,0,1,4.449,2Z"
+                           fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="1.5" fill-rule="evenodd" />
+                        <path
+                           d="M4.449,13.766H7.714a2.46,2.46,0,0,1,2.449,2.471V19.53A2.46,2.46,0,0,1,7.714,22H4.449A2.46,2.46,0,0,1,2,19.53V16.237A2.46,2.46,0,0,1,4.449,13.766Z"
+                           fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="1.5" fill-rule="evenodd" />
+                        <path
+                           d="M16.285,13.766h3.267A2.46,2.46,0,0,1,22,16.237V19.53A2.459,2.459,0,0,1,19.552,22H16.285a2.46,2.46,0,0,1-2.449-2.47V16.237A2.46,2.46,0,0,1,16.285,13.766Z"
+                           fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="1.5" fill-rule="evenodd" />
+                     </g>
+                  </svg>
+
+                  <span class="d-block">
+                     دسته بندی
+                  </span>
+
+               </a>
+            </div>
+
+
+            <div class="col px-3">
+               <a href="cart.html" class="mobile__nav__link text-center d-block py-2 active">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-1" width="25.944" height="21.81"
+                     viewBox="0 0 25.944 21.81">
+                     <g transform="translate(-0.25 0.06)">
+                        <path d="M10.037,1,3,7.667C4.508,19.333,3,21,13.556,21S22.6,19.333,24.111,7.667L17.074,1"
+                           transform="translate(-0.333)" fill="none" stroke="#9f9f9f" stroke-linecap="round"
+                           stroke-width="1.5" />
+                        <path d="M1,7H25.444" transform="translate(0 0.667)" fill="none" stroke="#9f9f9f"
+                           stroke-linecap="round" stroke-width="1.5" />
+                        <path d="M10,11v3.333M13.333,11v3.333" transform="translate(1.556 1.905)" fill="none"
+                           stroke="#9f9f9f" stroke-linecap="round" stroke-width="1.5" />
+                     </g>
+                  </svg>
+
+                  <span class="d-block">
+                     سبد خرید
+                  </span>
+
+               </a>
+            </div>
+
+
+            <!-- profile -->
+            <div class="col px-3">
+               <a asp-page="/Auth/Login" role="button"
+                  class="mobile__nav__link text-center d-block py-2">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-1" width="16.665" height="20.723"
+                     viewBox="0 0 16.665 20.723">
+                     <g transform="translate(-3.25 -1.75)">
+                        <circle cx="4.778" cy="4.778" r="4.778" transform="translate(6.801 2.5)" fill="none"
+                           stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                        <path
+                           d="M4,18.7a2.215,2.215,0,0,1,.22-.97,4.042,4.042,0,0,1,2.819-1.62,16.778,16.778,0,0,1,2.343-.33,25.039,25.039,0,0,1,4.384,0,16.979,16.979,0,0,1,2.343.33c1.071.22,2.361.659,2.819,1.62a2.27,2.27,0,0,1,0,1.95c-.458.961-1.748,1.4-2.819,1.611a15.722,15.722,0,0,1-2.343.339,25.825,25.825,0,0,1-3.57.055,4.06,4.06,0,0,1-.815-.055,15.417,15.417,0,0,1-2.334-.339c-1.08-.211-2.362-.65-2.828-1.611A2.279,2.279,0,0,1,4,18.7Z"
+                           fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="1.5" fill-rule="evenodd" />
+                     </g>
+                  </svg>
+
+                  <span class="d-block">
+                     پروفایل
+                  </span>
+
+               </a>
+            </div>
+
+
+            <!-- search -->
+            <div class="col px-3">
+                <a href="#offcanvasNavba" class="mobile__nav__link text-center d-block py-2" data-bs-toggle="offcanvas"
+                   data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-1 mobile__nav__link__fill" width="19.5"
+                         height="19.5" viewBox="0 0 19.5 19.5">
+                        <path
+                            d="M3.316,13.781l.73-.171Zm0-5.457.73.171Zm15.474,0,.73-.171Zm0,5.457.73.171Zm-5.008,5.008-.171-.73Zm-5.457,0-.171.73Zm0-15.474-.171-.73Zm5.457,0,.171-.73ZM20.47,21.53A.75.75,0,0,0,21.53,20.47ZM4.046,13.61a11.2,11.2,0,0,1,0-5.115l-1.46-.343a12.7,12.7,0,0,0,0,5.8ZM18.059,8.5a11.2,11.2,0,0,1,0,5.115l1.46.342a12.7,12.7,0,0,0,0-5.8ZM13.61,18.059a11.2,11.2,0,0,1-5.115,0l-.343,1.46a12.7,12.7,0,0,0,5.8,0ZM8.5,4.046a11.2,11.2,0,0,1,5.115,0l.342-1.46a12.7,12.7,0,0,0-5.8,0Zm0,14.013A5.971,5.971,0,0,1,4.046,13.61l-1.46.342A7.471,7.471,0,0,0,8.153,19.52Zm5.457,1.46a7.471,7.471,0,0,0,5.567-5.567l-1.46-.342a5.97,5.97,0,0,1-4.449,4.449ZM13.61,4.046A5.971,5.971,0,0,1,18.059,8.5l1.46-.343a7.471,7.471,0,0,0-5.567-5.567ZM8.153,2.586A7.471,7.471,0,0,0,2.586,8.153l1.46.343A5.971,5.971,0,0,1,8.5,4.046ZM16.8,17.865,20.47,21.53,21.53,20.47,17.865,16.8Z"
+                            transform="translate(-2.25 -2.25)" fill="#9f9f9f"/>
+                    </svg>
+
+                    <span class="d-block">
+                        جست و جو
+                    </span>
+
+                </a>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+   <div class="footer__options position-fixed">
+
+      <nav class="nav flex-column footer__options__nav">
+
+         <a class="nav-link footer__options__link d-inline-flex align-items-center mb-3 p-2" href="#">
+
+            <div class="position-relative footer__options__link__cap">
+
+               <svg xmlns="http://www.w3.org/2000/svg" width="21.592" height="19.8" viewBox="0 0 21.592 19.8">
+                  <path
+                     d="M21.563,26.393l-3.2-9.848h.8a.6.6,0,0,0,0-1.2H11.394V14.086a.6.6,0,1,0-1.2,0v1.262H2.423a.6.6,0,1,0,0,1.2h.8l-3.2,9.848a.6.6,0,0,0,.13.591l1.067,1.15a3.852,3.852,0,0,0,5.647,0l1.067-1.15a.6.6,0,0,0,.13-.591l-3.2-9.848H10.2v13.82H7.773A2.328,2.328,0,0,0,5.447,32.69a.6.6,0,0,0,.6.6h9.5a.6.6,0,0,0,.6-.6,2.328,2.328,0,0,0-2.325-2.326H11.394V16.544h5.325l-3.2,9.848a.6.6,0,0,0,.13.591l1.067,1.15a3.852,3.852,0,0,0,5.647,0l1.067-1.15A.6.6,0,0,0,21.563,26.393ZM6,27.321a2.656,2.656,0,0,1-3.894,0l-.166-.179H6.163Zm.672-1.375H1.431L4.05,17.882Zm7.15,5.614a1.13,1.13,0,0,1,.958.532H6.815a1.13,1.13,0,0,1,.958-.532Zm5.669-4.24a2.656,2.656,0,0,1-3.894,0l-.166-.179h4.226Zm-4.566-1.375,2.619-8.064,2.619,8.064Z"
+                     transform="translate(0 -13.488)" fill="#7f7f7f"></path>
+               </svg>
+
+               <span class="position-absolute top-0 translate-middle badge rounded-circle bg-warning">
+                  3
+               </span>
+
+            </div>
+
+         </a>
+
+         <a class="nav-link footer__options__link d-inline-flex align-items-center mb-3 p-2" href="#">
+
+            <div class="position-relative footer__options__link__cap">
+
+               <svg xmlns="http://www.w3.org/2000/svg" width="20.538" height="19.536" viewBox="0 0 20.538 19.536">
+                  <g transform="translate(0.769 0.786)">
+                     <path
+                        d="M11.761,20.854a34.845,34.845,0,0,1-6.022-4.689A11.991,11.991,0,0,1,2.873,11.6C1.8,8.25,3.054,4.421,6.571,3.288A5.978,5.978,0,0,1,12,4.2a5.987,5.987,0,0,1,5.425-.914C20.938,4.421,22.2,8.25,21.128,11.6a11.99,11.99,0,0,1-2.866,4.57,34.844,34.844,0,0,1-6.022,4.689L12.005,21Z"
+                        transform="translate(-2.5 -3)" fill="none" stroke="#7f7f7f" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd"></path>
+                     <path d="M15.739,7.053a2.782,2.782,0,0,1,1.917,2.422" transform="translate(-2.5 -3)" fill="none"
+                        stroke="#7f7f7f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                  </g>
+               </svg>
+
+               <span class="position-absolute top-0 translate-middle badge rounded-circle bg-warning">
+                  3
+               </span>
+
+            </div>
+
+         </a>
+
+         <a class="nav-link footer__options__link d-inline-flex align-items-center mb-3 p-2" href="#">
+
+            <div class="position-relative footer__options__link__cap">
+
+               <svg xmlns="http://www.w3.org/2000/svg" width="20.12" height="19.716" viewBox="0 0 20.12 19.716">
+                  <g transform="translate(0.867 0.867)">
+                     <path d="M7.422,19.82a.765.765,0,1,1-.764.765A.766.766,0,0,1,7.422,19.82Z"
+                        transform="translate(-2.75 -3.25)" fill="none" stroke="#7f7f7f" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd"></path>
+                     <path d="M18.675,19.82a.765.765,0,1,1-.765.765A.766.766,0,0,1,18.675,19.82Z"
+                        transform="translate(-2.75 -3.25)" fill="none" stroke="#7f7f7f" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd"></path>
+                     <path
+                        d="M2.75,3.25l2.08.36.963,11.473a1.8,1.8,0,0,0,1.8,1.653H18.5a1.8,1.8,0,0,0,1.785-1.546l.949-6.558A1.341,1.341,0,0,0,19.909,7.1H5.164"
+                        transform="translate(-2.75 -3.25)" fill="none" stroke="#7f7f7f" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5"></path>
+                     <path d="M14.125,10.8H16.9" transform="translate(-2.75 -3.25)" fill="none" stroke="#7f7f7f"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                  </g>
+               </svg>
+
+               <span class="position-absolute top-0 translate-middle badge rounded-circle bg-warning">
+                  3
+               </span>
+
+            </div>
+
+         </a>
+
+         <a class="nav-link footer__options__link footer__options__go2top d-inline-flex align-items-center mb-3 p-2"
+            href="#">
+
+            <div class="footer__options__link__cap mx-auto">
+
+               <svg xmlns="http://www.w3.org/2000/svg" width="14.17" height="16.5" viewBox="0 0 14.17 16.5">
+                  <g id="Arrow_-_Up" data-name="Arrow - Up" transform="translate(-4.641 -3.5)">
+                     <path id="Path_254" data-name="Path 254" d="M11.726,4.25v15" fill="none" stroke="#fff"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                     <path id="Path_255" data-name="Path 255" d="M5.7,10.3l6.024-6.05L17.75,10.3" fill="none"
+                        stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                  </g>
+               </svg>
+
+            </div>
+
+         </a>
+
+      </nav>
+
+   </div>
+
+   <partial name="_Header"/>
+
+   @RenderBody()
+
+    <partial name="_Footer"/>
+
+   <!-- login modal -->
+
+
+   <!-- login modal mobile -->
+
+   <div class="modal fade" id="exampleModalToggle-mobile" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+         <div class="modal-content">
+
+
+            <div class="modal-header">
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+
+               <div class="container">
+
+                  <div class="row g-3">
+
+                     <div class="col-12">
+
+                        <div class="modal__title">
+                           ورود به <span class="fw-bold">دینگ فون</span>
+                        </div>
+
+                     </div>
+
+                     <div class="col-12">
+
+                        <div class="row">
+
+                           <div class="col-6">
+
+                              <a href="#" class="login__w__facebook align-items-center d-flex">
+                                 <img src="images/modals/facebook.svg" class="w-auto me-1" alt="">
+                                 ورود از طریق فیسبوک
+                              </a>
+
+                           </div>
+
+
+                           <div class="col-6">
+
+                              <a href="#" class="login__w__google align-items-center d-flex">
+                                 <img src="images/modals/google.svg" class="w-auto me-1" alt="">
+                                 ورود از طریق گوگل
+                              </a>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                     <div class="col-12">
+                        <div class="text-center position-relative">
+                           <hr class="position-absolute w-100 m-auto top-0 bottom-0">
+                           <span class="bg-white px-2 py-1 position-relative">
+                              یا
+                           </span>
+                        </div>
+
+                     </div>
+
+                     <div class="col-12 position-relative">
+
+                        <form class="modal__form">
+
+                           <div class="row g-3">
+
+                              <div class="col-12">
+
+                                 <label for="exampleInputEmail1" class="form-label">
+                                    ایمیل یا شماره موبایل خود را واردکنید
+                                 </label>
+                                 <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+
+                              </div>
+
+
+                              <div class="col-12">
+
+                                 <label for="exampleInputPassword1" class="form-label">
+                                    .رمز عبور خود را وارد کنید
+                                 </label>
+                                 <input type="password" class="form-control" id="exampleInputPassword1">
+
+                              </div>
+
+
+                              <div class="col-12 mb-3">
+
+                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                 <label class="form-check-label" for="exampleCheck1">
+                                    مرا به خاطر بسپار
+                                 </label>
+
+                              </div>
+
+
+                              <div class="col-6 mt-4">
+
+                                 <div class="row">
+
+                                    <div class="col-6">
+
+                                       <a href="#"
+                                          class="special__offer__splide__contect__buy__link text-white text-center d-block py-2 px-3"
+                                          style="font-size: 14px;">
+                                          ورود
+                                       </a>
+
+                                    </div>
+
+
+                                 </div>
+
+                              </div>
+
+
+                           </div>
+
+                        </form>
+
+                        <button class="col-7 btn modal__form__register position-absolute"
+                           data-bs-target="#exampleModalToggle2-mobile" data-bs-toggle="modal">
+                           حساب کاربری ندارید ؟ ثبت نام
+                        </button>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <!-- register modal   -->
+
+   <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+         <div class="modal-content">
+
+
+            <div class="modal-header">
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+
+            <div class="modal-body">
+
+               <div class="container">
+
+                  <div class="row">
+
+                     <div class="col-6">
+
+                        <div class="row">
+
+                           <div class="col-12">
+
+                              <p class="modal__logo__text text-center">
+                                 مرکز تخصصی لوزام دیجیتال
+                              </p>
+
+                           </div>
+
+
+                           <div class="col-12">
+
+                              <img src="images/modals/Mobile-login.svg" alt="">
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                     <div class="col-6 border-start">
+
+                        <div class="row g-3">
+
+                           <div class="col-12">
+
+                              <div class="modal__title">
+                                 ثبت نام در <span class="fw-bold">دینگ فون</span>
+                              </div>
+
+                           </div>
+
+                           <div class="col-12">
+
+                              <div class="row">
+
+                                 <div class="col-6">
+
+                                    <a href="#" class="login__w__facebook align-items-center d-flex">
+                                       <img src="images/modals/facebook.svg" class="w-auto me-1" alt="">
+                                       ورود از طریق فیسبوک
+                                    </a>
+
+                                 </div>
+
+
+                                 <div class="col-6">
+
+                                    <a href="#" class="login__w__google align-items-center d-flex">
+                                       <img src="images/modals/google.svg" class="w-auto me-1" alt="">
+                                       ورود از طریق گوگل
+                                    </a>
+
+                                 </div>
+
+                              </div>
+
+                           </div>
+
+                           <div class="col-12">
+                              <div class="text-center position-relative">
+                                 <hr class="position-absolute w-100 m-auto top-0 bottom-0">
+                                 <span class="bg-white px-2 py-1 position-relative">
+                                    یا
+                                 </span>
+                              </div>
+
+                           </div>
+
+                           <div class="col-12 position-relative">
+
+                              <form class="modal__form">
+
+                                 <div class="row g-2">
+
+                                    <div class="col-12">
+
+                                       <label for="exampleInputEmail1" class="form-label">
+                                          نام کاربری
+                                       </label>
+                                       <input type="text" class="form-control" id="exampleInputEmail1"
+                                          aria-describedby="emailHelp">
+
+                                    </div>
+
+
+                                    <div class="col-12">
+
+                                       <label for="exampleInputPassword1" class="form-label">
+                                          ایمیل
+                                       </label>
+                                       <input type="email" class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+
+
+                                    <div class="col-12">
+
+                                       <label for="exampleInputPassword1" class="form-label">
+                                          موبایل
+                                       </label>
+                                       <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+                                    <div class="col-12">
+
+                                       <label for="exampleInputPassword1" class="form-label">
+                                          رمز عبور
+                                       </label>
+                                       <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+                                    <div class="col-12">
+
+                                       <label for="exampleInputPassword1" class="form-label">
+                                          تکرار رمز عبور
+                                       </label>
+                                       <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+
+
+                                    <div class="col-12 mt-4">
+
+                                       <div class="row">
+
+                                          <div class="col-6">
+
+                                             <a href="#"
+                                                class="special__offer__splide__contect__buy__link text-white text-center d-block py-2 px-3"
+                                                style="font-size: 14px;">
+                                                ثبت نام
+                                             </a>
+
+                                          </div>
+
+
+                                       </div>
+
+                                    </div>
+
+
+                                 </div>
+
+                              </form>
+
+                              <button class="btn modal__form__register position-absolute p-0"
+                                 data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                                 حساب کاربری دارید ؟ ورود
+                              </button>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+
+   <!-- register modal mobile  -->
+
+   <div class="modal fade" id="exampleModalToggle2-mobile" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+         <div class="modal-content">
+
+
+            <div class="modal-header">
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+
+            <div class="modal-body">
+
+               <div class="container">
+
+                  <div class="row">
+
+                     <div class="row g-3">
+
+                        <div class="col-12">
+
+                           <div class="modal__title">
+                              ثبت نام در <span class="fw-bold">دینگ فون</span>
+                           </div>
+
+                        </div>
+
+                        <div class="col-12">
+
+                           <div class="row">
+
+                              <div class="col-6">
+
+                                 <a href="#" class="login__w__facebook align-items-center d-flex">
+                                    <img src="images/modals/facebook.svg" class="w-auto me-1" alt="">
+                                    ورود از طریق فیسبوک
+                                 </a>
+
+                              </div>
+
+
+                              <div class="col-6">
+
+                                 <a href="#" class="login__w__google align-items-center d-flex">
+                                    <img src="images/modals/google.svg" class="w-auto me-1" alt="">
+                                    ورود از طریق گوگل
+                                 </a>
+
+                              </div>
+
+                           </div>
+
+                        </div>
+
+                        <div class="col-12">
+                           <div class="text-center position-relative">
+                              <hr class="position-absolute w-100 m-auto top-0 bottom-0">
+                              <span class="bg-white px-2 py-1 position-relative">
+                                 یا
+                              </span>
+                           </div>
+
+                        </div>
+
+                        <div class="col-12 position-relative">
+
+                           <form class="modal__form">
+
+                              <div class="row g-2">
+
+                                 <div class="col-12">
+
+                                    <label for="exampleInputEmail1" class="form-label">
+                                       نام کاربری
+                                    </label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp">
+
+                                 </div>
+
+
+                                 <div class="col-12">
+
+                                    <label for="exampleInputPassword1" class="form-label">
+                                       ایمیل
+                                    </label>
+                                    <input type="email" class="form-control" id="exampleInputPassword1">
+
+                                 </div>
+
+
+                                 <div class="col-12">
+
+                                    <label for="exampleInputPassword1" class="form-label">
+                                       موبایل
+                                    </label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                 </div>
+                                 <div class="col-12">
+
+                                    <label for="exampleInputPassword1" class="form-label">
+                                       رمز عبور
+                                    </label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                 </div>
+                                 <div class="col-12">
+
+                                    <label for="exampleInputPassword1" class="form-label">
+                                       تکرار رمز عبور
+                                    </label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1">
+
+                                 </div>
+
+
+                                 <div class="col-12 mt-4">
+
+                                    <div class="row">
+
+                                       <div class="col-6">
+
+                                          <a href="#"
+                                             class="special__offer__splide__contect__buy__link text-white text-center d-block py-2 px-3"
+                                             style="font-size: 14px;">
+                                             ثبت نام
+                                          </a>
+
+                                       </div>
+
+
+                                    </div>
+
+                                 </div>
+
+
+                              </div>
+
+                           </form>
+
+                           <button class="btn modal__form__register position-absolute p-0"
+                              data-bs-target="#exampleModalToggle-mobile" data-bs-toggle="modal">
+                              حساب کاربری دارید ؟ ورود
+                           </button>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+
+   <!-- Quick view modal -->
+
+   <!-- Modal -->
+   <div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+
+
+      <div class="modal-dialog modal-xl">
+         <div class="modal-content">
+
+
+            <div class="modal-header">
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+
+
+
+               <div class="row g-3">
+
+                  <div class="col-12 col-xxl-8">
+
+                     <div class="row g-2">
+
+                        <div class="col-md-12 col-xxl-4">
+
+                           <div class="row">
+
+                              <div class="col-12">
+
+                                 <div class="position-relative">
+
+                                    <ul class="nav flex-column position-absolute"
+                                       style="z-index: 1040; bottom: 38px; right: 10px;">
+
+                                       <a class="nav-link product__options__link d-inline-flex align-items-center mb-2 ms-2 p-2"
+                                          href="#">
+
+                                          <div class="product__options__link__cap">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="14.85" height="14.85"
+                                                viewBox="0 0 14.85 14.85">
+                                                <path
+                                                   d="M9.425,2A7.425,7.425,0,1,0,16.85,9.425,7.425,7.425,0,0,0,9.425,2Zm0,1.036A6.389,6.389,0,1,1,3.036,9.425,6.389,6.389,0,0,1,9.425,3.036ZM8.587,6.5,8.51,6.488a.868.868,0,0,0-.819.53,3.721,3.721,0,0,0-.124.5,10.371,10.371,0,0,0-.116,1.594V9.33a11.865,11.865,0,0,0,.106,1.742l.038.195a2.306,2.306,0,0,0,.128.435.866.866,0,0,0,.794.467,2.41,2.41,0,0,0,.643-.188,11.092,11.092,0,0,0,2.65-1.775l.2-.208a1.8,1.8,0,0,0,.14-.16A.864.864,0,0,0,12.129,8.8l-.059-.068L11.9,8.55a10.637,10.637,0,0,0-2.821-1.9A2.555,2.555,0,0,0,8.587,6.5Zm.026,1.082.092.033a10.1,10.1,0,0,1,2.352,1.555l.157.162-.06.064a9.872,9.872,0,0,1-2.4,1.634l-.142.052L8.577,10.9a10.189,10.189,0,0,1-.091-1.367V9.33a11.436,11.436,0,0,1,.082-1.512l.025-.148Z"
+                                                   transform="translate(-2 -2)" fill="#7f7f7f" fill-rule="evenodd" />
+                                             </svg>
+                                          </div>
+
+                                       </a>
+
+                                       <a class="nav-link product__options__link d-inline-flex align-items-center mb-2 ms-2 p-2"
+                                          href="#">
+
+                                          <div class="product__options__link__cap">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="16.194" height="14.85"
+                                                viewBox="0 0 16.194 14.85">
+                                                <path
+                                                   d="M16.172,23.166l-2.4-7.386h.6a.448.448,0,0,0,0-.9H8.545v-.947a.448.448,0,1,0-.9,0v.947H1.817a.448.448,0,1,0,0,.9h.6l-2.4,7.386a.448.448,0,0,0,.1.444l.8.863a2.889,2.889,0,0,0,4.235,0l.8-.863a.448.448,0,0,0,.1-.444l-2.4-7.386H7.648V26.145H5.829a1.746,1.746,0,0,0-1.744,1.744.448.448,0,0,0,.448.448H11.66a.448.448,0,0,0,.448-.448,1.746,1.746,0,0,0-1.744-1.744H8.545V15.78h3.993l-2.4,7.386a.448.448,0,0,0,.1.444l.8.863a2.889,2.889,0,0,0,4.235,0l.8-.863A.448.448,0,0,0,16.172,23.166Zm-11.674.7a1.992,1.992,0,0,1-2.92,0l-.124-.134H4.622ZM5,22.832H1.073l1.964-6.048Zm5.362,4.211a.847.847,0,0,1,.718.4H5.111a.847.847,0,0,1,.718-.4Zm4.252-3.18a1.992,1.992,0,0,1-2.92,0l-.124-.134h3.169Zm-3.424-1.031,1.964-6.048,1.964,6.048Z"
+                                                   transform="translate(0 -13.488)" fill="#7f7f7f" />
+                                             </svg>
+                                          </div>
+
+                                       </a>
+
+                                    </ul>
+
+                                    <div id="sync1" class="owl-carousel owl-theme sync11">
+
+                                       <div class="item px-0">
+
+                                          <img src="images/off-slider/mobile.svg" class="w-auto mx-auto" alt="">
+
+                                       </div>
+                                       <div class="item px-0">
+
+                                          <img src="images/off-slider/mobile.svg" class="w-auto mx-auto" alt="">
+
+                                       </div>
+                                       <div class="item px-0">
+
+                                          <img src="images/off-slider/mobile.svg" class="w-auto mx-auto" alt="">
+
+                                       </div>
+                                       <div class="item px-0">
+
+                                          <img src="images/off-slider/mobile.svg" class="w-auto mx-auto" alt="">
+
+                                       </div>
+                                       <div class="item px-0">
+
+                                          <img src="images/off-slider/mobile.svg" class="w-auto mx-auto" alt="">
+
+                                       </div>
+
+                                    </div>
+
+                                 </div>
+
+
+                                 <div id="sync2" class="owl-carousel owl-theme sync12">
+
+                                    <div class="item px-0">
+                                       <img src="images/icons/mobile-sm.svg" class="w-auto mx-auto" alt="">
+                                    </div>
+
+                                    <div class="item px-0">
+                                       <img src="images/icons/mobile-sm.svg" class="w-auto mx-auto" alt="">
+                                    </div>
+
+                                    <div class="item px-0">
+                                       <img src="images/icons/mobile-sm.svg" class="w-auto mx-auto" alt="">
+                                    </div>
+
+                                    <div class="item px-0">
+                                       <img src="images/icons/mobile-sm.svg" class="w-auto mx-auto" alt="">
+                                    </div>
+
+                                    <div class="item px-0">
+                                       <img src="images/icons/mobile-sm.svg" class="w-auto mx-auto" alt="">
+                                    </div>
+
+                                 </div>
+
+                              </div>
+
+
+                              <div class="col-12">
+                                 <div class="poduct__timmer px-3 py-2 mt-4">
+                                    <div class="row row-cols-auto justify-content-center align-items-center d-flex">
+                                       <div class="col">
+                                          زمان باقی مانده تا اتمام تخفیف :
+                                       </div>
+                                       <div class="col">
+                                          <span class="fw-bold">
+                                             2 : 14 : 17 : 5
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                           </div>
+
+                        </div>
+
+
+                        <div class="col-md-12 col-xxl-8">
+
+                           <div class="row g-2">
+
+                              <div class="col-12">
+                                 <h1 class="product__title fw-bold">
+                                    گوشی موبایل سامسونگ مدل s21
+                                 </h1>
+
+                                 <span class="product__title__en">
+                                    Samsung Galaxy S20 FE
+                                 </span>
+
+                              </div>
+
+                              <div class="col-12 align-items-center d-flex">
+
+                                 <div class="product__ranking align-items-center d-flex float-start me-3">
+
+                                    امتیاز : 4
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.632" height="12" class="ms-1"
+                                       viewBox="0 0 12.632 12">
+                                       <defs>
+                                          <style>
+                                             .cls-1 {
+                                                fill: #ffbe18;
+                                             }
+                                          </style>
+                                       </defs>
+                                       <path id="Star" class="cls-1"
+                                          d="M12.053,9.965a.7.7,0,0,0-.2.613l.561,3.107a.682.682,0,0,1-.284.682.7.7,0,0,1-.739.051l-2.8-1.459a.714.714,0,0,0-.316-.083H8.106a.513.513,0,0,0-.171.057L5.138,14.4a.738.738,0,0,1-.448.069.7.7,0,0,1-.562-.8l.562-3.107a.707.707,0,0,0-.2-.618l-2.28-2.21a.682.682,0,0,1-.17-.714A.709.709,0,0,1,2.6,6.542l3.139-.455A.7.7,0,0,0,6.293,5.7L7.676,2.866A.657.657,0,0,1,7.8,2.7l.057-.044a.424.424,0,0,1,.1-.082l.069-.025L8.137,2.5H8.4a.706.706,0,0,1,.556.379L10.36,5.7a.7.7,0,0,0,.524.385l3.139.455a.716.716,0,0,1,.575.474.686.686,0,0,1-.183.714Z"
+                                          transform="translate(-2 -2.5)"></path>
+                                    </svg>
+
+                                 </div>
+
+                                 <div class="product__cat align-items-center d-flex">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="14.1" height="14.1"
+                                       viewBox="0 0 14.1 14.1">
+                                       <defs>
+                                          <style>
+                                             .a {
+                                                fill: none;
+                                                stroke: #9f9f9f;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.1px;
+                                                fill-rule: evenodd;
+                                             }
+                                          </style>
+                                       </defs>
+                                       <g transform="translate(-1.45 -1.45)">
+                                          <path class="a"
+                                             d="M15.428,2h2.123a1.6,1.6,0,0,1,1.591,1.606V5.747a1.6,1.6,0,0,1-1.591,1.606H15.428a1.6,1.6,0,0,1-1.592-1.606V3.606A1.6,1.6,0,0,1,15.428,2Z"
+                                             transform="translate(-4.143)" />
+                                          <path class="a"
+                                             d="M3.592,2H5.714A1.6,1.6,0,0,1,7.306,3.606V5.747A1.6,1.6,0,0,1,5.714,7.352H3.592A1.6,1.6,0,0,1,2,5.747V3.606A1.6,1.6,0,0,1,3.592,2Z" />
+                                          <path class="a"
+                                             d="M3.592,13.766H5.714a1.6,1.6,0,0,1,1.592,1.606v2.14a1.6,1.6,0,0,1-1.592,1.606H3.592A1.6,1.6,0,0,1,2,17.512v-2.14A1.6,1.6,0,0,1,3.592,13.766Z"
+                                             transform="translate(0 -4.118)" />
+                                          <path class="a"
+                                             d="M15.428,13.766h2.123a1.6,1.6,0,0,1,1.591,1.606v2.14a1.6,1.6,0,0,1-1.591,1.606H15.428a1.6,1.6,0,0,1-1.592-1.606v-2.14A1.6,1.6,0,0,1,15.428,13.766Z"
+                                             transform="translate(-4.143 -4.118)" />
+                                       </g>
+                                    </svg>
+
+                                    گوشی موبایل
+
+                                 </div>
+
+                              </div>
+
+                              <div class="col-12">
+
+                                 <nav class="nav flex-column special__offer__splide__contect__options">
+                                    <a class="nav-link position-relative disabled">
+                                       حافظه داخلی: 256 گیگابایت
+                                    </a>
+                                    <a class="nav-link position-relative disabled">
+                                       اندازه صفحه نمایش: 6.5 اینچ
+                                    </a>
+                                    <a class="nav-link position-relative disabled">
+                                       تعداد سیم کارت: 2 سیم کارت
+                                    </a>
+                                    <a class="nav-link position-relative disabled">
+                                       تعداد دوربین: 3 عدد
+                                    </a>
+                                    <a class="nav-link position-relative disabled">
+                                       سیستم عامل: اندروید 10
+                                    </a>
+                                 </nav>
+
+                                 <a href="#" class="product__more__info">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="8.217" height="8.211"
+                                       viewBox="0 0 8.217 8.211">
+                                       <defs>
+                                          <style>
+                                             .a {
+                                                fill: #bfbfbf;
+                                                fill-rule: evenodd;
+                                             }
+                                          </style>
+                                       </defs>
+                                       <path class="a"
+                                          d="M12,7.886a.7.7,0,0,1,.691.6l.006.095v2.71h2.713a.7.7,0,0,1,.095,1.389l-.095.006H12.7V15.4a.7.7,0,0,1-1.389.095L11.3,15.4v-2.71H8.589A.7.7,0,0,1,8.494,11.3l.095-.006H11.3V8.584A.7.7,0,0,1,12,7.886Z"
+                                          transform="translate(-7.891 -7.886)" />
+                                    </svg>
+
+                                    نمایش بیشتر
+                                 </a>
+
+                              </div>
+
+                              <div class="col-12">
+
+                                 <div class="align-items-center d-flex">
+
+                                    <div class="float-start product__color__txt">
+                                       رنگ محصول :
+                                    </div>
+
+                                    <nav class="nav mx-2">
+
+                                       <a href="#" class="rounded-circle product__color active p-0 mx-1"
+                                          style="background-color: #E31E1E;"></a>
+
+                                       <a href="#" class="rounded-circle product__color p-0 mx-1"
+                                          style="background-color: #4F48ED;"></a>
+
+                                       <a href="#" class="rounded-circle product__color p-0 mx-1"
+                                          style="background-color: #FF8800;"></a>
+
+                                       <a href="#" class="rounded-circle product__color p-0 mx-1"
+                                          style="background-color: #FF00EE;"></a>
+
+                                       <a href="#" class="rounded-circle product__color p-0 mx-1"
+                                          style="background-color: #B400FF;"></a>
+
+                                    </nav>
+
+
+                                 </div>
+
+                              </div>
+
+                              <div class="col-12 align-items-center d-flex mt-4">
+
+                                 <div class="float-start me-4">
+
+                                    <span class="input-number-decrement">–</span>
+
+                                    <input class="input-number" type="text" value="1" min="1" max="10">
+
+                                    <span class="input-number-increment">+</span>
+
+                                 </div>
+
+                                 <a href="#"
+                                    class="special__offer__splide__contect__buy__link text-white fw-bold py-2 px-3">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20.016" height="19.599"
+                                       viewBox="0 0 20.016 19.599">
+                                       <defs>
+                                          <style>
+                                             .a,
+                                             .b {
+                                                fill: #fff;
+                                                fill-rule: evenodd;
+                                             }
+
+                                             .a {
+                                                opacity: 0.4;
+                                             }
+                                          </style>
+                                       </defs>
+                                       <path class="a"
+                                          d="M5.911,20.588a1.515,1.515,0,1,1,1.52,1.51A1.519,1.519,0,0,1,5.911,20.588Zm11.25,0a1.515,1.515,0,1,1,1.52,1.51A1.519,1.519,0,0,1,17.161,20.588Z"
+                                          transform="translate(-2 -2.5)" />
+                                       <path class="b"
+                                          d="M20.191,6.349a1.7,1.7,0,0,1,1.41.67,2.127,2.127,0,0,1,.38,1.719l-.95,6.56a2.552,2.552,0,0,1-2.53,2.19H7.591a2.549,2.549,0,0,1-2.54-2.339l-.92-10.9-1.51-.26a.753.753,0,0,1-.61-.86.765.765,0,0,1,.87-.62l2.385.36a.755.755,0,0,1,.62.68l.19,2.24a.61.61,0,0,0,.61.561Zm-6.06,5.2H16.9a.75.75,0,0,0,0-1.5h-2.77a.75.75,0,0,0,0,1.5Z"
+                                          transform="translate(-2 -2.5)" />
+                                    </svg>
+
+                                    افزودن به سبد خرید
+                                 </a>
+
+                              </div>
+
+                              <div class="col-12">
+
+                                 <div class="align-items-center d-flex product__warring__bg p-2 mt-2">
+
+                                    <img src="images/icons/Info-red-Circle.svg" class="float-start me-2" alt="">
+
+                                    <div class="product__warring">
+                                       فقط <span>2</span> عدد در انبار موجود است
+                                    </div>
+
+                                 </div>
+
+                              </div>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+
+                  <div class="col-lg-4 col-xxl-4 d-none d-xl-block ">
+
+                     <div class="row g-3">
+
+                        <div class="col-6">
+
+                           <a href="#" class="product__add__favorites float-start">
+                              <img src="images/icons/AddLikes.svg" class="me-1" alt="">
+
+                              افزودن به علاقه مندی ها
+                           </a>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                           <a href="#" class="product__share float-end">
+
+                              <img src="images/icons/produc-share.svg" class="me-1" alt="">
+
+                              اشتراک گذاری
+
+                           </a>
+
+                        </div>
+
+                        <div class="col-12">
+
+                           <div class="product__info p-3">
+
+                              <ul class="nav flex-column mb-3">
+
+                                 <li class="nav-item product__info__item">
+
+                                    <div class="row align-items-center d-flex">
+
+                                       <div class="col-6">
+                                          <a class="nav-link product__info__brand float-start px-0 py-1 disabled"
+                                             href="#">
+                                             برند محصول:
+                                          </a>
+                                       </div>
+
+                                       <div class="col-6">
+                                          <a class="nav-link float-end px-0 py-1" href="#">
+                                             <img src="images/icons/Samsung_Logo.svg" class="ms-auto" alt="">
+                                          </a>
+                                       </div>
+
+                                    </div>
+
+                                 </li>
+
+                                 <li class="nav-item product__info__item align-items-center d-grid">
+
+                                    <div class="row align-items-center d-flex">
+
+                                       <div class="col-6">
+
+                                          <div class="align-items-center d-flex">
+
+                                             <img src="images/icons/product-ico/Profile.svg" class="float-start me-2"
+                                                alt="">
+
+                                             <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                                فروشنده :
+                                             </a>
+
+                                          </div>
+
+                                       </div>
+
+                                       <div class="col-6">
+                                          <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                             ایران موبایل
+                                          </a>
+                                       </div>
+
+                                    </div>
+
+                                 </li>
+
+                                 <li class="nav-item product__info__item align-items-center d-grid">
+
+                                    <div class="row align-items-center d-flex">
+
+                                       <div class="col-6">
+
+                                          <div class="align-items-center d-flex">
+
+                                             <img src="images/icons/product-ico/packege.svg" class="float-start me-2"
+                                                alt="">
+
+                                             <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                                شرایط ارسال :
+                                             </a>
+
+                                          </div>
+
+                                       </div>
+
+                                       <div class="col-6">
+                                          <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                             ارسال توسط فروشنده
+                                          </a>
+                                       </div>
+
+                                    </div>
+
+                                 </li>
+
+                                 <li class="nav-item product__info__item align-items-center d-grid">
+
+                                    <div class="row align-items-center d-flex">
+
+                                       <div class="col-6">
+
+                                          <div class="align-items-center d-flex">
+
+                                             <img src="images/icons/product-ico/Location.svg" class="float-start me-2"
+                                                alt="">
+
+                                             <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                                موقعیت ارسال :
+                                             </a>
+
+                                          </div>
+
+                                       </div>
+
+                                       <div class="col-6">
+                                          <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                             ارسال به سراسر کشور
+                                          </a>
+                                       </div>
+
+                                    </div>
+
+                                 </li>
+
+                                 <li class="nav-item product__info__item align-items-center d-grid">
+
+                                    <div class="row align-items-center d-flex">
+
+                                       <div class="col-6">
+
+                                          <div class="align-items-center d-flex">
+
+                                             <img src="images/icons/product-ico/Shield-Done.svg"
+                                                class="float-start me-2" alt="">
+
+                                             <a class="nav-link product__info__link float-start p-0 disabled" href="#">
+                                                ضمانت :
+                                             </a>
+
+                                          </div>
+
+                                       </div>
+
+                                       <div class="col-6">
+                                          <a class="nav-link product__info__link float-end p-0 fw-bold" href="#">
+                                             تضمین اصالت کالا
+                                          </a>
+                                       </div>
+
+                                    </div>
+
+                                 </li>
+
+                              </ul>
+
+                              <div class="row g-2">
+
+                                 <div class="col-6">
+
+                                    <div class="product__main__price disabled">
+                                       قیمت بدون تخفیف :
+                                    </div>
+
+                                 </div>
+
+
+                                 <div class="col-6">
+
+                                    <div class="product__off__price text-decoration-line-through disabled float-end">
+                                       13,000,000 <span>تومان</span>
+                                    </div>
+
+                                 </div>
+
+                                 <div class="col-6">
+
+                                    <div class="product__main__off__price disabled fw-bold">
+
+                                       قیمت با
+                                       <span class="header__cart__price__off text-white p-1">
+                                          10% تخفیف
+                                       </span> :
+
+                                    </div>
+
+                                 </div>
+
+
+                                 <div class="col-6">
+
+                                    <div class="product__off__price__main disabled float-end">
+                                       11,000,000 <span>تومان</span>
+                                    </div>
+
+                                 </div>
+
+                                 <div class="col-12">
+
+                                    <div class="product__last__update align-items-center d-flex">
+
+                                       <img src="images/icons/product-ico/Calendar.svg" class="me-1" alt="">
+
+                                       اخرین بروزرسانی قیمت <span class="ms-1 fw-bold">1401/01/4</span>
+
+                                    </div>
+
+                                 </div>
+
+                              </div>
+
+                           </div>
+
+                           <div class="row row-cols-auto mt-3">
+
+                              <div class="col pe-0">
+
+                                 <div class="section__main__content__tag__title">
+                                    <img src="images/icons/tag.svg" alt="" srcset="">
+                                    <span class="ms-1 me-2">
+                                       بر چسب ها :
+                                    </span>
+                                 </div>
+
+                              </div>
+
+                              <div class=" col ps-0 align-items-center d-flex">
+
+                                 <ul class="nav section__main__content__tags">
+
+
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="#">
+                                          گوشی موبایل ،
+                                       </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="#">
+                                          گوشی موبایل ،
+                                       </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="#">
+                                          گوشی موبایل
+                                       </a>
+                                    </li>
+
+
+                                 </ul>
+
+                              </div>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+
+
+
+            </div>
+
+
+         </div>
+      </div>
+
+
+   </div>
+
+
+   <!-- Custom Js -->
+   <script src="/js/jquery-3.6.0.min.js"></script>
+
+   <!-- Bootstrap Js -->
+   <script src="/js/bootstrap.bundle.min.js"></script>
+   <script src="/js/popper.min.js"></script>
+
+   <!-- Carousel Js -->
+   <script src="/js/owl.carousel.min.js"></script>
+   <script src="/js/splide.min.js"></script>
+   <script src="/js/splide-extension-auto-scroll.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="js/custom.js"></script>
+@await RenderSectionAsync("Scripts", false)
+<script src="/js/global.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<partial name="_ValidationScriptsPartial"/>
+
+</body>
+
+</html>

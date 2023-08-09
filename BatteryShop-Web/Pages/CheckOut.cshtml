@@ -1,0 +1,367 @@
+﻿@page
+@model BatteryShop_Web.Pages.CheckOutModel
+@{
+}
+<main>
+
+    <div class="container mt-5 py-3 ">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 col-lg-6">
+
+                <div class="cart-progress-bar">
+
+                    <div class="progress-step  stepc1 ">
+
+                        <div class="step-count">
+                            <img src="images/cart/Buy.svg" alt="">
+                        </div>
+
+                        <div class="step-description mt-2">
+                            سبد خرید
+                        </div>
+
+                    </div>
+
+                    <div class="progress-step is-active stepc2">
+                        <div class="step-count">
+                            <img src="images/cart/money.svg" alt="">
+                        </div>
+                        <div class="step-description mt-2">
+                            پرداخت
+                        </div>
+                    </div>
+
+                    <div class="progress-step  stepc3">
+                        <div class="step-count">
+                            <img src="images/cart/done.svg" alt="">
+                        </div>
+                        <div class="step-description mt-2">
+                            اتمام عملیات خرید
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="container my-4">
+
+        <div class="row g-4">
+
+
+            <div class="col-12 col-lg-8 col-xl-8 ps-lg-0 pe-lg-3">
+
+
+                <section class="px-1 mb-5">
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+
+                            <h3 class="bills__title">
+                                جزئیات صورت حساب
+                            </h3>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <form method="post" class="row g-3 needs-validation checkout__form">
+
+                                <div class="col-md-6 position-relative">
+                                    <label class="form-label">
+                                        نام : 
+                                    </label>
+
+                                    <div class="form-control">
+                                        @Model.CurentUser.Name
+                                    </div>
+
+                                    
+                                </div>
+
+                                <div class="col-md-6 position-relative">
+                                    <label class="form-label">
+                                        نام خانوادگی :
+                                    </label>
+                                    <div class="form-control">
+                                        @Model.CurentUser.Family
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 position-relative">
+                                    <label class="form-label">
+                                        موبایل :
+                                    </label>
+                                    <div class="form-control">
+                                        @Model.CurentUser.PhoneNumber
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 position-relative">
+                                    <label class="form-label">
+                                        استان :
+                                    </label>
+                                    <div class="form-control">
+                                        قم
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 position-relative">
+                                    <label class="form-label">
+                                        شهر :
+                                    </label>
+                                    <div class="form-control">
+                                        قم
+                                    </div>
+                                    <span style="font-size: 12px;font-weight: bold" class="text-danger">این سایت در حال حاضر فقط در شهر قم سرویس دهی میکند</span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(m => m.PostalCode)
+                                </div>
+
+                                <div class="col-md-12">
+                                    @Html.EditorFor(m => m.FullAddress)
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="AddressId"></label>
+                                        <select asp-for="AddressId" class="form-control">
+                                            <option value="null">انتخاب کنید</option>
+
+                                            @foreach (var item in Model.UserAddresses)
+                                            {
+                                                <option value="@item.Id">@item.Address</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="AddressId"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="special__offer__splide__contect__buy__link d-block text-white text-center py-2 px-3 my-3" 
+                                    style="font-size: 14px;" type="submit">ارسال
+
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <div class="col-12 col-lg-4 col-xl-4 pe-0 ps-0 ps-lg-3 bg-light text-dark">
+
+
+                <aside class="px-3 px-sm-0">
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="aside position-relative pb-3 mb-5">
+
+                                <div class="section__main__content__before position-absolute top-0 px-3"></div>
+
+                                <div class="row">
+
+                                    <div class="col-12">
+
+                                        <h4 class="aside__title px-2 pb-3 pt-4 border-0">
+                                            سفارش شما
+                                        </h4>
+
+                                    </div>
+
+                                    <div class="col-12 px-4">
+
+                                        <table class="table table-light table-bordered product__table m-0 mb-2">
+                                            <thead class="border-1 border-bottom">
+                                                <tr>
+                                                    <th style="background: none !important ;" scope="col">محصول</th>
+                                                    <th style="background: none !important ;" scope="col">جمع جزء</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Orders)
+                                                {
+                                                    @for (int i = 0; i < item.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td scope="row">
+                                                                @item.Product.Title
+                                                            </td>
+                                                            <td class="text-end">
+                                                                @item.Product.Price
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        @{
+                                                            long sales = 0;
+                                                            sales += (item.Product.Price * (100 - item.Product.Sales));
+                                                        }
+                                                    }
+                                                }
+                                                <tr>
+                                                    <td scope="row" class="fw-bold" style="color: #E23B3B;">
+                                                        جمع تخفیف
+                                                    </td>
+                                                    <td class="text-end fw-bold" style="color: #E23B3B;">
+                                                         تومان
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="border-bottom p-2" style="color: #7F7F7F; font-size: 14px;">
+                                                    حمل و نقل
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="p-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" checked="" id="flexRadioDefault1">
+                                                        <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                                                            ارسال توسط پست پیشتاز
+                                                            <span>
+                                                                10,000 تومان
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                        <label class="form-check-label " for="flexRadioDefault2">
+                                                            ارسال توسط پست سفارشی
+                                                            <span>
+                                                                10,000 تومان
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="border-bottom p-2"></div>
+
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="p-2">
+                                                    <table class="table table-light table-bordered product__table m-0 mb-2">
+
+                                                        <tbody>
+
+                                                            <tr>
+                                                                <td scope="row" class="fw-bold">
+                                                                    مبلغ قابل پرداخت
+                                                                </td>
+                                                                <td class="text-end fw-bold" style="font-size: 16px;">
+                                                                    12,000,000 تومان
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-12">
+
+                                                <div class="border-bottom p-2" style="color: #7F7F7F; font-size: 14px;">
+                                                    حمل و نقل
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="p-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                                        <label class="form-check-label fw-bold" for="flexRadioDefault3">
+                                                            <img src="images/cart/paypal-logo.svg" alt="">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                                                        <label class="form-check-label " for="flexRadioDefault4">
+                                                            <img src="images/cart/paypal-logo.svg" alt="">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <label class="form-check-label fw-bold" for="flexCheckDefault" style="font-size: 10px;">
+                                                            . من شرایط و مقررات سایت را خوانده ام و آن را می پذیرم
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+
+                                                <a href="#" class="special__offer__splide__contect__buy__link d-block text-white text-center py-2 px-3 my-3" style="font-size: 14px;">
+                                                    پرداخت و ثبت سفارش
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
