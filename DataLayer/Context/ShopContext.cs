@@ -20,7 +20,8 @@ public class ShopContext : DbContext
     public DbSet<ProductImage> ProductImages { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserAddress> UserAddresses { get; set; }
-    public DbSet<UserToken> UserTokens { get; set; }
+    public DbSet<OrderFinally> OrderFinallies { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

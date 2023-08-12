@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BatteryShop_Web.Areas.UserPanel.Controllers
 {
-    [Authorize]
     public class UserController : UserPanelControllerBase
     {
         private readonly IUserService _userService;

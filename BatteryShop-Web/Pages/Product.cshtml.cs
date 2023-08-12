@@ -41,7 +41,7 @@ namespace BatteryShop_Web.Pages
         #region Models
 
         public ProductDto? ProductDto { get; set; }
-        public List<ProductDto> RelatedProduct { get; set; }
+        public List<ProductDto>? RelatedProduct { get; set; }
         public List<ImageDto> ProductImageDto { get; set; }
         public List<CommentDto> Comments { get; set; }
 

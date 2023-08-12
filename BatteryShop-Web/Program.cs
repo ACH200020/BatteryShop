@@ -28,6 +28,7 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IAddressService, AddressService>();
 builder.Services.AddTransient<ICommentService, CommentService>();
 builder.Services.AddTransient<IProductImageService, ProductImageService>();
+builder.Services.AddTransient<IOrderFinallyService, OrderFinallyService>();
 
 
 builder.Services.AddAuthentication(option =>

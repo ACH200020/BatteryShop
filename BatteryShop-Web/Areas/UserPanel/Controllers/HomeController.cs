@@ -7,8 +7,6 @@ namespace BatteryShop_Web.Areas.UserPanel.Controllers
 {
     public class HomeController : UserPanelControllerBase
     {
-        [Authorize]
-        
         
         public IActionResult Index(IndexUserViewModel model)
         {

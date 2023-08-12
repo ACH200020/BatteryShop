@@ -1,0 +1,52 @@
+﻿@model BatteryShop_Web.Areas.UserPanel.Models.Order.OrderViewModel
+@using CoreLayer.Utilities;
+@using CoreLayer.DTOs.User
+@{
+    ViewData["title"] = "خرید های قبلی";
+    ViewData["selected"] = "posts";
+    var counter = 1;
+
+}
+<section class="content-header">
+    <h1>
+        @ViewData["title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li><a asp-area="UserPanel" asp-controller="Address" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li class="active">@ViewData["title"]</li>
+    </ol>
+</section>
+<section class="content">
+
+    <div class="box box-primary ">
+        <div class="box-body p-0">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>محصول</th>
+                        <th>آدرس ارسال شده</th>
+                        <th>زمان</th>
+                        <th>نهایی شد</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderFinallyDtos)
+                    {
+                        <tr>
+                            <td>@counter</td>
+                           
+                            <td>@item.ProductId</td>
+                            <td>@item.UserAddressId</td>
+                            <td>@item.OrderFinallyTime</td>
+                            <td>@item.IsFinal</td>
+
+                        </tr>
+
+                        counter += 1;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

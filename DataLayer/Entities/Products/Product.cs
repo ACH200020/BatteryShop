@@ -34,5 +34,7 @@ public class Product : BaseEntities
 
 
     public List<Comment> Comments { get; set; }
+
+    public List<OrderFinally> OrderFinallies { get; set; }
     #endregion
 }

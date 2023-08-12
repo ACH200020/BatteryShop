@@ -10,6 +10,10 @@ public class UserAddress : BaseEntities
     public string PostalCode { get; set; }
     public string Address { get; set; }
     public bool ActiveAddress { get; set; }
+
+
     [ForeignKey("UserId")]
     public User User { get; set; }
+
+
 }
