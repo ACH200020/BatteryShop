@@ -19,11 +19,11 @@ namespace BatteryShop_Web.Areas.Admin.Models.Products
 
         [Display(Name = "انتخاب دسته بندی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public long CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         [Display(Name = "انتخاب زیر دسته بندی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public long? SubCategoryId { get; set; }
+        public int? SubCategoryId { get; set; }
 
         [Display(Name = "slug")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

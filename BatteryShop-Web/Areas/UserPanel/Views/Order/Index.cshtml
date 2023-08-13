@@ -1,9 +1,7 @@
-﻿@model BatteryShop_Web.Areas.UserPanel.Models.Order.OrderViewModel
-@using CoreLayer.Utilities;
-@using CoreLayer.DTOs.User
+﻿@model BatteryShop_Web.Areas.UserPanel.Models.Order.ListOrderVIewModel
 @{
-    ViewData["title"] = "خرید های قبلی";
-    ViewData["selected"] = "posts";
+    ViewData["title"] = "خرید های انجام شده";
+    ViewData["selected"] = "ordered";
     var counter = 1;
 
 }
@@ -12,7 +10,7 @@
         @ViewData["title"]
     </h1>
     <ol class="breadcrumb">
-        <li><a asp-area="UserPanel" asp-controller="Address" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li><a asp-area="UserPanel" asp-controller="" asp-action="Index"><i class="fa fa-dashboard"></i> خانه</a></li>
         <li class="active">@ViewData["title"]</li>
     </ol>
 </section>
@@ -25,21 +23,23 @@
                     <tr>
                         <th>#</th>
                         <th>محصول</th>
+                        <th>تعداد</th>
                         <th>آدرس ارسال شده</th>
                         <th>زمان</th>
                         <th>نهایی شد</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.OrderFinallyDtos)
+                    @foreach (var item in Model.OrderDtos)
                     {
                         <tr>
                             <td>@counter</td>
                            
-                            <td>@item.ProductId</td>
-                            <td>@item.UserAddressId</td>
-                            <td>@item.OrderFinallyTime</td>
-                            <td>@item.IsFinal</td>
+                            <td>@item.Product.Title</td>
+                            <td>@item.Count</td>
+                            <td>@item.Address</td>
+                            <td>@item.PaymentTime</td>
+                            <td>@item.IsFinally</td>
 
                         </tr>
 

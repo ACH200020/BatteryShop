@@ -41,7 +41,7 @@ namespace BatteryShop_Web.Pages.Auth
 
         public IActionResult OnPost()
         {
-            long userId = User.GetUserId();
+            int userId = User.GetUserId();
             var result = _userService.ChangePassword(new ChangePasswordDto()
             {
                 Id = userId,

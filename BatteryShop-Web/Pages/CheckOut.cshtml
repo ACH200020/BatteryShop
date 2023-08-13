@@ -136,21 +136,7 @@
                                 </div>
 
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label asp-for="AddressId"></label>
-                                        <select asp-for="AddressId" class="form-control">
-                                            <option value="null">انتخاب کنید</option>
-
-                                            @foreach (var item in Model.UserAddresses)
-                                            {
-                                                <option value="@item.Id">@item.Address</option>
-                                            }
-                                        </select>
-                                        <span asp-validation-for="AddressId"></span>
-                                    </div>
-                                </div>
-
+                                
                                 <div class="col-12">
                                     <button class="special__offer__splide__contect__buy__link d-block text-white text-center py-2 px-3 my-3" 
                                     style="font-size: 14px;" type="submit">ارسال

@@ -41,16 +41,16 @@ namespace BatteryShop_Web.Pages
                 OrderDTOs = null;
                 return Page();
             }
-            OrderDTOs = _orderService.GetOrderBy(userId);
+            OrderDTOs = _orderService.GetOrderByUserId(userId);
             return Page();
         }
 
-        public IActionResult OnPost(long? id)
+        public IActionResult OnPost(int? id)
         {
             var userId = User.GetUserId();
             var result = _orderService.DeleteOrder(id,userId);
 
-            OrderDTOs = _orderService.GetOrderBy(userId);
+            OrderDTOs = _orderService.GetOrderByUserId(userId);
             return Page();
 
             

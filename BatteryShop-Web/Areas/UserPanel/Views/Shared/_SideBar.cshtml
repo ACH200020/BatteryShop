@@ -17,8 +17,8 @@
             </ul>
         </li>*@
             
-            <li class="@(selected=="index"?"active":null)">
-                <a asp-area="UserPanel" asp-controller="OrderFinally" asp-action="Index">
+            <li class="@(selected=="ordered"?"active":null)">
+                <a asp-area="UserPanel" asp-controller="Order" asp-action="Index">
                     <i class="fa fa fa-dashboard"></i> <span>خرید های قبلی</span>
                 </a>
             </li>
@@ -27,12 +27,8 @@
                     <i class="fa fa fa-dashboard"></i> <span>ویرایش اطلاعات</span>
                 </a>
             </li>
-            <li class="@(selected=="category"?"active":null)">
-                <a asp-area="UserPanel" asp-controller="Address" asp-action="Index">
-                    <i class="fa fa-th"></i> <span>مدیریت آدرس ها</span>
-                </a>
-            </li>
-            <li class="@(selected=="posts"?"active":null)">
+          
+            <li class="@(selected=="password"?"active":null)">
                 <a asp-area="UserPanel" asp-controller="User" asp-action="ChangePassword">
                     <i class="fa fa-th"></i> <span>تغییر رمز عبور</span>
                 </a>

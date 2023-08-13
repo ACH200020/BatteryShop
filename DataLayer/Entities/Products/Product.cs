@@ -10,8 +10,8 @@ public class Product : BaseEntities
     public string Title { get; set; }
     public string ImageName { get; set; }
     public string Description { get; set; }
-    public long CategoryId { get; set; }
-    public long? SubCategoryId { get; set; }
+    public int CategoryId { get; set; }
+    public int? SubCategoryId { get; set; }
     public string Slug { get; set; }
     public string SeoData { get; set; }
     public int Count { get; set; }
@@ -22,9 +22,7 @@ public class Product : BaseEntities
 
     #region Relations
 
-    public List<ProductImage> ProductImages { get; set; }
-    
-    public List<Order> Order { get; set; }
+   
 
     [ForeignKey("CategoryId")]
     public Category Category { get; set; }
@@ -33,8 +31,10 @@ public class Product : BaseEntities
     public Category? SubCategory { get; set; }
 
 
-    public List<Comment> Comments { get; set; }
+    public ICollection<Comment> Comments { get; set; }
+    public ICollection<ProductImage> ProductImages { get; set; }
 
-    public List<OrderFinally> OrderFinallies { get; set; }
+    public ICollection<Order> Order { get; set; }
+
     #endregion
 }

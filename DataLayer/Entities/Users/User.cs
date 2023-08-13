@@ -14,10 +14,8 @@ namespace DataLayer.Entities.Users
 
 
 
-        public List<Order> Orders { get; set; }
-        public List<UserAddress> UserAddresses { get; set; }
-        public List<Comment> Comments { get; set; }
-        public List<OrderFinally> OrderFinallies { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public ICollection<Comment> Comments { get; set; }
         
     }
 

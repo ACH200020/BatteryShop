@@ -83,6 +83,7 @@ namespace BatteryShop_Web.Pages
                 Count = Count,
                 ProductId = _productDto.Id,
                 OrderStatus = OrderStatus.Buy,
+                IsFinally = true,
                 UserId = User.GetUserId()
             });
 
@@ -91,7 +92,10 @@ namespace BatteryShop_Web.Pages
                 ProductDto = _productDto;
                 ProductImageDto = _productImageService.GetImageById(ProductDto.Id);
                 RelatedProduct = _product.GetProductByAmpere(ProductDto);
+                Comments = _commentService.GetProductComments(ProductDto.Id);
+
                 ModelState.AddModelError(nameof(Count), result.Message);
+
                 return Page();
             }
             return RedirectAndShowAlert(result, RedirectToPage("Cart"));

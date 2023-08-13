@@ -11,8 +11,9 @@ namespace DataLayer.Entities.Comments
 {
     public class Comment : BaseEntities
     {
-        public long UserId { get; set; }
-        public long ProductId { get; set; }
+
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
 

@@ -7668,6 +7668,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\UserPanel\Models\Order\" />
     <Folder Include="wwwroot\images\product\" />
     <Folder Include="wwwroot\images\product\content\" />
   </ItemGroup>

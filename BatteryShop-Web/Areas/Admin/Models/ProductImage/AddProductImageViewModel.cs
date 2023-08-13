@@ -3,5 +3,5 @@
 public class AddProductImageViewModel
 {
     public IFormFile ImageFile { get; set; }
-    public long ProductId { get; set; }
+    public int ProductId { get; set; }
 }

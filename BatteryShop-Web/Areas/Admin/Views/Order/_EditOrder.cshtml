@@ -1,0 +1,11 @@
+﻿@model CoreLayer.DTOs.Order.EditOrderDto
+<form asp-area="admin" asp-controller="Order" asp-action="EditOrderStatus" method="post">
+    @Html.HiddenFor(m=>m.Id)
+    <div class="row">
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.OrderStatus)
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-success">Edit</button>
+</form>

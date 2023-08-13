@@ -21,11 +21,12 @@
                 <li><a href="/admin/index2.html"><i class="fa fa-circle-o"></i> داشبرد دوم</a></li>
             </ul>
         </li>*@
-            <li class="@(selected=="index"?"active":null)">
-                <a asp-area="Admin" asp-controller="Home" asp-action="Index">
-                    <i class="fa fa fa-dashboard"></i> <span>داشبرد</span>
+            <li class="@(selected=="order"?"active":null)">
+                <a asp-area="Admin" asp-controller="Order" asp-action="Index">
+                    <i class="fa fa fa-dashboard"></i> <span>مدیریت محصولات خریداری شده</span>
                 </a>
             </li>
+
             @if (userRole == "Admin")
             {
                 <li class="@(selected == "users" ? "active" : null)">
@@ -39,13 +40,13 @@
                     <i class="fa fa-th"></i> <span>دسته بندی ها</span>
                 </a>
             </li>
-            <li class="@(selected=="posts"?"active":null)">
+            <li class="@(selected=="product"?"active":null)">
                 <a asp-area="Admin" asp-controller="Product" asp-action="Index">
                     <i class="fa fa-th"></i> <span>مدیریت محصولات</span>
                 </a>
             </li>
             
-            <li class="@(selected=="posts"?"active":null)">
+            <li class="@(selected=="image"?"active":null)">
                 <a asp-area="Admin" asp-controller="ImageProduct" asp-action="Index">
                     <i class="fa fa-th"></i> <span>مدیریت عکس محصولات</span>
                 </a>

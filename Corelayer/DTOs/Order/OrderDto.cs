@@ -9,23 +9,40 @@ namespace CoreLayer.DTOs.Order
 {
     public class OrderDto
     {
-        public long Id { get; set; }
-        public long UserId { get; set; }
-        public long ProductId { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
         public int Count { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public long Price { get; set; }
+        public string? Address { get; set; }
+        public string? PostalCode { get; set; }
+        public bool IsFinally { get; set; }
+        public DataLayer.Entities.Users.User User { get; set; }
         public DataLayer.Entities.Products.Product Product { get; set; }
+        public DateTime? PaymentTime { get; set; }
+
     }
 
     public class CreateOrderDto
     {
-        public long UserId { get; set; }
-        public long ProductId { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
         public int Count { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public long Price { get; set; }
+        public bool IsFinally { get; set; }
+
     }
 
+    public class EditOrderDto
+    {
+        public int Id { get; set; }
+        public OrderStatus? OrderStatus { get; set; }
+        public string? Address { get; set; }
+        public string? PostalCode { get; set; }
+        public bool? IsFinally { get; set; }
+        public DateTime? PaymentTime { get; set; }
+    }
 
 }

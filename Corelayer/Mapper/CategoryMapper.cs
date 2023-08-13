@@ -5,15 +5,15 @@ namespace CoreLayer.Mapper
 {
     public class CategoryMapper
     {
-        public static CategoryDto Map(Category category)
+        public static CategoryDto MapToDto(Category category)
         {
             return new CategoryDto()
             {
                 MetaDescription = category.MetaDescription,
                 MetaTag = category.MetaTag,
                 Slug = category.Slug,
-                ParentId = (int?)category.ParentId,
-                Id = (int)category.Id,
+                ParentId = category.ParentId,
+                Id = category.Id,
                 Title = category.Title
             };
         }

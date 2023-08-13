@@ -12,7 +12,7 @@ public class Category : BaseEntities
     public string Slug { get; set; }
     public string MetaTag { get; set; }
     public string MetaDescription { get; set; }
-    public long? ParentId { get; set; }
+    public int? ParentId { get; set; }
 
 
     [InverseProperty("Category")]

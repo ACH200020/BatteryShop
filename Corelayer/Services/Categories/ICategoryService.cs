@@ -74,13 +74,13 @@ namespace CoreLayer.Services.Categories
 
         public List<CategoryDto> GetAllCategory()
         {
-            return _shopContext.Categories.Select(category => CategoryMapper.Map(category)).ToList();
+            return _shopContext.Categories.Select(category => CategoryMapper.MapToDto(category)).ToList();
         }
 
         public List<CategoryDto> GetParentCategory()
         {
             return _shopContext.Categories.Where(f=>f.ParentId == null)
-                .Select(category => CategoryMapper.Map(category))
+                .Select(category => CategoryMapper.MapToDto(category))
                 .ToList();
             
         }
@@ -90,7 +90,7 @@ namespace CoreLayer.Services.Categories
             var category = _shopContext.Categories.FirstOrDefault(f => f.Id == id);
             if (category == null)
                 return null;
-            return CategoryMapper.Map(category);
+            return CategoryMapper.MapToDto(category);
         }
 
         public CategoryDto GetCategoryBy(string slug)
@@ -98,13 +98,13 @@ namespace CoreLayer.Services.Categories
             var category = _shopContext.Categories.FirstOrDefault(c => c.Slug == slug);
             if (category == null)
                 return null;
-            return CategoryMapper.Map(category);
+            return CategoryMapper.MapToDto(category);
         }
 
         public List<CategoryDto> GetChildCategories(int parentId)
         {
             return _shopContext.Categories.Where(f=>f.ParentId == parentId)
-                .Select(category => CategoryMapper.Map(category)).ToList() ;
+                .Select(category => CategoryMapper.MapToDto(category)).ToList() ;
         }
 
         public bool IsSlugExist(string slug)

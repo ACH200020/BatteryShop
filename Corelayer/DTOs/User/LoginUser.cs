@@ -16,7 +16,7 @@ public class ChangePasswordDto
     public string Password { get; set; }
     public string NewPassword { get; set; }
     public string RepeatNewPassword { get; set; }
-    public long Id { get; set; }
+    public int Id { get; set; }
 }
 
 
@@ -31,7 +31,7 @@ public class RegisterUserDto
 
 public class UserDto
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Family { get; set; }
     public string PhoneNumber { get; set; }
@@ -41,7 +41,7 @@ public class UserDto
 }
 public class EditUserDto
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Family { get; set; }
     public string PhoneNumber { get; set; }

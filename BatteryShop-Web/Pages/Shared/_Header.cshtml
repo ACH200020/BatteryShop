@@ -6,7 +6,7 @@
 @{
     int countOrder = 0;
     var userId = User.GetUserId();
-    countOrder = _Order.GetOrderBy(userId).Count;
+    countOrder = _Order.GetOrderByUserId(userId).Count;
     List<long> parenId = new List<long>();
 }
 

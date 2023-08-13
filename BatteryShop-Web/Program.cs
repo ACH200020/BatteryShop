@@ -6,7 +6,6 @@ using CoreLayer.Services.Orders;
 using CoreLayer.Services.Products;
 using CoreLayer.Services.Products.ProductImages;
 using CoreLayer.Services.Users;
-using CoreLayer.Services.Users.UserAddress;
 using DataLayer.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -25,10 +24,8 @@ builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IOrderService, OrderService>(); 
 builder.Services.AddTransient<IFileManager, FileManager>(); 
 builder.Services.AddTransient<ICategoryService, CategoryService>(); 
-builder.Services.AddTransient<IAddressService, AddressService>();
 builder.Services.AddTransient<ICommentService, CommentService>();
 builder.Services.AddTransient<IProductImageService, ProductImageService>();
-builder.Services.AddTransient<IOrderFinallyService, OrderFinallyService>();
 
 
 builder.Services.AddAuthentication(option =>
