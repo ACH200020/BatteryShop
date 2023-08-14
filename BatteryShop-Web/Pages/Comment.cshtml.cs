@@ -1,3 +1,4 @@
+using BatteryShop_Web.Pages.Utilities;
 using CodeYad_Blog.CoreLayer.Services.Comments;
 using CoreLayer.DTOs.Comment;
 using CoreLayer.Services.Products;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BatteryShop_Web.Pages
 {
-    public class CommentModel : PageModel
+    public class CommentModel : RazorSweetAlertBase
     {
         #region Services
 
@@ -44,7 +45,7 @@ namespace BatteryShop_Web.Pages
 
             
 
-            _commentService.CreateComment(new CreateCommentDto()
+            var result = _commentService.CreateComment(new CreateCommentDto()
             {
                 ProductId = product.Id,
                 Text = Text,
@@ -52,7 +53,7 @@ namespace BatteryShop_Web.Pages
                 
             });
 
-            return RedirectToPage("Product", new { slug });
+            return RedirectAndShowAlert(result, RedirectToPage("Product", new { slug }));
         }
     }
 }

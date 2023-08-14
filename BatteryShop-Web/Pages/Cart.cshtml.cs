@@ -3,6 +3,7 @@ using CoreLayer.DTOs.Product;
 using CoreLayer.Services.Orders;
 using CoreLayer.Services.Products;
 using CoreLayer.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json.Linq;
@@ -10,6 +11,8 @@ using RestSharp;
 
 namespace BatteryShop_Web.Pages
 {
+    [Authorize]
+
     public class CartModel : PageModel
     {
 

@@ -31,5 +31,13 @@ namespace CoreLayer.Utilities
 
             return principal.FindFirst(ClaimTypes.Role)?.Value;
         }
+
+        public static string? GetUserPhoneNumber(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst(ClaimTypes.MobilePhone)?.Value;
+        }
     }
 }

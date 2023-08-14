@@ -6,13 +6,14 @@ using CoreLayer.Services.Orders;
 using CoreLayer.Services.Users;
 using CoreLayer.Utilities;
 using DataLayer.Entities.Orders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace BatteryShop_Web.Pages
 {
     [ValidateAntiForgeryToken]
-
+    [Authorize]
     public class CheckOutModel : RazorSweetAlertBase
     {
         #region Services

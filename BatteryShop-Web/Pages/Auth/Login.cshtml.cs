@@ -67,6 +67,7 @@ namespace BatteryShop_Web.Pages.Auth
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(ClaimTypes.Name,fullName),
                 new Claim(ClaimTypes.Role,user.UserRole.ToString()),
+                new Claim(ClaimTypes.MobilePhone,user.PhoneNumber)
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
