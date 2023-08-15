@@ -44,7 +44,7 @@ namespace BatteryShop_Web.Areas.Admin.Controllers
 
             int sales = 0;
 
-            if (!long.TryParse(viewModel.Price, out long price))
+            if (!int.TryParse(viewModel.Price, out int price))
             {
                 ModelState.AddModelError(nameof(CreateProductViewModel.Slug), "لطفا فقط عدد وارد بکنید");
                 return View(viewModel);
@@ -114,7 +114,7 @@ namespace BatteryShop_Web.Areas.Admin.Controllers
             }
             
 
-            if (!(long.TryParse(viewModel.Price, out long price) && int.TryParse(viewModel.Sales, out int sales)))
+            if (!(int.TryParse(viewModel.Price, out int price) && int.TryParse(viewModel.Sales, out int sales)))
             {
                 ModelState.AddModelError(nameof(EditProductViewModel.Slug), "لطفا فقط عدد وارد در قیمت و میزان تخفیف بکنید");
                 return View(viewModel);

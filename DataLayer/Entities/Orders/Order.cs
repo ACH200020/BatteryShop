@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using DataLayer.Entities.OrderDetails;
 using DataLayer.Entities.Products;
 using DataLayer.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -9,21 +10,21 @@ public class Order : BaseEntities
 {
 
     public int UserId { get; set; }
-    public int ProductId { get; set; }
-    public int Count { get; set; }
     public OrderStatus OrderStatus { get; set; }
-    public long Price { get; set; }
+    public int TotalPrice { get; set; }
     public bool IsFinally { get; set; }
     public string? Address { get; set; }
     public string? PostalCode { get; set; }
     public DateTime? PaymentTime { get; set; }
 
     #region Relations
-    [ForeignKey("ProductId")]
-    public Product Product { get; set; }
+    
 
     [ForeignKey("UserId")]
     public User User { get; set; }
+
+
+    public ICollection<OrderDetail> OrderDetails { get; set; }
     #endregion
 }
 

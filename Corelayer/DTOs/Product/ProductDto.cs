@@ -14,7 +14,7 @@ public class ProductDto
     public string Slug { get; set; }
     public string SeoData { get; set; }
     public int Count { get; set; }
-    public long Price { get; set; }
+    public int Price { get; set; }
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
@@ -33,7 +33,7 @@ public class CreateProductDto
     public string Slug { get; set; }
     public string SeoData { get; set; }
     public int Count { get; set; }
-    public long Price { get; set; }
+    public int Price { get; set; }
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
@@ -50,7 +50,7 @@ public class EditProductDto
     public string Slug { get; set; }
     public string SeoData { get; set; }
     public int Count { get; set; }
-    public long Price { get; set; }
+    public int Price { get; set; }
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }

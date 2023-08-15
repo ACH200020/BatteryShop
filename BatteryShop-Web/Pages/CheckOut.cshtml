@@ -189,7 +189,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (var item in Model.Orders)
+                                                @foreach (var item in Model.OrderDetails)
                                                 {
                                                     @for (int i = 0; i < item.Count; i++)
                                                     {
@@ -198,7 +198,7 @@
                                                                 @item.Product.Title
                                                             </td>
                                                             <td class="text-end">
-                                                                @item.Price.ToString("#,0")
+                                                                @item.Order.TotalPrice.ToString("#,0")
                                                             </td>
                                                         </tr>
                                                     }
@@ -253,7 +253,7 @@
                                                                     مبلغ قابل پرداخت
                                                                 </td>
                                                                 <td class="text-end fw-bold" style="font-size: 16px;">
-                                                                    @Model.AllPrice.ToString("#,0") تومان
+                                                                    @Model.Order.TotalPrice.ToString("#,0") تومان
                                                                 </td>
                                                             </tr>
 

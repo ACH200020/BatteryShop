@@ -19,19 +19,13 @@ namespace BatteryShop_Web.Pages
             _orderService = orderService;
         }
 
-        private List<OrderDto> Orders { get; set; }
+        private OrderDto Orders { get; set; }
 
         public IActionResult OnGet()
         {
             long totalPrice =0;
             Orders = _orderService.GetOrderByUserId(User.GetUserId());
-            foreach (var order in Orders)
-            {
-                if(order.IsFinally == false)
-                    for (int i = 0; i < order.Count; i++)
-                        totalPrice += order.Price;
-
-            }
+            
 
             var payment = new Payment((int)totalPrice);
             var result = payment.PaymentRequest("پرداخت شماره فاکتور 1",

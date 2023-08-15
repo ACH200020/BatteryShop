@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using DataLayer.Entities.Categories;
 using DataLayer.Entities.Comments;
+using DataLayer.Entities.OrderDetails;
 
 namespace DataLayer.Entities.Products;
 
@@ -15,7 +16,7 @@ public class Product : BaseEntities
     public string Slug { get; set; }
     public string SeoData { get; set; }
     public int Count { get; set; }
-    public long Price { get; set; }
+    public int Price { get; set; }
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
@@ -33,8 +34,6 @@ public class Product : BaseEntities
 
     public ICollection<Comment> Comments { get; set; }
     public ICollection<ProductImage> ProductImages { get; set; }
-
-    public ICollection<Order> Order { get; set; }
-
+    public ICollection<OrderDetail> OrderDetails { get; set; }
     #endregion
 }

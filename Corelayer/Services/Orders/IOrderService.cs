@@ -8,6 +8,8 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoreLayer.DTOs.OrderDetails;
+using CoreLayer.Services.OrderDetails;
 using DataLayer.Entities.Orders;
 using DataLayer.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +19,10 @@ namespace CoreLayer.Services.Orders
     public interface IOrderService
     {
         OperationResult CreateOrder(CreateOrderDto createOrderDto);
-        OperationResult EditOrder(EditOrderDto editOrderDto, int id);
-        OperationResult RemoveOrder(int orderId);
-
-        List<OrderDto> GetOrderByUserId(int id);
-        OperationResult DeleteOrder(int? id, int? userId);
-        List<OrderDto> OrdersThatPaymentFinaled();
+        OperationResult EditOrder(EditOrderDto editOrderDto);
+        void EditPrice(int price,int id);
+        OrderDto GetOrderByUserId(int id);
+        OrderDto OrdersThatPaymentFinaled();
         OrderDto? GetOrder(int id);
         List<OrderDto> GetFinaledOrderByUserId(int userId);
     }
@@ -36,27 +36,33 @@ namespace CoreLayer.Services.Orders
         }
         public OperationResult CreateOrder(CreateOrderDto createOrderDto)
         {
-            var productId = _shopContext.Products.FirstOrDefault(f=>f.Id == createOrderDto.ProductId);
-            if (productId == null)
-                return OperationResult.NotFound();
-
-            var userId = _shopContext.Users.FirstOrDefault(f => f.Id == createOrderDto.UserId);
-            if (userId == null)
-                return OperationResult.NotFound();
             
-            if(productId.Count < createOrderDto.Count)
-                return OperationResult.Error("تعداد وارد شده در انبار موجود نیست");
+            var order =
+                _shopContext.Orders.FirstOrDefault(o => o.UserId == createOrderDto.UserId && o.IsFinally == false);
+            if (order == null)
+            {
+                var orders = OrderMapper.CreateOrderMapper(createOrderDto);
+                _shopContext.Orders.Add(orders);
 
-            var order = OrderMapper.CreateOrderMapper(createOrderDto);
-            _shopContext.Orders.Add(order);
-            _shopContext.SaveChanges();
-            return OperationResult.Success();
+                _shopContext.SaveChanges();
+
+                return OperationResult.Success();
+            }
+            return EditOrder(new EditOrderDto()
+            {
+                Id = order.Id,
+                TotalPrice = createOrderDto.TotalPrice,
+            });
+            
+            
+            
 
         }
-
-        public OperationResult EditOrder(EditOrderDto editOrderDto, int id)
+        
+        public OperationResult EditOrder(EditOrderDto editOrderDto)
         {
-            var order = _shopContext.Orders.FirstOrDefault(f => f.Id == id);
+            
+            var order = _shopContext.Orders.FirstOrDefault(f => f.Id == editOrderDto.Id);
             if(order == null)
                 return OperationResult.NotFound();
 
@@ -66,62 +72,28 @@ namespace CoreLayer.Services.Orders
             return OperationResult.Success();
         }
 
-        public OperationResult RemoveOrder(int orderId)
+        public void EditPrice(int price , int id)
         {
-            var order= _shopContext.Orders.FirstOrDefault(f=>f.Id == orderId);
-            if(order == null)
-                return OperationResult.NotFound();
-            
-            _shopContext.Orders.Remove(order);
-            _shopContext.SaveChanges(); 
-            return OperationResult.Success();
+            var order = _shopContext.Orders.FirstOrDefault(f => f.Id == id);
+            order.TotalPrice -= price;
+            _shopContext.Orders.Update(order);
+            _shopContext.SaveChanges();
         }
 
-        public List<OrderDto> GetOrderByUserId(int id)
+        public OrderDto GetOrderByUserId(int id)
         {
-            return  _shopContext.Orders
-                .Include(f=>f.Product)
-                .Where(f=>f.UserId == id)
-                
-                .Select(order=>OrderMapper.MapToDto(order))
-                .AsQueryable().ToList();
-        /*.Select(order=> new OrderDto()
-            {
-            Price = order.Price,
-            UserId = order.UserId,
-            Count = order.Count,
-            Id = order.Id,
-            OrderStatus = order.OrderStatus,
-            ProductId = order.ProductId,
-            Product = order.Product,
-        })*/
-    }
+            var order = _shopContext.Orders.FirstOrDefault(f => f.UserId == id && f.IsFinally == false);
+            if (order == null)
+                return new OrderDto();
+            var orderDto = OrderMapper.MapToDto(order);
+            return orderDto;
 
-    public OperationResult DeleteOrder(int? id, int? userId)
-        {
-            if (id != null)
-            {
-                var order = _shopContext.Orders.FirstOrDefault(f => f.Id == id);
-                _shopContext.Remove(order);
-                _shopContext.SaveChanges();
-                return OperationResult.Success();
-            }
-            else
-            {
-                var order = _shopContext.Orders.Where(f => f.UserId == userId).ToList();
-                _shopContext.Remove(order);
-                _shopContext.SaveChanges();
-                return OperationResult.Success();
-            }
         }
 
-        public List<OrderDto> OrdersThatPaymentFinaled()
+        public OrderDto OrdersThatPaymentFinaled()
         {
-            return _shopContext.Orders.Where(o=>o.IsFinally == true && o.OrderStatus== OrderStatus.Sending)
-                .Include(u => u.User)
-                .Include(p=>p.Product)
-                .Select(order=>OrderMapper.MapToDto(order))
-                .ToList();
+            var order = _shopContext.Orders.FirstOrDefault(f => f.IsFinally == true && f.OrderStatus == OrderStatus.Buy);
+            return OrderMapper.MapToDto(order);
         }
 
         public OrderDto? GetOrder(int id)
@@ -138,7 +110,6 @@ namespace CoreLayer.Services.Orders
         {
             return _shopContext.Orders.Where(o=>o.OrderStatus == OrderStatus.Sended)
                 .Include(u => u.User)
-                .Include(p=>p.Product)
                 .Select(order=>OrderMapper.MapToDto(order))
                 .AsQueryable()
                 .ToList();

@@ -1,12 +1,19 @@
 ﻿@using CoreLayer.Utilities
-@using CoreLayer.Services.Orders
 @using CoreLayer.Services.Categories
+@using CoreLayer.Services.OrderDetails
+@using CoreLayer.Services.Orders
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using CoreLayer.DTOs.Order
+@inject IOrderDetailService _OrderDetail
 @inject IOrderService _Order
 @inject ICategoryService _Category
 @{
     int countOrder = 0;
-    var userId = User.GetUserId();
-    countOrder = _Order.GetOrderByUserId(userId).Count;
+    if (User.Identity.IsAuthenticated)
+    {
+        var order = _Order.GetOrderByUserId(User.GetUserId());
+        countOrder = _OrderDetail.GetOrderDetailByOrderId(order.Id) == null ? 0 : _OrderDetail.GetOrderDetailByOrderId(order.Id).Count;
+    }
     List<long> parenId = new List<long>();
 }
 

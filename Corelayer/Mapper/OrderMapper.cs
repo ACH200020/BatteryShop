@@ -16,10 +16,8 @@ namespace CoreLayer.Mapper
             return new Order()
             {
                 UserId = dto.UserId,
-                Count = dto.Count,
                 OrderStatus = dto.OrderStatus,
-                Price = dto.Price,
-                ProductId = dto.ProductId,
+                TotalPrice = dto.TotalPrice,
                 IsFinally = dto.IsFinally,
             };
         }
@@ -28,9 +26,10 @@ namespace CoreLayer.Mapper
         {
             order.Address = dto.Address;
             order.OrderStatus = (OrderStatus)dto.OrderStatus;
-            order.IsFinally = (bool)(dto.IsFinally == null?order.IsFinally:dto.IsFinally);
+            order.IsFinally = (bool)(dto.IsFinally == null ? order.IsFinally:dto.IsFinally);
             order.PostalCode = dto.PostalCode;
             order.PaymentTime = dto.PaymentTime;
+            order.TotalPrice += dto.TotalPrice;
             return order;
         }
 
@@ -38,15 +37,12 @@ namespace CoreLayer.Mapper
         {
             return new OrderDto()
             {
-                Price = order.Price,
+                TotalPrice = order.TotalPrice,
                 UserId = order.UserId,
-                Count = order.Count,
                 Id = order.Id,
                 OrderStatus = order.OrderStatus,
-                ProductId = order.ProductId,
-                Product = order.Product,
                 Address = order.Address,
-                User = order.User,
+                User = UserMapper.MapToUser(order.User),
                 IsFinally = order.IsFinally,
                 PostalCode = order.PostalCode,
                 PaymentTime = order.PaymentTime,

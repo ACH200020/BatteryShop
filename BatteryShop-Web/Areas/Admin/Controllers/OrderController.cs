@@ -1,6 +1,7 @@
 ﻿using BatteryShop_Web.Areas.Admin.Models.Order;
 using CoreLayer.DTOs.Order;
 using CoreLayer.DTOs.User;
+using CoreLayer.Services.OrderDetails;
 using CoreLayer.Services.Orders;
 using CoreLayer.Utilities;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,12 @@ public class OrderController : AdminControllerBase
 
     #region Services
 
-    private readonly IOrderService _orderService;
-
-    public OrderController(IOrderService orderService)
+    private readonly IOrderDetailService _orderService;
+    private readonly IOrderService _order;
+    public OrderController(IOrderDetailService orderService, IOrderService order)
     {
         _orderService = orderService;
+        _order = order;
     }
 
     #endregion
@@ -25,16 +27,17 @@ public class OrderController : AdminControllerBase
     
     public IActionResult Index()
     {
-        ListOrderViewModel listOrderViewModel = new ListOrderViewModel();
-        listOrderViewModel.OrderDtos = _orderService.OrdersThatPaymentFinaled();
+        ListOrderDetailViewModel listOrderViewModel = new ListOrderDetailViewModel();
+        var order = _order.OrdersThatPaymentFinaled();
+        listOrderViewModel.OrderDtos = _orderService.GetOrderDetailByOrderId(order.Id);
 
         return View(listOrderViewModel);
     }
 
     [HttpPost]
-    public IActionResult EditOrderStatus(EditOrderDto editDto, int orderId)
+    public IActionResult EditOrderStatus(EditOrderDto editDto)
     {
-        var result = _orderService.EditOrder(editDto, orderId);
+        var result = _order.EditOrder(editDto);
         if (result.Status != OperationResultStatus.Success)
         {
             ErrorAlert(result.Message);
@@ -47,7 +50,7 @@ public class OrderController : AdminControllerBase
 
     public IActionResult ShowEditModal(int orderId)
     {
-        var order = _orderService.GetOrder(orderId);
+        var order = _order.GetOrder(orderId);
         return PartialView("_EditOrder", new EditOrderDto()
         {
             OrderStatus = order.OrderStatus

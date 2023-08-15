@@ -3,9 +3,11 @@ using BatteryShop_Web.Pages.Utilities;
 using CodeYad_Blog.CoreLayer.Services.Comments;
 using CoreLayer.DTOs.Comment;
 using CoreLayer.DTOs.Order;
+using CoreLayer.DTOs.OrderDetails;
 using CoreLayer.DTOs.Product;
 using CoreLayer.DTOs.Product.ProductImage;
 using CoreLayer.Mapper;
+using CoreLayer.Services.OrderDetails;
 using CoreLayer.Services.Orders;
 using CoreLayer.Services.Products;
 using CoreLayer.Services.Products.ProductImages;
@@ -24,16 +26,18 @@ namespace BatteryShop_Web.Pages
         private readonly IProductService _product;
         private readonly IProductImageService _productImageService;
         private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
         private readonly ICommentService _commentService;
 
 
         public ProductModel(IProductService product, IProductImageService productImageService,
-            IOrderService orderService, ICommentService commentService)
+            IOrderService orderService, ICommentService commentService, IOrderDetailService orderDetailService)
         {
             _product = product;
             _productImageService = productImageService;
             _orderService = orderService;
             _commentService = commentService;
+            _orderDetailService = orderDetailService;
         }
 
         #endregion
@@ -69,23 +73,17 @@ namespace BatteryShop_Web.Pages
 
         public IActionResult OnPost()
         {
-            long? price;
+            int price;
             if (_productDto.Sales > 0)
             {
-                price = _productDto.Price - (_productDto.Price * _productDto.Sales / 100);
+                price = ((int)(_productDto.Price - (_productDto.Price * _productDto.Sales / 100)));
             }
             else
                 price = _productDto.Price;
-            
-            var result = _orderService.CreateOrder(new CreateOrderDto()
-            {
-                Price = (long)price,
-                Count = Count,
-                ProductId = _productDto.Id,
-                OrderStatus = OrderStatus.Buy,
-                IsFinally = true,
-                UserId = User.GetUserId()
-            });
+
+            AddOrderDetail orderDetail = new AddOrderDetail(_orderService,_orderDetailService);
+
+            var result = orderDetail.AddOrder(_productDto, User.GetUserId());
 
             if (result.Status != OperationResultStatus.Success)
             {
@@ -98,7 +96,7 @@ namespace BatteryShop_Web.Pages
 
                 return Page();
             }
-            return RedirectAndShowAlert(result, RedirectToPage("Cart"));
+            return RedirectAndShowAlert(result, Page());
 
         }
 

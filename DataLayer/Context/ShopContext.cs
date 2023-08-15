@@ -1,5 +1,6 @@
 ﻿using DataLayer.Entities.Categories;
 using DataLayer.Entities.Comments;
+using DataLayer.Entities.OrderDetails;
 using DataLayer.Entities.Orders;
 using DataLayer.Entities.Products;
 using DataLayer.Entities.Users;
@@ -19,7 +20,7 @@ public class ShopContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }
     public DbSet<User> Users { get; set; }
-  
+    public DbSet<OrderDetail> OrderDetails { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

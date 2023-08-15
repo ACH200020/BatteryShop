@@ -59,7 +59,7 @@ public class ProductMapper
             Price = product.Price,
             Category = product.Category == null ? null : CategoryMapper.MapToDto(product.Category),
             SubCategory = product.SubCategory == null ? null : CategoryMapper.MapToDto(product.SubCategory),
-            Sales = (int)product.Sales,
+            Sales = product.Sales,
             Ampere = product.Ampere,
             Brand = product.Brand,
         };

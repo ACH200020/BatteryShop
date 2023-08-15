@@ -2,6 +2,7 @@ using CodeYad_Blog.CoreLayer.Services.Comments;
 using CoreLayer.Services;
 using CoreLayer.Services.Categories;
 using CoreLayer.Services.FileManager;
+using CoreLayer.Services.OrderDetails;
 using CoreLayer.Services.Orders;
 using CoreLayer.Services.Products;
 using CoreLayer.Services.Products.ProductImages;
@@ -21,12 +22,12 @@ builder.Services.AddDbContext<ShopContext>(option =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IUserService, UserService>(); 
 builder.Services.AddTransient<IProductService, ProductService>(); 
-builder.Services.AddTransient<IOrderService, OrderService>(); 
+builder.Services.AddScoped<IOrderService, OrderService>(); 
 builder.Services.AddTransient<IFileManager, FileManager>(); 
 builder.Services.AddTransient<ICategoryService, CategoryService>(); 
 builder.Services.AddTransient<ICommentService, CommentService>();
 builder.Services.AddTransient<IProductImageService, ProductImageService>();
-
+builder.Services.AddTransient<IOrderDetailService, OrderDetailService>();
 
 builder.Services.AddAuthentication(option =>
 {

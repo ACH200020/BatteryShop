@@ -1,4 +1,4 @@
-﻿@model BatteryShop_Web.Areas.Admin.Models.Order.ListOrderViewModel
+﻿@model BatteryShop_Web.Areas.Admin.Models.Order.ListOrderDetailViewModel
 @{
     ViewData["title"] = "مدیریت خریدها";
     ViewData["selected"] = "order";
@@ -38,11 +38,11 @@
                 {
                     <tr>
                         <td>@counter</td>
-                        <td>@item.User.PhoneNumber</td>
-                        <td> @(item.User.Name + " " + item.User.Family)</td>
+                        <td>@item.Order.User.PhoneNumber</td>
+                        <td> @(item.Order.User.Name + " " + item.Order.User.Family)</td>
                         <td> @item.Product.Title</td>
                         <td> @item.Count</td>
-                        <td> @item.PaymentTime</td>
+                        <td> @item.Order.PaymentTime</td>
                         
 
                         <td>

@@ -2,9 +2,11 @@
 using BatteryShop_Web.Pages.Utilities;
 using CoreLayer.DTOs.Order;
 using CoreLayer.DTOs.User;
+using CoreLayer.Services.OrderDetails;
 using CoreLayer.Services.Orders;
 using CoreLayer.Services.Users;
 using CoreLayer.Utilities;
+using DataLayer.Entities.OrderDetails;
 using DataLayer.Entities.Orders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +22,12 @@ namespace BatteryShop_Web.Pages
 
         private readonly IUserService _userService;
         private readonly IOrderService _orderService;
-
-        public CheckOutModel(IUserService userService, IOrderService orderService)
+        private readonly IOrderDetailService _orderDetailService;
+        public CheckOutModel(IUserService userService, IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _userService = userService;
             _orderService = orderService;
+            _orderDetailService = orderDetailService;
         }
 
         #endregion
@@ -32,10 +35,10 @@ namespace BatteryShop_Web.Pages
         #region Models
 
         public UserDto CurentUser { get; set; }
-        public List<OrderDto> Orders { get; set; }
-        public long AllSales { get; set; }
-        public long AllPrice { get; set; }
+        public OrderDto Order { get; set; }
+        public int AllSales { get; set; }
 
+        public List<OrderDetail> OrderDetails { get; set; }
         /*OnPost*/
 
         [BindProperty]
@@ -56,37 +59,25 @@ namespace BatteryShop_Web.Pages
         public void OnGet()
         {
             CurentUser = _userService.GetUserById(User.GetUserId());
-            Orders = _orderService.GetOrderByUserId(User.GetUserId());
+            Order = _orderService.GetOrderByUserId(User.GetUserId());
+            /*OrderDetails = _orderDetailService.GetOrderDetailByOrderId(Order.Id);*/
+
             int? sales = 0;
-            foreach (var item in Orders)
-            {
-                for (int i = 0; i < item.Count; i++)
-                {
-                    if (item.Product.Sales > 0)
-                        sales = (item.Product.Sales);
-                    AllSales += (long)(item.Product.Price * sales) / 100;
-                    AllPrice += (long)(item.Price);
-                }
-
-            }
-
+            AllSales += (int)(Order.TotalPrice * sales) / 100;
+            
         }
 
         public IActionResult OnPost()
         {
-            Orders = _orderService.GetOrderByUserId(User.GetUserId());
+            Order = _orderService.GetOrderByUserId(User.GetUserId());
 
-            foreach (var item in Orders)
+            
+            _orderService.EditOrder(new EditOrderDto()
             {
-                EditOrderDto orderDto = new();
-                orderDto.Address = FullAddress;
-                orderDto.PostalCode = PostalCode;
-                orderDto.OrderStatus = OrderStatus.Buy;
-              
-                _orderService.EditOrder(orderDto, item.Id);
-            }
-
-
+                Address = FullAddress,
+                PostalCode = PostalCode,
+                OrderStatus = OrderStatus.Buy
+            });
 
             return RedirectToPage("Index");
 

@@ -1,8 +1,8 @@
-﻿using CoreLayer.DTOs.Order;
+﻿using CoreLayer.DTOs.OrderDetails;
 
 namespace BatteryShop_Web.Areas.Admin.Models.Order;
 
-public class ListOrderViewModel
+public class ListOrderDetailViewModel
 {
-    public List<OrderDto> OrderDtos { get; set; }
+    public List<OrderDetailsDto> OrderDtos { get; set; }
 }

@@ -1,13 +1,13 @@
+using BatteryShop_Web.Pages.Utilities;
 using CoreLayer.DTOs.Order;
-using CoreLayer.DTOs.Product;
+using CoreLayer.DTOs.OrderDetails;
+using CoreLayer.Services.OrderDetails;
 using CoreLayer.Services.Orders;
-using CoreLayer.Services.Products;
 using CoreLayer.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json.Linq;
-using RestSharp;
+
 
 namespace BatteryShop_Web.Pages
 {
@@ -19,18 +19,19 @@ namespace BatteryShop_Web.Pages
         #region Services
 
         private readonly IOrderService _orderService;
-
-        public CartModel(IOrderService orderService)
+        private readonly IOrderDetailService _orderDetailService;
+        public CartModel(IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _orderService = orderService;
+            _orderDetailService = orderDetailService;
         }
 
         #endregion
 
         #region Properties
 
-        public List<OrderDto>? OrderDTOs { get; set; }
-
+        public List<OrderDetailsDto>? OrderDetailDTOs { get; set; }
+        public OrderDto? OrderDto { get; set; }
         #endregion
 
 
@@ -41,19 +42,24 @@ namespace BatteryShop_Web.Pages
             var userId = User.GetUserId();
             if (userId == null)
             {
-                OrderDTOs = null;
+                OrderDetailDTOs = null;
                 return Page();
             }
-            OrderDTOs = _orderService.GetOrderByUserId(userId);
+
+            OrderDto = _orderService.GetOrderByUserId(User.GetUserId());
+            OrderDetailDTOs = _orderDetailService.GetOrderDetailByOrderId(OrderDto.Id);
             return Page();
         }
 
-        public IActionResult OnPost(int? id)
+        public IActionResult OnPost(int id)
         {
             var userId = User.GetUserId();
-            var result = _orderService.DeleteOrder(id,userId);
+            RemoveOrderDetail orderDetail = new RemoveOrderDetail(_orderService, _orderDetailService);
+            orderDetail.EditOrder(id, userId);
 
-            OrderDTOs = _orderService.GetOrderByUserId(userId);
+            OrderDto = _orderService.GetOrderByUserId(userId);
+            if(OrderDto != null)
+                OrderDetailDTOs = _orderDetailService.GetOrderDetailByOrderId(OrderDto.Id);
             return Page();
 
             

@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\OrderDetails\" />
     <Folder Include="DTOs\Product\ProductImage\" />
     <Folder Include="Services\FileManager\" />
+    <Folder Include="Services\OrderDetails\" />
     <Folder Include="Services\Products\ProductImages\" />
   </ItemGroup>
 
