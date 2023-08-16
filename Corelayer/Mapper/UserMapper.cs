@@ -31,6 +31,11 @@ public class UserMapper
 
     public static UserDto MapToUser(User user)
     {
+        if (user == null)
+        {
+            return new UserDto();
+        }
+
         return new UserDto()
         {
             Family = user.Family,

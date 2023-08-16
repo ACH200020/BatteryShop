@@ -22,12 +22,11 @@ public class AddOrderDetail
         _orderDetail = orderDetail;
     }
 
-    public OperationResult AddOrder(ProductDto dto, int userId)
+    public OperationResult AddOrder(ProductDto dto, int userId , int count, int price)
     {
-
         var result = _order.CreateOrder(new CreateOrderDto()
         {
-            TotalPrice = (dto.Price * dto.Count),
+            TotalPrice = (price * count),
             OrderStatus = OrderStatus.Pending,
             IsFinally = false,
             UserId = userId
@@ -37,8 +36,8 @@ public class AddOrderDetail
         {
             result = _orderDetail.AddOrderDetail(new AddOrderDetailDto()
             {
-                Price = dto.Price,
-                Count = dto.Count,
+                Price = price,
+                Count = count,
                 ProductId = dto.Id,
                 OrderId = order.Id,
             });

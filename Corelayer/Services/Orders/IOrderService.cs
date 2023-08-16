@@ -20,7 +20,7 @@ namespace CoreLayer.Services.Orders
     {
         OperationResult CreateOrder(CreateOrderDto createOrderDto);
         OperationResult EditOrder(EditOrderDto editOrderDto);
-        void EditPrice(int price,int id);
+        void EditPrice(int price,int id,int count);
         OrderDto GetOrderByUserId(int id);
         OrderDto OrdersThatPaymentFinaled();
         OrderDto? GetOrder(int id);
@@ -52,6 +52,7 @@ namespace CoreLayer.Services.Orders
             {
                 Id = order.Id,
                 TotalPrice = createOrderDto.TotalPrice,
+                OrderStatus = OrderStatus.Pending,
             });
             
             
@@ -72,12 +73,23 @@ namespace CoreLayer.Services.Orders
             return OperationResult.Success();
         }
 
-        public void EditPrice(int price , int id)
+        public void EditPrice(int price , int id, int count)
         {
+            price *= count;
             var order = _shopContext.Orders.FirstOrDefault(f => f.Id == id);
+            var orderDetailExists = _shopContext.OrderDetails.Any(f => f.OrderId == order.Id);
             order.TotalPrice -= price;
-            _shopContext.Orders.Update(order);
-            _shopContext.SaveChanges();
+            if (order.TotalPrice == 0 || orderDetailExists == false)
+            {
+                _shopContext.Remove(order);
+                _shopContext.SaveChanges();
+            }
+            else
+            {
+                _shopContext.Orders.Update(order);
+                _shopContext.SaveChanges();
+            }
+            
         }
 
         public OrderDto GetOrderByUserId(int id)

@@ -5,8 +5,8 @@
     int allOrderPrice = 0;
     foreach (var item in Model.OrderDetailDTOs)
     {
-        item.Price *= item.Count;
-        allOrderPrice += item.Price;
+        item.Product.Price *= item.Count;
+        allOrderPrice += item.Product.Price;
     }
     long sellValue = Model.OrderDto.TotalPrice - allOrderPrice;
 
@@ -68,164 +68,166 @@
                 <div class="col-12 col-lg-8 col-xl-9 ps-lg-0 pe-lg-3">
 
 
-                <section class="section__main__content p-4 mb-5">
+                    <section class="section__main__content p-4 mb-5">
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="col-12">
-                            @foreach (var item in Model.OrderDetailDTOs)
-                            {
-                                <div class="cart__product mb-3">
+                            <div class="col-12">
+                                @foreach (var item in Model.OrderDetailDTOs)
+                                {
+                                    <div class="cart__product mb-3">
 
-                                    <div class="row g-3">
+                                        <div class="row g-3">
 
-                                        <div class="col-sm-2 px-3 px-sm-2">
+                                            <div class="col-sm-2 px-3 px-sm-2">
 
-                                            <div class="cart__product__img text-center p-2">
+                                                <div class="cart__product__img text-center p-2">
 
-                                                <img src="@Directories.GetProductImage(item.Product.ImageName)" class="img-fluid" alt="">
+                                                    <img src="@Directories.GetProductImage(item.Product.ImageName)" class="img-fluid" alt="">
+
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                            <div class="col-sm-10">
 
-                                        <div class="col-sm-10">
+                                                <div class="row align-items-center d-flex g-2">
 
-                                            <div class="row align-items-center d-flex g-2">
+                                                    <div class="col-10 align-items-center d-flex">
 
-                                                <div class="col-10 align-items-center d-flex">
+                                                        <a href="#" class="card-title fw-bold float-start m-0" style="font-size: 16px;">
+                                                            @item.Product.Title
+                                                        </a>
 
-                                                    <a href="#" class="card-title fw-bold float-start m-0" style="font-size: 16px;">
-                                                        @item.Product.Title
-                                                    </a>
+                                                        <span class="header__cart__price__off text-white px-2 ms-2">
+                                                            @item.Product.Sales%
+                                                        </span>
 
-                                                    <span class="header__cart__price__off text-white px-2 ms-2">
-                                                        @item.Product.Sales%
-                                                    </span>
+                                                    </div>
 
-                                                </div>
+                                                    @*Delete*@
+                                                    <div class="col-2">
 
-                                                @*Delete*@
-                                                <div class="col-2">
+                                                        <form method="post" class="float-end">
+                                                            <button type="submit" style="border: 0px">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="cart__delete__product" width="23.5" height="25.454" viewBox="0 0 23.5 25.454">
+                                                                    <g transform="translate(1 1)">
+                                                                        <path d="M23.126,9.468s-.688,8.539-1.088,12.136a2.837,2.837,0,0,1-2.99,2.756c-3.308.06-6.619.063-9.926-.006a2.807,2.807,0,0,1-2.9-2.741c-.4-3.629-1.087-12.145-1.087-12.145" transform="translate(-3.379 -0.952)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                                                        <path d="M25.25,6.24H3.75" transform="translate(-3.75 -1.816)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                                                        <path d="M20.232,7.174A2.089,2.089,0,0,1,18.185,5.5l-.308-1.542a1.622,1.622,0,0,0-1.568-1.2H10.942a1.622,1.622,0,0,0-1.568,1.2L9.065,5.5A2.089,2.089,0,0,1,7.018,7.174" transform="translate(-2.875 -2.751)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </button>
+                                                            <input type="hidden" name="id" value="@item.Id" />
 
-                                                    <form method="post" class="float-end">
-                                                        <button type="submit" style="border: 0px">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="cart__delete__product" width="23.5" height="25.454" viewBox="0 0 23.5 25.454">
-                                                                <g transform="translate(1 1)">
-                                                                    <path d="M23.126,9.468s-.688,8.539-1.088,12.136a2.837,2.837,0,0,1-2.99,2.756c-3.308.06-6.619.063-9.926-.006a2.807,2.807,0,0,1-2.9-2.741c-.4-3.629-1.087-12.145-1.087-12.145" transform="translate(-3.379 -0.952)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                                                    <path d="M25.25,6.24H3.75" transform="translate(-3.75 -1.816)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                                                    <path d="M20.232,7.174A2.089,2.089,0,0,1,18.185,5.5l-.308-1.542a1.622,1.622,0,0,0-1.568-1.2H10.942a1.622,1.622,0,0,0-1.568,1.2L9.065,5.5A2.089,2.089,0,0,1,7.018,7.174" transform="translate(-2.875 -2.751)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </button>
-                                                        <input type="hidden" name="id" value="@item.Id"/>
+                                                        </form>
 
-                                                    </form>
+                                                    </div>
 
-                                                </div>
+                                                    <div class="col-12">
 
-                                                <div class="col-12">
-
-                                                    <ul class="nav cart__product__info">
+                                                        <ul class="nav cart__product__info">
 
 
 
-                                                        <div class="vr my-auto mx-3" style="height: 5px;"></div>
+                                                            <div class="vr my-auto mx-3" style="height: 5px;"></div>
 
-                                                        <li class="nav-item align-items-center d-flex">
+                                                            <li class="nav-item align-items-center d-flex">
 
-                                                            <img src="/images/cart/Color-Palette.svg" class="me-1" alt="">
+                                                                <img src="/images/cart/Color-Palette.svg" class="me-1" alt="">
 
-                                                            تعداد :
-                                                            <a class="nav-link d-flex align-items-center px-0 ms-1 disabled" href="#" style="color: #9F9F9F;">
+                                                                تعداد :
+                                                                <a class="nav-link d-flex align-items-center px-0 ms-1 disabled" href="#" style="color: #9F9F9F;">
 
 
-                                                                <div class="cart__product__bg" style="color: red; font-weight: bold">
-                                                                    @item.Count
-                                                                </div>
-
-                                                            </a>
-                                                        </li>
-
-                                                        <div class="vr my-auto mx-3" style="height: 5px;"></div>
-
-                                                        <li class="nav-item align-items-center d-flex">
-
-                                                            <img src="images/cart/size.svg" class="me-1" alt="">
-
-                                                            آمپر :
-                                                            <a class="nav-link d-flex align-items-center px-0 ms-1 disabled" href="#" style="color: #9F9F9F;">
-
-                                                                <div class="cart__product__bg">
-                                                                    @item.Product.Ampere
-                                                                </div>
-
-                                                            </a>
-                                                        </li>
-
-                                                    </ul>
-
-                                                </div>
-
-                                                <div class="col-12 align-items-center d-flex">
-
-                                                    <div class="ms-auto align-items-center d-sm-inline-flex">
-                                                        @if (item.Product.Sales > 0)
-                                                        {
-
-                                                            <ul class="nav me-3 align-items-center mb-2 mb-sm-0">
-
-                                                                <li class="nav-item">
-
-                                                                    <div class="d-inline-block align-items-center d-flex">
-
-                                                                        <p class="header__cart__price float-start text-decoration-line-through mb-0" style="color: #BFBFBF;">
-                                                                            @item.Product.Price.ToString("0,0")
-                                                                        </p>
-                                                                        <span class="header__cart__price__unit ms-1" style="color: #BFBFBF;">
-                                                                            تومان
-                                                                        </span>
-
+                                                                    <div class="cart__product__bg" style="color: red; font-weight: bold">
+                                                                        @item.Count
                                                                     </div>
 
-                                                                </li>
+                                                                </a>
+                                                            </li>
 
-                                                                <div class="vr mx-2"></div>
+                                                            <div class="vr my-auto mx-3" style="height: 5px;"></div>
 
-                                                                <li class="nav-item">
+                                                            <li class="nav-item align-items-center d-flex">
 
-                                                                    <div class="d-inline-block align-items-center d-flex float-end">
+                                                                <img src="images/cart/size.svg" class="me-1" alt="">
 
-                                                                        <p class="header__cart__price cart__off__price float-start mb-0">
-                                                                            @item.Price.ToString("0,0")
-                                                                        </p>
-                                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
-                                                                            تومان
-                                                                        </span>
+                                                                آمپر :
+                                                                <a class="nav-link d-flex align-items-center px-0 ms-1 disabled" href="#" style="color: #9F9F9F;">
 
+                                                                    <div class="cart__product__bg">
+                                                                        @item.Product.Ampere
                                                                     </div>
 
-                                                                </li>
+                                                                </a>
+                                                            </li>
 
-                                                            </ul>
-                                                        }
-                                                        else
-                                                        {
-                                                            <ul class="nav me-3 align-items-center mb-2 mb-sm-0">
-                                                                <li class="nav-item">
-                                                                    <div class="d-inline-block align-items-center d-flex float-end">
+                                                        </ul>
 
-                                                                        <p class="header__cart__price cart__off__price float-start mb-0">
-                                                                            @item.Price.ToString("0,0")
-                                                                        </p>
-                                                                        <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
-                                                                            تومان
-                                                                        </span>
+                                                    </div>
 
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        }
+                                                    <div class="col-12 align-items-center d-flex">
+
+                                                        <div class="ms-auto align-items-center d-sm-inline-flex">
+                                                            @if (item.Product.Sales > 0)
+                                                            {
+
+                                                                <ul class="nav me-3 align-items-center mb-2 mb-sm-0">
+
+                                                                    <li class="nav-item">
+
+                                                                        <div class="cart__total__price d-inline-block align-items-cented-flex">
+
+                                                                            <p class=" header__cart__price float-start text-decoration-line-through mb-0" style="color: #BFBFBF;">
+                                                                                @item.Product.Price.ToString("0,0")
+                                                                            </p>
+                                                                            <span class="header__cart__price__unit ms-1" style="color:                                                  #BFBFBF;">
+                                                                                تومان
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </li>
+
+                                                                    <div class="vr mx-2"></div>
+
+                                                                    <li class="nav-item">
+
+                                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                                @((item.Price *= item.Count).ToString("0,0"))
+                                                                            </p>
+                                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                                تومان
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </li>
+
+                                                                </ul>
+                                                            }
+                                                            else
+                                                            {
+                                                                <ul class="nav me-3 align-items-center mb-2 mb-sm-0">
+                                                                    <li class="nav-item">
+                                                                        <div class="d-inline-block align-items-center d-flex float-end">
+
+                                                                            <p class="header__cart__price cart__off__price float-start mb-0">
+                                                                                @item.Price.ToString("0,0")
+                                                                            </p>
+                                                                            <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
+                                                                                تومان
+                                                                            </span>
+
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            }
+                                                        </div>
+
                                                     </div>
 
                                                 </div>
@@ -236,65 +238,32 @@
 
                                     </div>
 
-                                </div>
-
-                            }
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <section class="pb-5 border-bottom">
-
-                    <div class="row align-items-center d-flex g-4">
-
-                        <div class="col-sm-4 col-md-6 text-center text-sm-start">
-
-                            <a asp-page="Shop" class="special__offer__splide__contect__buy__link text-white py-2 px-3" style="font-size: 14px;">
-
-                                ادامه خرید
-                                <img src="images/cart/Arrow-Left.svg" class="ms-2" alt="">
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-                @*<section class="mb-3 pt-4">
-
-                    <div class="row g-3">
-
-                        <div class="col-12">
-
-                            <div class="cart__off__title fw-bold align-items-center d-flex">
-
-                                <img src="images/cart/cart-off.svg" class="me-2" alt="">
-
-                                کد تخفیف دارید ؟
+                                }
 
                             </div>
 
                         </div>
 
-                        <div class="col-6 col-sm-4 col-md-4 col-xxl-3">
+                    </section>
 
-                            <input type="text" class="form-control points__input cart__off__input" id="exampleFormControlInput1" placeholder="کد تخفیف خود را اینجا وارد کنید ..">
+                    <section class="pb-5 border-bottom">
+
+                        <div class="row align-items-center d-flex g-4">
+
+                            <div class="col-sm-4 col-md-6 text-center text-sm-start">
+
+                                <a asp-page="Shop" class="special__offer__splide__contect__buy__link text-white py-2 px-3" style="font-size: 14px;">
+
+                                    ادامه خرید
+                                    <img src="images/cart/Arrow-Left.svg" class="ms-2" alt="">
+                                </a>
+
+                            </div>
 
                         </div>
 
-                        <div class="col-6 col-sm-4 col-md-3 col-xxl-2">
-                            <a href="#" class="special__offer__splide__contect__buy__link text-white text-center d-block py-2 px-3" style="font-size: 14px;">
-                                اعمال کد تخفیف
-                            </a>
-                        </div>
+                    </section>
 
-                    </div>
-
-                </section>*@
 
 
                 </div>
@@ -322,47 +291,6 @@
                                         <div class="px-3">
 
 
-                                            @*<div class="aside__comment p-2 my-3">
-
-                                                <div class="row g-2">
-
-                                                    <div class="col-12 text-center">
-                                                        <img src="images/cart/undefined.svg" alt="">
-                                                    </div>
-
-                                                    <div class="col-12">
-
-                                                        <p class="text-center cart__off__des">
-                                                            خرید بیشتر هزینه ارسال شما <span class="fw-bold">رایگان</span> با <span class="fw-bold">150,000</span> <br>
-                                                            محاسبه خواهد شد
-                                                        </p>
-
-                                                    </div>
-
-
-                                                    <div class="col-12">
-
-                                                        <div class="cart__off__option__extant w-100 d-block rounded-3">
-                                                            <div class="row justify-content-end">
-
-                                                                <div class="col-12">
-                                                                    <div class="cart__off__option__extant__line d-block w-75 rounded-3 position-relative float-end">
-
-                                                                        <span class="position-absolute m-auto start-0">
-                                                                            150,000 مونده !!!
-                                                                        </span>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>*@
 
                                             <div class="row g-2">
 
@@ -375,7 +303,7 @@
                                                         </div>
 
                                                         <div class="float-end">
-                                                            @Model.OrderDto.TotalPrice.ToString("#,0")
+                                                            @allOrderPrice.ToString("#,0")
                                                             <span>
                                                                 تومان
                                                             </span>
@@ -442,7 +370,7 @@
                                                     <div class="col">
 
                                                         <div class="product__off__price__main disabled float-end">
-                                                            @allOrderPrice.ToString("0,0") <span>تومان</span>
+                                                            @Model.OrderDto.TotalPrice.ToString("0,0") <span>تومان</span>
                                                         </div>
 
                                                     </div>
@@ -497,220 +425,6 @@
 
                         </div>
 
-
-                        @*<div class="col-md-6 col-lg-12">
-
-                            <div class="aside position-relative pb-3 mb-5">
-
-                                <div class="section__main__content__before position-absolute top-0 px-3"></div>
-
-                                <div class="row">
-
-                                    <div class="col-12">
-
-                                        <h4 class="aside__title px-2 pb-3 pt-4">
-                                            محصولات پیشنهادی
-                                        </h4>
-
-                                    </div>
-
-                                    <div class="col-12 px-4">
-                                        <div class="py-2 header__cart__list">
-                                            <div class="row">
-
-
-                                                <div class="col-3 col-sm-2 col-md-3 col-lg-4 col-xl-3 align-items-center d-flex">
-                                                    <a href="#" class="header__cart__img d-block py-2 px-3">
-                                                        <img src="images/icons/mobile-sm.svg" alt="" srcset="">
-                                                    </a>
-                                                </div>
-
-
-                                                <div class="col-9 col-sm-10 col-md-9 col-lg-8 col-xl-9 align-items-center d-flex px-0 py-1">
-                                                    <div class="row">
-
-
-                                                        <div class="col-12 pe-4">
-                                                            <a href="#" class="header__cart__title fw-bold">
-                                                                گوشی موبایل سامسونگ مدل s20
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
-                                                                    13,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                                <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
-                                                                    %10
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price cart__off__price float-start mb-0">
-                                                                    10,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 px-4">
-                                        <div class="py-2 header__cart__list">
-                                            <div class="row">
-
-
-                                                <div class="col-3 col-sm-2 col-md-3 col-lg-4 col-xl-3 align-items-center d-flex">
-                                                    <a href="#" class="header__cart__img d-block py-2 px-3">
-                                                        <img src="images/icons/mobile-sm.svg" alt="" srcset="">
-                                                    </a>
-                                                </div>
-
-
-                                                <div class="col-9 col-sm-10 col-md-9 col-lg-8 col-xl-9 align-items-center d-flex px-0 py-1">
-                                                    <div class="row">
-
-
-                                                        <div class="col-12 pe-4">
-                                                            <a href="#" class="header__cart__title fw-bold">
-                                                                گوشی موبایل سامسونگ مدل s20
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
-                                                                    13,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                                <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
-                                                                    %10
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price cart__off__price float-start mb-0">
-                                                                    10,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 px-4">
-                                        <div class="py-2 header__cart__list">
-                                            <div class="row">
-
-
-                                                <div class="col-3 col-sm-2 col-md-3 col-lg-4 col-xl-3 align-items-center d-flex">
-                                                    <a href="#" class="header__cart__img d-block py-2 px-3">
-                                                        <img src="images/icons/mobile-sm.svg" alt="" srcset="">
-                                                    </a>
-                                                </div>
-
-
-                                                <div class="col-9 col-sm-10 col-md-9 col-lg-8 col-xl-9 align-items-center d-flex px-0 py-1">
-                                                    <div class="row">
-
-
-                                                        <div class="col-12 pe-4">
-                                                            <a href="#" class="header__cart__title fw-bold">
-                                                                گوشی موبایل سامسونگ مدل s20
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price float-start text-decoration-line-through mb-0">
-                                                                    13,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                                <span class="header__cart__price__off text-white px-3 ms-1 d-block d-md-none">
-                                                                    %10
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                        <div class="col-12">
-
-                                                            <div class="d-inline-block align-items-center d-flex">
-
-                                                                <p class="header__cart__price cart__off__price float-start mb-0">
-                                                                    10,750,000
-                                                                </p>
-                                                                <span class="header__cart__price__unit cart__off__price__unit fw-bold ms-1">
-                                                                    تومان
-                                                                </span>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>*@
 
                     </div>
 

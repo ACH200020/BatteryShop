@@ -35,6 +35,11 @@ namespace CoreLayer.Mapper
 
         public static OrderDto MapToDto(Order order)
         {
+            if(order == null)
+            {
+                return new OrderDto();
+            }
+
             return new OrderDto()
             {
                 TotalPrice = order.TotalPrice,
@@ -42,7 +47,7 @@ namespace CoreLayer.Mapper
                 Id = order.Id,
                 OrderStatus = order.OrderStatus,
                 Address = order.Address,
-                User = UserMapper.MapToUser(order.User),
+                User = order.User == null ? null : UserMapper.MapToUser(order.User),
                 IsFinally = order.IsFinally,
                 PostalCode = order.PostalCode,
                 PaymentTime = order.PaymentTime,

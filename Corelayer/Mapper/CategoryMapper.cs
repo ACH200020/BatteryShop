@@ -7,6 +7,9 @@ namespace CoreLayer.Mapper
     {
         public static CategoryDto MapToDto(Category category)
         {
+            if(category == null)
+                return new CategoryDto();
+
             return new CategoryDto()
             {
                 MetaDescription = category.MetaDescription,

@@ -79,7 +79,7 @@
 
 
 
-                        <a asp-page="/Auth/Login" class="header__ac__links__btn">
+                        <a href=@(User.Identity.IsAuthenticated ? "/UserPanel" : "/Auth/Login") class="header__ac__links__btn">
                             <img src="/images/icons/Profile.svg" alt="" srcset="" class="mx-auto">
                         </a>
 

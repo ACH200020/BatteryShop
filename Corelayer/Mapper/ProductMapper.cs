@@ -45,6 +45,11 @@ public class ProductMapper
 
     public static ProductDto MapToDto(Product product)
     {
+        if(product == null)
+        {
+            return new ProductDto();
+        }
+
         return new ProductDto()
         {
             ImageName = product.ImageName,

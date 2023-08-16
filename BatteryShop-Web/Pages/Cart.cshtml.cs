@@ -51,12 +51,16 @@ namespace BatteryShop_Web.Pages
             return Page();
         }
 
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToPage("Index");
+            }
             var userId = User.GetUserId();
             RemoveOrderDetail orderDetail = new RemoveOrderDetail(_orderService, _orderDetailService);
             orderDetail.EditOrder(id, userId);
-
+            
             OrderDto = _orderService.GetOrderByUserId(userId);
             if(OrderDto != null)
                 OrderDetailDTOs = _orderDetailService.GetOrderDetailByOrderId(OrderDto.Id);

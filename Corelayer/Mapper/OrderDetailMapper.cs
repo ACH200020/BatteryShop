@@ -9,15 +9,19 @@ public class OrderDetailMapper
 {
     public static OrderDetailsDto MapToDto(OrderDetail orderDetail)
     {
+        if(orderDetail == null)
+        {
+            return new OrderDetailsDto();
+        }
         return new OrderDetailsDto()
         {
             Price = orderDetail.Price,
             Count = orderDetail.Count,
             Id = orderDetail.Id,
             ProductId = orderDetail.ProductId,
-            Order = OrderMapper.MapToDto(orderDetail.Order),
+            Order = orderDetail.Order == null ? new OrderDto() : OrderMapper.MapToDto(orderDetail.Order),
             OrderId = orderDetail.OrderId,
-            Product = ProductMapper.MapToDto(orderDetail.Product),
+            Product = orderDetail.Product == null ? new DTOs.Product.ProductDto() : ProductMapper.MapToDto(orderDetail.Product),
         };
 
     }

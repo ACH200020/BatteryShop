@@ -67,7 +67,7 @@ public class OrderDetailService : IOrderDetailService
             return OperationResult.NotFound();
 
         _shopContext.OrderDetails.Remove(orderDetail);
-        /*_orderService.EditPrice(orderDetail.Price,orderDetail.OrderId);*/
+        _shopContext.SaveChanges();
         return OperationResult.Success();
     }
 

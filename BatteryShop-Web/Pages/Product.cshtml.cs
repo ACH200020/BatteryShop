@@ -83,23 +83,29 @@ namespace BatteryShop_Web.Pages
 
             AddOrderDetail orderDetail = new AddOrderDetail(_orderService,_orderDetailService);
 
-            var result = orderDetail.AddOrder(_productDto, User.GetUserId());
+            var result = orderDetail.AddOrder(_productDto, User.GetUserId(), Count, price);
 
             if (result.Status != OperationResultStatus.Success)
             {
-                ProductDto = _productDto;
-                ProductImageDto = _productImageService.GetImageById(ProductDto.Id);
-                RelatedProduct = _product.GetProductByAmpere(ProductDto);
-                Comments = _commentService.GetProductComments(ProductDto.Id);
+                GetData();
 
                 ModelState.AddModelError(nameof(Count), result.Message);
 
                 return Page();
             }
+            GetData();
             return RedirectAndShowAlert(result, Page());
 
         }
 
+
+        private void GetData()
+        {
+            ProductDto = _productDto;
+            ProductImageDto = _productImageService.GetImageById(ProductDto.Id);
+            RelatedProduct = _product.GetProductByAmpere(ProductDto);
+            Comments = _commentService.GetProductComments(ProductDto.Id);
+        }
 
 
     }
