@@ -21,8 +21,8 @@ public class ProductMapper
             Price = dto.Price,
             Sales = dto.Sales,
             Ampere = dto.Ampere,
-            Brand = dto.Brand
-
+            Brand = dto.Brand,
+            ShowProduct = dto.ShowProduct,
         };
     }
 
@@ -39,6 +39,7 @@ public class ProductMapper
         product.Sales = dto.Sales;
         product.Ampere = dto.Ampere;
         product.Brand = dto.Brand;
+        product.ShowProduct = dto.ShowProduct;
         return product;
     }
 
@@ -67,6 +68,7 @@ public class ProductMapper
             Sales = product.Sales,
             Ampere = product.Ampere,
             Brand = product.Brand,
+            ShowProduct = product.ShowProduct,
         };
     }
 }

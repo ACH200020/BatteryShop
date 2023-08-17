@@ -71,7 +71,8 @@ namespace BatteryShop_Web.Areas.Admin.Controllers
                 Price = price,
                 Sales = sales == 0?0:sales,
                 Ampere = viewModel.Ampere,
-                Brand = viewModel.Brand
+                Brand = viewModel.Brand,
+                ShowProduct = viewModel.ShowProduct
             });
             if (result.Status != OperationResultStatus.Success)
             {
@@ -100,7 +101,9 @@ namespace BatteryShop_Web.Areas.Admin.Controllers
                 Sales = product.Sales.ToString(),
                 Price = product.Price.ToString(),
                 Ampere = product.Ampere,
-                Brand = product.Brand
+                Brand = product.Brand,
+                ShowProduct = product.ShowProduct
+
             };
             return View(model);
         }
@@ -133,7 +136,9 @@ namespace BatteryShop_Web.Areas.Admin.Controllers
                 Price = price,
                 Sales = sales,
                 Ampere = viewModel.Ampere,
-                Brand = viewModel.Brand
+                Brand = viewModel.Brand,
+                ShowProduct = viewModel.ShowProduct
+
             });
             if (result.Status != OperationResultStatus.Success)
             {

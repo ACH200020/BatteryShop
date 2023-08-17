@@ -16,9 +16,11 @@ public class Order : BaseEntities
     public string? Address { get; set; }
     public string? PostalCode { get; set; }
     public DateTime? PaymentTime { get; set; }
+    public string? TrackingCode { get; set; }
+
 
     #region Relations
-    
+
 
     [ForeignKey("UserId")]
     public User User { get; set; }

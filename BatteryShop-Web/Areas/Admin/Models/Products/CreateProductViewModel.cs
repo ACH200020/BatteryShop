@@ -51,5 +51,8 @@ namespace BatteryShop_Web.Areas.Admin.Models.Products
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Brand { get; set; }
 
+        [Display(Name = "نمایش محصول")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public bool ShowProduct { get; set; }
     }
 }

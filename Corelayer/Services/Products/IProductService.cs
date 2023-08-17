@@ -153,11 +153,11 @@ public class ProductService: IProductService
 
     public List<ProductDto> GetAllProduct()
     {
-        return _shopContext.Products.Where(f=>f.Count!=0).Select(product => ProductMapper.MapToDto(product)).ToList();
+        return _shopContext.Products.Where(f=>f.Count > 0 && f.ShowProduct == true).Select(product => ProductMapper.MapToDto(product)).ToList();
     }
 
     public List<ProductDto> GetProductByAmpere(ProductDto dto)
     {
-        return _shopContext.Products.Where(f => f.Ampere == dto.Ampere).Select(product => ProductMapper.MapToDto(product)).ToList();
+        return _shopContext.Products.Where(f => f.Ampere == dto.Ampere && f.ShowProduct == true).Select(product => ProductMapper.MapToDto(product)).ToList();
     }
 }

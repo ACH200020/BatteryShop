@@ -20,10 +20,11 @@ public class Product : BaseEntities
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
+    public bool ShowProduct { get; set; }
 
     #region Relations
 
-   
+
 
     [ForeignKey("CategoryId")]
     public Category Category { get; set; }

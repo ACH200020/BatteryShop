@@ -30,6 +30,7 @@ namespace CoreLayer.Mapper
             order.PostalCode = dto.PostalCode;
             order.PaymentTime = dto.PaymentTime;
             order.TotalPrice += dto.TotalPrice;
+            order.TrackingCode = dto.TrackingCode;
             return order;
         }
 
@@ -51,6 +52,7 @@ namespace CoreLayer.Mapper
                 IsFinally = order.IsFinally,
                 PostalCode = order.PostalCode,
                 PaymentTime = order.PaymentTime,
+                TrackingCode = order.TrackingCode
             };
         }
     }

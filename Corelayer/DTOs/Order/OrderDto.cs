@@ -21,6 +21,7 @@ namespace CoreLayer.DTOs.Order
         public bool IsFinally { get; set; }
         public UserDto User { get; set; }
         public DateTime? PaymentTime { get; set; }
+        public string? TrackingCode { get; set; }
 
     }
 }

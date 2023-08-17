@@ -43,7 +43,7 @@
                         <th>عنوان</th>
                         <th>slug</th>
                         <th>گروه</th>
-                        <th>پست ویژه</th>
+                        <th>نمایش محصول</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
@@ -60,8 +60,8 @@
                             <td>
                                 @item.Category.Title
                             </td>
-                           @*<td>
-                                @if (item.IsSpecial)
+                           <td>
+                                @if (item.ShowProduct)
                                 {
                                     <i class="fa fa-check text-success"></i>
                                 }
@@ -70,7 +70,7 @@
                                     <i class="fa fa-close text-danger"></i>
 
                                 }
-                            </td>*@
+                            </td>
                             <td>
                                 <a asp-area="admin" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-sm">ویرایش</a>
                                 <a type="submit" asp-area="admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">حذف</a>

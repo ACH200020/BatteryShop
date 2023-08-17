@@ -18,6 +18,7 @@ public class ProductDto
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
+    public bool ShowProduct { get; set; }
     public CategoryDto Category { get; set; }
     public CategoryDto SubCategory { get; set; }
 
@@ -37,6 +38,8 @@ public class CreateProductDto
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
+    public bool ShowProduct { get; set; }
+
 
 }
 public class EditProductDto
@@ -54,5 +57,7 @@ public class EditProductDto
     public int? Sales { get; set; }
     public int Ampere { get; set; }
     public string Brand { get; set; }
+    public bool ShowProduct { get; set; }
+
 
 }

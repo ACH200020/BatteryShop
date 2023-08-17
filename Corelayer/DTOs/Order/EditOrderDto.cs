@@ -11,4 +11,5 @@ public class EditOrderDto
     public string? PostalCode { get; set; }
     public bool? IsFinally { get; set; }
     public DateTime? PaymentTime { get; set; }
+    public string? TrackingCode { get; set; }
 }
