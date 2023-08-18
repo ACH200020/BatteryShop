@@ -26,7 +26,7 @@ public class Order : BaseEntities
     public User User { get; set; }
 
 
-    public ICollection<OrderDetail> OrderDetails { get; set; }
+    public ICollection<OrderDetailDto> OrderDetails { get; set; }
     #endregion
 }
 

@@ -4,7 +4,7 @@ using DataLayer.Entities.Products;
 
 namespace DataLayer.Entities.OrderDetails;
 
-public class OrderDetail : BaseEntities
+public class OrderDetailDto : BaseEntities
 {
     public int ProductId { get; set; }
 

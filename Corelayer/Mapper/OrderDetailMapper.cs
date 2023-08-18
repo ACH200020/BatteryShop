@@ -7,7 +7,7 @@ namespace CoreLayer.Mapper;
 
 public class OrderDetailMapper
 {
-    public static OrderDetailsDto MapToDto(OrderDetail orderDetail)
+    public static OrderDetailsDto MapToDto(OrderDetailDto orderDetail)
     {
         if(orderDetail == null)
         {
@@ -26,9 +26,9 @@ public class OrderDetailMapper
 
     }
 
-    public static OrderDetail CreateOrderDetailMapper(AddOrderDetailDto orderDetail)
+    public static OrderDetailDto CreateOrderDetailMapper(AddOrderDetailDto orderDetail)
     {
-        return new OrderDetail()
+        return new OrderDetailDto()
         {
             Price = orderDetail.Price,
             Count = orderDetail.Count,

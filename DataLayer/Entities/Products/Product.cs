@@ -35,6 +35,6 @@ public class Product : BaseEntities
 
     public ICollection<Comment> Comments { get; set; }
     public ICollection<ProductImage> ProductImages { get; set; }
-    public ICollection<OrderDetail> OrderDetails { get; set; }
+    public ICollection<OrderDetailDto> OrderDetails { get; set; }
     #endregion
 }

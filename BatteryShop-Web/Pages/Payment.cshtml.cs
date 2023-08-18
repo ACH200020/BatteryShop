@@ -19,18 +19,19 @@ namespace BatteryShop_Web.Pages
             _orderService = orderService;
         }
 
-        private OrderDto Orders { get; set; }
+        private OrderDto Order { get; set; }
 
         public IActionResult OnGet()
         {
-            long totalPrice =0;
-            Orders = _orderService.GetOrderByUserId(User.GetUserId());
+            
+            Order = _orderService.GetOrderByUserId(User.GetUserId());
             
 
-            var payment = new Payment((int)totalPrice);
+            var payment = new Payment(Order.TotalPrice);
             var result = payment.PaymentRequest("پرداخت شماره فاکتور 1",
-                "http://localhost:59046/FinalOrder",
+                "http://localhost:59046/",
                 User.GetUserPhoneNumber());
+
             if (result.Result.Status == 100)
             {
                 return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + result.Result.Authority);
